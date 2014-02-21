@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: benchmark
+Require-Bundle: fr.labri.harmony.core, org.h2, com.mysql.jdbc
+Service-Component: OSGI-INF/*.xml
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: benchmark
+Bundle-ManifestVersion: 2
+Import-Package: javax.persistence;version="2.0.4", org.osgi.framework;
+ version="1.7.0"
+Bundle-SymbolicName: benchmark
+Meta-Persistence: META-INF/persistence.xml
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

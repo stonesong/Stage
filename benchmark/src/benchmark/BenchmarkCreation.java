@@ -1,4 +1,4 @@
-package stage;
+package benchmark;
 
 import java.util.HashMap;
 import java.util.Properties;
@@ -10,15 +10,17 @@ import fr.labri.harmony.core.dao.Dao;
 import fr.labri.harmony.core.model.Source;
 
 
-public class Analysis extends AbstractAnalysis{
+public class BenchmarkCreation extends AbstractAnalysis{
 
-	static int NUMBER_OF_RAND = 1000; 
 	
-	public Analysis() {
+	static int NUMBER_OF_RAND = 1000; 
+
+	
+	public BenchmarkCreation() {
 		super();
 	}
 
-	public Analysis(AnalysisConfiguration config, Dao dao, Properties properties) {
+	public BenchmarkCreation(AnalysisConfiguration config, Dao dao, Properties properties) {
 		super(config, dao, properties);
 	}
 
@@ -44,7 +46,6 @@ public class Analysis extends AbstractAnalysis{
 			}
 			
 		}
-	
 	}
 
 }
