@@ -1,0 +1,7 @@
+08/04/2014
+
+scriptMaintenanceBranch permet de lister les branches avec des chiffres informatifs
+
+scriptListTags permet de lister les tags pour UNE branche
+
+scriptRename utilise scriptListTags afin de donner des chiffres sur les releases d'une branche donnée en paramètre
