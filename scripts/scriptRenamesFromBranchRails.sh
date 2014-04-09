@@ -46,7 +46,7 @@ function get_prRenamed() #percentage of renamed files (arguments = release Log, 
 
 function get_rellog() #release log between revision range (args = startCommit, endCommit)
 {
-    RELLOG=`git log -M --stat=1000,1000 $1..$2 | grep "|"`
+    RELLOG=`git log -M --stat=1000,1000 --format=format:"%H" $1..$2 | grep "|"`
 }
 
 function get_nbCommits()# args = startCommit, endCommit
@@ -90,7 +90,8 @@ fi
 
 get_nbCommits "$FIRSTCOMMIT" "$BRANCH"
 get_nbFiles "$BRANCH"
-NBRENAMES=`git log -M --stat=1000,1000 $FIRSTCOMMIT..$BRANCH | grep "=>" | wc -l`
+get_rellog "$FIRSTCOMMIT" "$BRANCH"
+get_nbRenames "$RELLOG"
 
 echo ""
 echo "On Branch $BRANCH:"
@@ -113,7 +114,7 @@ printf "%-20s" "renamed files:"
 echo ""
 
 ##before first tag
-printf "%-40s" "before first tag"
+printf "%-50s" "before first tag"
 FIRSTRELEASE=`echo -e "$TAGS" | head -n1 | tail -n1`
 get_nbCommits "$FIRSTCOMMIT" "$FIRSTRELEASE"
 get_rellog "$FIRSTCOMMIT" "$FIRSTRELEASE"
@@ -139,7 +140,7 @@ while [ $CPT -le $(($NBTAGS-1)) ]; do
     get_nbRenames "$RELLOG"
     get_nbFiles "$RELEASE2"
     get_nbModifiedFiles "$RELLOG"
-    printf "%-40s" $RELEASE1
+    printf "%-50s" $RELEASE1
     printf "%-20s" $NBCOMMITS
     printf "%-20s" $NBRENAMES
     printf "%-20s" $NBFILES
@@ -159,7 +160,7 @@ get_rellog "$RELEASE1" "$BRANCH"
 get_nbRenames "$RELLOG"
 get_nbFiles "$BRANCH"
 get_nbModifiedFiles "$RELLOG"
-printf "%-40s" $RELEASE1
+printf "%-50s" $RELEASE1
 printf "%-20s" $NBCOMMITS
 printf "%-20s" $NBRELRENAMES
 printf "%-20s" $NBFILES

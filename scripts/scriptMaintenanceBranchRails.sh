@@ -6,13 +6,13 @@
 
 function get_rellog() #args = current branch
 {
-    RELLOG=`git log -M --stat=1000,1000 $1 --not master | grep "|"`
+    RELLOG=`git log -M --stat=1000,1000 --format=format:"%H" $1 --not master | grep "|"`
 }
 
 ############################## General info on project ##############################
 REPONAME=`pwd | rev | cut -d '/' -f 1 | rev`
 NBCOMMITS=`git log --format=oneline --all | wc -l`
-NBRENAMES=`git log -M --stat=1000,1000 --all | grep "=>" | wc -l`
+NBRENAMES=`git log -M --stat=1000,1000 --format=format:"%H" --all | grep "=>" | wc -l`
 NBFILES=`git ls-tree -r --name-only HEAD | wc -l`
 BRANCH=`git branch -r | sed '/->/d' | sed -e 's/^ *//g'`
 NBBRANCH=`echo -e "$BRANCH" | wc -l` 
@@ -48,8 +48,8 @@ while [ $CPT -le $NBBRANCH ]; do
     NBMODFILES=`echo -e "$RELLOG" | wc -l`
     if [[ $GETNUM == "master" ]]; then
 	COMMITS=`git log --format=oneline $CURBRANCH | wc -l`
-	RENAMES=`git log -M --stat=1000,1000 $CURBRANCH | grep "=>" | wc -l`
-	NBMODFILES=`git log -M --stat=1000,1000 $CURBRANCH | grep "|" | wc -l`
+	RENAMES=`git log -M --stat=1000,1000 --format=format:"%H" $CURBRANCH | grep "=>" | wc -l`
+	NBMODFILES=`git log -M --stat=1000,1000 --format=format:"%H" $CURBRANCH | grep "|" | wc -l`
     fi
     
     printf "%-50s" $CURBRANCH
