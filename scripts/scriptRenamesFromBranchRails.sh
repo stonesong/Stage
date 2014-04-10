@@ -162,7 +162,7 @@ get_nbFiles "$BRANCH"
 get_nbModifiedFiles "$RELLOG"
 printf "%-50s" $RELEASE1
 printf "%-20s" $NBCOMMITS
-printf "%-20s" $NBRELRENAMES
+printf "%-20s" $NBRENAMES
 printf "%-20s" $NBFILES
 get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
 printf "%-20s" $PRCHANCERENAMES%
