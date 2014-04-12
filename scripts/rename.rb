@@ -1,4 +1,5 @@
-require "thor"
+require 'rubygems'
+require 'thor'
 
 class GitRenameDetector #Class for tool function
   
@@ -52,39 +53,39 @@ def get_percentage(a, b)
 end
 
 def get_prRenamed(log_array, nbModifiedFiles)
-    if nbModifiedFiles > 1 
-      	hrenamed = Hash.new()
-	hmodified = Hash.new()
-	cpt=0
-	while cpt < nbModifiedFiles
-          line = log_array[cpt]
-	    if line.match("=>") != nil
-              file1=line.gsub(/({)(.*)( => )(.*)(})/, '\2')
-              file2=line.gsub(/({)(.*)( => )(.*)(})/, '\4')
-
-              local COND1=`echo -e "${hashrenames["$FILE1"]}"`
-              if [ "$COND1" != "$FILE1" ];then
-                local HASHRENSIZE=$(($HASHRENSIZE+1))
-                  local HASHMODSIZE=$(($HASHMODSIZE+1))
-                 fi
-                 hashrenames=( [$FILE2]=$FILE2 )
-	        else
-                local FILE=`echo -e "$LINE" | sed -e 's/^ *//g' | cut -d ' ' -f 1`
-		local COND=`echo -e "${hashmodified["$FILE"]}"`
-		if [ "$COND" != "$FILE" ];then
-		    local HASHMODSIZE=$(($HASHMODSIZE+1))
-		    hashmodified=( [$FILE]=$FILE )
-		fi
-	    fi
-	    local CPT=$(($CPT+1))
-	done
-	local NBMODIFIED=$HASHMODSIZE
-	local NBRENAMED=$HASHRENSIZE
-	PRRENAMED=$(($NBRENAMED*10000/$NBMODIFIED))
-    else
-	PRRENAMED=0
-    fi
-}
+  if nbModifiedFiles > 1 
+    hrenamed = Array.new()
+    hmodified = Array.new()
+    cpt=0
+    c=0
+    while cpt < nbModifiedFiles
+      line = log_array[cpt]
+      if line.match("=>") != nil
+        c=c+1
+        file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+        file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+        if hrenamed.include?(file1)
+          hrenamed.delete(file1)
+          hmodified.delete(file1)
+        end
+        hrenamed.concat([file2])
+        hmodified.concat([file2])
+      else
+        file = line
+        if !hmodified.include?(file)
+          hmodified.concat([file])
+        end
+      end
+      cpt=cpt+1
+    end
+    puts c
+    puts hrenamed.count
+    puts hmodified.count
+    hrenamed.count*10000/hmodified.count/100.to_f
+  else
+    0
+  end
+end
 
 
 end
@@ -115,8 +116,7 @@ class GitRename < Thor
         prChanceOfRenames = detector.get_percentage(renames.count, nbModifiedFiles)
         prRenamed = detector.get_prRenamed(log_init, nbModifiedFiles)
 	print "before first release tag,INIT,",nbCommits,",",renames.count,",",nbFiles,",",prChanceOfRenames,",",prRenamed,","
-        puts ""
-        
+        puts ""        
       end
       
       cpt += 1
