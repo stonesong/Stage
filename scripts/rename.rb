@@ -57,30 +57,49 @@ def get_prRenamed(log_array, nbModifiedFiles)
     hrenamed = Array.new()
     hmodified = Array.new()
     cpt=0
-    c=0
+    nbren=0
+    nbrenok=0
+    nbrennon=0
+    nbmod=0
+    nbmodok=0
+    nbmodnon=0
     while cpt < nbModifiedFiles
       line = log_array[cpt]
       if line.match("=>") != nil
-        c=c+1
+        nbren=nbren+1
         file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
         file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
         if hrenamed.include?(file1)
+          nbrenok=nbrenok+1
           hrenamed.delete(file1)
-          hmodified.delete(file1)
+        else
+          nbrennon=nbrennon+1
         end
         hrenamed.concat([file2])
         hmodified.concat([file2])
+        hmodified.delete(file1)
       else
+        nbmod=nbmod+1
         file = line
+        #puts file
+        #puts hmodified
         if !hmodified.include?(file)
+          #puts "non"
+          nbmodnon=nbmodnon+1
           hmodified.concat([file])
+        else
+          #puts "ok"
+          nbmodok=nbmodok+1
         end
       end
       cpt=cpt+1
     end
-    puts c
-    puts hrenamed.count
-    puts hmodified.count
+    puts nbren
+    puts nbrenok
+    puts nbrennon
+    puts nbmod
+    puts nbmodok
+    puts nbmodnon
     hrenamed.count*10000/hmodified.count/100.to_f
   else
     0

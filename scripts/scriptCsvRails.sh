@@ -29,27 +29,53 @@ function get_prRenamed() #percentage of renamed files (arguments = release Log, 
 	local HASHRENSIZE=0
 	local LOG=$1
 	local WCOND=$2
-	while [ $CPT -le $WCOND ]; do
+	NBREN=0
+	NBRENOK=0
+	NBRENNON=0
+	NBMOD=0
+	NBMODOK=0
+	NBMODNON=0
+	while [ $CPT -le 50 ]; do
 	    local LINE=`echo -e "$LOG" | head -n$CPT | tail -n1`
 	    if [ `echo -e "$LINE" | grep "=>" | wc -l` -eq 1 ]; then
+		NBREN=$(($NBREN+1))
 		local FILE1=`echo -e "$LINE" | sed 's/^ *\(.*\){\(.*\) => \(.*\)}\([^ ]*\)\(.*\)/\1\2\4/'`
 		local FILE2=`echo -e "$LINE" | sed 's/^ *\(.*\){\(.*\) => \(.*\)}\([^ ]*\)\(.*\)/\1\3\4/'`
 		local COND1=`echo -e "${hashrenames["$FILE1"]}"`
 		if [ "$COND1" != "$FILE1" ];then
+		    NBRENNON=$(($NBRENNON+1))
 		    local HASHRENSIZE=$(($HASHRENSIZE+1))
-		    local HASHMODSIZE=$(($HASHMODSIZE+1))
+		    #local HASHMODSIZE=$(($HASHMODSIZE+1))
+		else
+		    NBRENOK=$(($NBRENOK+1))
 		fi
 		hashrenames=( [$FILE2]=$FILE2 )
+		hashmodified=( [$FILE2]=$FILE2 )
 	    else
+		NBMOD=$(($NBMOD+1))
 		local FILE=`echo -e "$LINE" | sed -e 's/^ *//g' | cut -d ' ' -f 1`
 		local COND=`echo -e "${hashmodified["$FILE"]}"`
+		#echo "$FILE"
+		#echo "$COND"
 		if [ "$COND" != "$FILE" ];then
+		    #echo "non"
+		    NBMODNON=$(($NBMODNON+1))
 		    local HASHMODSIZE=$(($HASHMODSIZE+1))
 		    hashmodified=( [$FILE]=$FILE )
+		   
+		else
+		    #echo "ok"
+		    NBMODOK=$(($NBMODOK+1))
 		fi
 	    fi
 	    local CPT=$(($CPT+1))
 	done
+	echo "NBREN: $NBREN"
+	echo "NBRENOK: $NBRENOK"
+	echo "NBRENNON: $NBRENNON"
+	echo "NBMOD: $NBMOD"
+	echo "NBMODOK: $NBMODOK"
+	echo "NBMODNON: $NBMODNON"
 	local NBMODIFIED=$HASHMODSIZE
 	local NBRENAMED=$HASHRENSIZE
 	PRRENAMED=$(($NBRENAMED*10000/$NBMODIFIED))
@@ -143,7 +169,7 @@ while [ $CPT -le $NBBRANCH ]; do
         get_nbMasterCommits
        	get_masterRellog
 	get_tagList "$CURBRANCH"
-	get_majorReleases "majorReleaseList"
+	get_majorReleases "majorRels"
 	RELLISTSIZE=`echo -e "$RELLIST" | wc -l`
 	FIRSTCOMMIT=`git log --format=oneline --reverse $CURBRANCH | head -1 | cut -d ' ' -f 1`
 
