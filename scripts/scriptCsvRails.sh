@@ -70,12 +70,12 @@ function get_prRenamed() #percentage of renamed files (arguments = release Log, 
 	    fi
 	    local CPT=$(($CPT+1))
 	done
-	#echo "NBREN: $NBREN"
-	#echo "NBRENOK: $NBRENOK"
-	#echo "NBRENNON: $NBRENNON"
-	#echo "NBMOD: $NBMOD"
-	#echo "NBMODOK: $NBMODOK"
-	#echo "NBMODNON: $NBMODNON"
+	echo "NBREN: $NBREN"
+	echo "NBRENOK: $NBRENOK"
+	echo "NBRENNON: $NBRENNON"
+	echo "NBMOD: $NBMOD"
+	echo "NBMODOK: $NBMODOK"
+	echo "NBMODNON: $NBMODNON"
 	local NBMODIFIED=$HASHMODSIZE
 	local NBRENAMED=$HASHRENSIZE
 	PRRENAMED=$(($NBRENAMED*10000/$NBMODIFIED))
@@ -186,44 +186,44 @@ while [ $CPT -le $NBBRANCH ]; do
 	echo""
 
 	##first tag to last tag
-#	I=1
-#	while [ $I -le $(($RELLISTSIZE-1)) ]; do
-#	    RELEASE1=`echo -e "$RELLIST" | head -n$I | tail -n1`
-#	    RELEASE2=`echo -e "$RELLIST" | head -n$(($I+1)) | tail -n1`
-#	    get_nbCommits "$RELEASE1" "$RELEASE2"
-#	    get_rellog "$RELEASE1" "$RELEASE2"
-#	    get_nbRenames "$RELLOG"
-#	    get_nbFiles "$RELEASE2"
-#	    get_nbModifiedFiles "$RELLOG"
-#	    get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
-#	    get_prRenamed "$RELLOG" "$NBMODFILES"
-#	    printf "$RELEASE1;DEV;$NBCOMMITS;$NBRENAMES;$NBFILES;$PRCHANCERENAMES;$PRRENAMED;"
-#	    echo ""
-#	    I=$(($I+1))
-#	done
+	I=1
+	while [ $I -le $(($RELLISTSIZE-1)) ]; do
+	    RELEASE1=`echo -e "$RELLIST" | head -n$I | tail -n1`
+	    RELEASE2=`echo -e "$RELLIST" | head -n$(($I+1)) | tail -n1`
+	    get_nbCommits "$RELEASE1" "$RELEASE2"
+	    get_rellog "$RELEASE1" "$RELEASE2"
+	    get_nbRenames "$RELLOG"
+	    get_nbFiles "$RELEASE2"
+	    get_nbModifiedFiles "$RELLOG"
+	    get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
+	    get_prRenamed "$RELLOG" "$NBMODFILES"
+	    printf "$RELEASE1;DEV;$NBCOMMITS;$NBRENAMES;$NBFILES;$PRCHANCERENAMES;$PRRENAMED;"
+	    echo ""
+	    I=$(($I+1))
+	done
 
-#	##Last tag to head
-#	RELEASE1=`echo -e "$RELLIST" | head -n$CPT | tail -n1`
-#	get_nbCommits "$RELEASE1" "$CURBRANCH"
-#	get_rellog "$RELEASE1" "$CURBRANCH"
-#	get_nbRenames "$RELLOG"
-#	get_nbFiles "$CURBRANCH"
-#	get_nbModifiedFiles "$RELLOG"
-#	get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
-#	get_prRenamed "$RELLOG" "$NBMODFILES"
-#	printf "$RELEASE1(last release !);DEV;$NBCOMMITS;$NBRENAMES;$NBFILES;$PRCHANCERENAMES;$PRRENAMED;"
-#	echo""
-#
-#   else #maintenance branch
-#	get_nbBranchCommits "$CURBRANCH"
-#	get_branchRellog "$CURBRANCH"
-#	get_nbRenames "$RELLOG"
-#	get_nbFiles "$CURBRANCH"
-#	get_nbModifiedFiles "$RELLOG"
-#	get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
-#	get_prRenamed "$RELLOG" "$NBMODFILES"
-#	printf "$CURBRANCH;MAINT;$NBCOMMITS;$NBRENAMES;$NBFILES;$PRCHANCERENAMES;$PRRENAMED;"	
-#	echo ""
+	##Last tag to head
+	RELEASE1=$RELEASE2
+	get_nbCommits "$RELEASE1" "$CURBRANCH"
+	get_rellog "$RELEASE1" "$CURBRANCH"
+	get_nbRenames "$RELLOG"
+	get_nbFiles "$CURBRANCH"
+	get_nbModifiedFiles "$RELLOG"
+	get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
+	get_prRenamed "$RELLOG" "$NBMODFILES"
+	printf "$RELEASE1(last release !);DEV;$NBCOMMITS;$NBRENAMES;$NBFILES;$PRCHANCERENAMES;$PRRENAMED;"
+	echo""
+
+    else #maintenance branch
+	get_nbBranchCommits "$CURBRANCH"
+	get_branchRellog "$CURBRANCH"
+	get_nbRenames "$RELLOG"
+	get_nbFiles "$CURBRANCH"
+	get_nbModifiedFiles "$RELLOG"
+	get_prChanceOfRenames "$NBRENAMES" "$NBMODFILES"
+	get_prRenamed "$RELLOG" "$NBMODFILES"
+	printf "$CURBRANCH;MAINT;$NBCOMMITS;$NBRENAMES;$NBFILES;$PRCHANCERENAMES;$PRRENAMED;"	
+	echo ""
     fi
     CPT=$(($CPT+1))
 done    
