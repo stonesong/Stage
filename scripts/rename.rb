@@ -267,6 +267,7 @@ class GitRename < Thor
         prActRenamed = detector.get_prRenamed(complLog, nbComplRenames, 1, activeFiles)
         
         print vers1,"(last release !),DEV,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
+        puts ""
      
       else ###maintenance branch
         nbCommits = detector.get_nbBranchCommits(current_branch)
