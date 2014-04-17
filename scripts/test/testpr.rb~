@@ -19,31 +19,22 @@ class GitRenameDetector #Class for algo
       hrenamed = Array.new()
       hmodified = Array.new()
       cpt=0
-      while cpt < log_array.count do
+      while cpt < log_array.count
         line = log_array[cpt]
         if line.match(/\|/)
           line = line.split("|")[0]
           line.strip!
           if line.match("=>")
-            puts line
-            if line.match("=> }")
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
-            elsif line.match("{ =>")
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
-            else
+            if !line.match("rename")
               file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
               file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+              if hrenamed.include?(file1)
+                hrenamed.delete(file1)
+              end
+              hrenamed.concat([file2])
+              hmodified.concat([file2])
+              hmodified.delete(file1)
             end
-            puts file1
-            puts file2
-            if hrenamed.include?(file1)
-              hrenamed.delete(file1)
-            end
-            hrenamed.concat([file2])
-            hmodified.concat([file2])
-            hmodified.delete(file1)
           else
             file = line
             if !hmodified.include?(file)
@@ -60,7 +51,6 @@ class GitRenameDetector #Class for algo
         end
         cpt=cpt+1
       end
-      puts hmodified
       hrenamed.count*10000/hmodified.count/100.to_f
     else
       0
@@ -79,6 +69,8 @@ class GitRename < Thor
     nbRename = detector.get_renames(log).count
     prActRenamed = detector.get_prActRenamed(log, nbRename, 1)
     puts "prActRen :",prActRenamed
+
+    pr
     
   end
 end
