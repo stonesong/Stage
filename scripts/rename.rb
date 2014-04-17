@@ -9,7 +9,6 @@ class GitRenameDetector #Class for tool function
   end
   
   def get_rellog(vers1, vers2)
-   # `git --git-dir #{@folder}/.git log -M --stat=1000,1000 --format=format:"%H" --reverse #{vers1}..#{vers2} | grep "|"`.split("\n").map{|line| line.split("|")[0]}
     `git --git-dir #{@folder}/.git log -M --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers1}..#{vers2}`.split("\n").map
   end
 
@@ -57,6 +56,33 @@ class GitRenameDetector #Class for tool function
     end
   end
 
+
+  def getn(vers, f)
+    `git --git-dir #{@folder}/.git --work-tree=#{@folder}/ log #{vers} -M --summary --stat=1000,1000 --format=format:"%H" --follow #{@folder}/#{f} | grep "=>" | grep "|" | wc -l`.to_i
+  end
+  
+  
+  def get_renameCount(vers)
+    list = get_activeFiles(vers)
+    list.map{|line| line.strip!}
+    ren = Array.new()
+    nb = 0
+    i = 0
+    while i < list.count do
+      f = list[i]
+      n = getn(vers, f)
+      if n > 0
+        ren.concat([f])
+        nb=nb+1
+      end
+      n=0
+      i=i+1
+    end
+    ren
+  end
+ 
+
+
   def get_prRenamed(log_array, nbRenames, flag, active_array)
     if nbRenames > 0 
       hrenamed = Array.new()
@@ -68,19 +94,20 @@ class GitRenameDetector #Class for tool function
           line = line.split("|")[0]
           line.strip!
           if line.match("=>")
-            if line.match("=> }")
-              #puts line
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
-            elsif line.match("{ =>")
-              #puts line
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+            if line.match(/\{/)
+              if line.match(/=> \}/)
+                file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+                file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
+              elsif line.match(/\{ =>/)
+                file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
+                file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+              else
+                file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+                file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+              end
             else
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
-              #puts file1
-              #puts file2
+              file1=line.gsub(/(.*)( => )(.*)/, '\1')
+              file2=line.gsub(/(.*)( => )(.*)/, '\3')
             end
             if hrenamed.include?(file1)
               hrenamed.delete(file1)
@@ -95,61 +122,56 @@ class GitRenameDetector #Class for tool function
             end
           end
         end
-        #if flag == 1
-         # if line.match("delete")
-          #  file = line.gsub(/(.*)( )(.*)/, '\3')
-           # hrenamed.delete(file)
-            #hmodified.delete(file)
-         # end
-        #end
+        if flag == 1
+          if line.match("delete")
+            file = line.gsub(/(.*)( )(.*)/, '\3')
+            hrenamed.delete(file)
+            hmodified.delete(file)
+          end
+        end
         cpt=cpt+1
       end
-      if flag == 1
-        puts "taille de pr intra func"
-        puts active_array.count
-        puts "taille hmod avant"
-        puts hmodified.count
+      if flag == 1   
         i=0
-        while i < hmodified.count
-          if !active_array.include?(hmodified[i])
-            hmodified.delete(hmodified[i])
-            hrenamed.delete(hmodified[i])
+        stop = hmodified.count
+        tmp = Array.new(hmodified)
+        while i < stop do
+          if !active_array.include?(tmp[i])
+            hmodified.delete(tmp[i])
+            hrenamed.delete(tmp[i])
           end
           i=i+1
         end
-        puts "taille hmod apres"
-        puts hmodified.count
+        #puts ("hrenamed size")
+        #puts hrenamed.count
+        #puts "rename total"
+        #ren = get_renameCount("origin/master")
+        #num = ren.count
+        #puts num
+        #puts ("hmod size")
+        #puts hmodified.count
+        #puts ("active size")
+        #puts active_array.count
+        
+        #puts ""
+        #puts " ren manquant"
+        #i=0
+        #n=0
+        #while i < ren.count do
+         # if !hrenamed.include?(ren[i])
+          #  puts ren[i]
+           # n=n+1
+          #end
+          #i=i+1
+        #end
+        #puts n
       end
-      #puts hmodified.count
-      #puts hrenamed.count
-      hmodified
-      #hrenamed.count*10000/hmodified.count/100.to_f
+      hrenamed.count*10000/hmodified.count/100.to_f
     else
       0
     end
   end
-
-  def getn(vers, f)
-    `git --git-dir #{@folder}/.git --work-tree=#{@folder}/ log #{vers} -M --summary --stat=1000,1000 --format=format:"%H" --follow #{@folder}/#{f} | grep "=>" | grep "|" | wc -l`.to_i
-  end
-
- 
-  def get_renameCount(vers)
-    list = get_activeFiles(vers)
-    list.map{|line| line.strip!}
-    nb = 0
-    i = 0
-    while i < list.count do
-      f = list[i]
-      n = getn(vers, f)
-      if n > 0
-        nb=nb+1
-      end
-      n=0
-      i=i+1
-    end
-    nb
-  end
+  
 
 end
 
@@ -173,41 +195,55 @@ class GitRename < Thor
       if current_branch == "origin/master"        
         
         ###before first tag
- #       vers1 = firstCommit
- #       vers2 = releases[0]
- #       nbCommits = detector.get_nbCommits(vers1, vers2)
-#	log_init = Array(detector.get_rellog(vers1, vers2))
-#        log_init.map{|line| line.strip!}
-#        nbRenames = detector.get_renames(log_init).count
-#        nbFiles = detector.get_nbFiles(vers2)
-#        nbModifiedFiles = detector.get_nbModifiedFiles(log_init).count
-#        prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
-#        prRenamed = detector.get_prRenamed(log_init, nbRenames, 0)
-#        prActRenamed = detector.get_prRenamed(log_init, nbRenames, 1)
-#	print "before first release tag,INIT,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
-#        puts "" 
+        vers1 = firstCommit
+        vers2 = releases[0]
+        nbCommits = detector.get_nbCommits(vers1, vers2)
+	
+        log_init = Array(detector.get_rellog(vers1, vers2))
+        log_init.map{|line| line.strip!}
+        nbRenames = detector.get_renames(log_init).count
+       
+        activeFiles = Array(detector.get_activeFiles(vers2))
+        activeFiles.map{|line| line.strip!}
+        nbFiles = activeFiles.count
+        
+        nbModifiedFiles = detector.get_nbModifiedFiles(log_init).count
+        prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
+        prRenamed = detector.get_prRenamed(log_init, nbRenames, 0, activeFiles)
+        prActRenamed = detector.get_prRenamed(log_init, nbRenames, 1, activeFiles)
+	
+        print "before first release tag,INIT,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
+        puts "" 
         
         ###first tag to last tag
-#        i=0
-#        while i < releases.count-1 do
-#          vers1 = releases[i]
-#          vers2 = releases[i+1]
-#          nbCommits = detector.get_nbCommits(vers1, vers2)
-#          log = Array(detector.get_rellog(vers1, vers2))
-#          log.map{|line| line.strip!}
-#          nbRenames = detector.get_renames(log).count
-#          nbFiles = detector.get_nbFiles(vers2)
-#          nbModifiedFiles = detector.get_nbModifiedFiles(log).count
-#          prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
-#          prRenamed = detector.get_prRenamed(log, nbRenames, 0)
-#          complLog = Array(detector.get_rellog(firstCommit, vers2))
-#          nbComplRenames = detector.get_renames(complLog).count
-#          prActRenamed = detector.get_prRenamed(complLog, nbComplRenames, 1)
-#          print vers1,",DEV,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
-#          puts ""
-#          i=i+1
-#        end
-        
+        i=0
+        while i < releases.count-1 do
+          vers1 = releases[i]
+          vers2 = releases[i+1]
+          nbCommits = detector.get_nbCommits(vers1, vers2)
+          
+          log = Array(detector.get_rellog(vers1, vers2))
+          log.map{|line| line.strip!}
+          nbRenames = detector.get_renames(log).count
+          
+          activeFiles = Array(detector.get_activeFiles(vers2))
+          activeFiles.map{|line| line.strip!}
+          nbFiles = activeFiles.count
+          
+          nbModifiedFiles = detector.get_nbModifiedFiles(log).count
+          prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
+          prRenamed = detector.get_prRenamed(log, nbRenames, 0, activeFiles)
+          
+          complLog = Array(detector.get_rellog(firstCommit, vers2))
+          complLog.map{|line| line.strip!}
+          nbComplRenames = detector.get_renames(complLog).count
+          prActRenamed = detector.get_prRenamed(complLog, nbComplRenames, 1, activeFiles)
+          
+          print vers1,",DEV,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
+          puts ""
+          i=i+1
+        end
+       
         ##last tag to branch head
         vers1 = releases[releases.count-1]
         vers2 = current_branch
@@ -225,52 +261,38 @@ class GitRename < Thor
         prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
         prRenamed = detector.get_prRenamed(log, nbRenames, 0, activeFiles)
         
-
         complLog = Array(detector.get_rellog(firstCommit, vers2))
         complLog.map{|line| line.strip!}
         nbComplRenames = detector.get_renames(complLog).count
-        
         prActRenamed = detector.get_prRenamed(complLog, nbComplRenames, 1, activeFiles)
-        print vers1,"(last release !),DEV,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,","#,prRenamed,",",prActRenamed,","
         
-        puts ""
-        puts "taille prAct"
-        puts prActRenamed.count
-        puts "taille active list"
-        puts activeFiles.count
-        
-        i=0
-        while i < prActRenamed.count do
-          if !activeFiles.include?(prActRenamed[i])
-            n = n+1
-            #puts prActRenamed[i]
-          end
-          i =i+1
-        end
-        puts "nbdiff"   
-        puts n
-        puts "rename count"
-        nbr = detector.get_renameCount(current_branch)
-        puts nbr
-        puts ""
+        print vers1,"(last release !),DEV,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
      
-#      else ###maintenance branch
-#        nbCommits = detector.get_nbBranchCommits(current_branch)
-#        log = Array(detector.get_branchRellog(current_branch))
-#        log.map{|line| line.strip!}      
-#        nbRenames = detector.get_renames(log).count
-#        nbFiles = detector.get_nbFiles(current_branch)
-#        nbModifiedFiles = detector.get_nbModifiedFiles(log).count
-#        prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
-#        prRenamed = detector.get_prRenamed(log, nbRenames, 0)
-#        complLog = Array(detector.get_rellog(firstCommit, current_branch))
-#        nbComplRenames = detector.get_renames(complLog).count
-#        prActRenamed = detector.get_prRenamed(complLog, nbComplRenames, 1)
-#        print current_branch,",MAINT,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
+      else ###maintenance branch
+        nbCommits = detector.get_nbBranchCommits(current_branch)
+        
+        log = Array(detector.get_branchRellog(current_branch))
+        log.map{|line| line.strip!}      
+        nbRenames = detector.get_renames(log).count
+        
+        activeFiles = Array(detector.get_activeFiles(current_branch))
+        activeFiles.map{|line| line.strip!}
+        nbFiles = activeFiles.count 
+        
+        nbModifiedFiles = detector.get_nbModifiedFiles(log).count
+        prChanceOfRenames = detector.get_percentage(nbRenames, nbModifiedFiles)
+        prRenamed = detector.get_prRenamed(log, nbRenames, 0, activeFiles)
+        
+        complLog = Array(detector.get_rellog(firstCommit, current_branch))
+        complLog.map{|line| line.strip!}
+        nbComplRenames = detector.get_renames(complLog).count
+        prActRenamed = detector.get_prRenamed(complLog, nbComplRenames, 1, activeFiles)
+        
+        print current_branch,",MAINT,",nbCommits,",",nbRenames,",",nbFiles,",",prChanceOfRenames,",",prRenamed,",",prActRenamed,","
         puts ""
     
       end
-      cpt += 1
+      cpt=cpt+1
     end    
   end
 end
