@@ -70,7 +70,6 @@ class GitRenameDetector #Class for tool function
     `git --git-dir #{@folder}/.git --work-tree=#{@folder}/ log #{vers} -M --summary --stat=1000,1000 --format=format:"%H" --follow #{@folder}/#{f} | grep "=>" | grep "|" | wc -l`.to_i
   end
   
-  
   def get_renameCount(vers)
     list = get_activeFiles(vers)
     list.map{|line| line.strip!}
@@ -89,35 +88,6 @@ class GitRenameDetector #Class for tool function
     end
     ren
   end
- 
-  def get_actfiles(log, files)
-    if files.count < 1
-      0
-    else
-      hmod = Array.new()
-      cpt=0
-      while cpt < log.count do
-        line = log[cpt]
-        if line.match(/\|/)
-          line = line.split("|")[0]
-          line.strip!
-          hmod.concat([line])
-        end
-        cpt=cpt+1
-      end
-      hmod = hmod.uniq
-      i=0
-      tmp = Array.new(hmod)
-      while i < tmp.count do
-        if !files.include?(tmp[i])
-          hmod.delete(tmp[i])
-        end
-        i=i+1
-      end
-      hmod
-    end
-  end
-
 
   def get_prRenamed(log_array, nbRenames, flag, active_array)
     hrenamed = Array.new()
@@ -181,7 +151,6 @@ class GitRenameDetector #Class for tool function
     end
     tab = Couple.new(hrenamed, hmodified)
     tab
-    #hrenamed.count*10000/hmodified.count/100.to_f
   end
 end
 
@@ -207,7 +176,6 @@ class GitRename < Thor
         ###before first tag
         vers1 = firstCommit
         vers2 = releases[0]
-        #nbCommits = detector.get_nbCommits(vers1, vers2)
 	
         log_init = Array(detector.get_rellog(vers1, vers2))
         log_init.map{|line| line.strip!}
@@ -215,29 +183,25 @@ class GitRename < Thor
         files = Array(detector.get_files(vers2))
         files.map{|line| line.strip!}
         nbFiles = files.count
-
-        #actFiles = Array(detector.get_actfiles(log_init, files))
-        #actFiles.map{|line| line.strip!}
-        #nbActFiles = actFiles.count
-
-        #prActFiles = detector.get_percentage(nbActFiles, nbFiles)
         
         nbModif = detector.get_nbModifiedFiles(log_init).count
         nbRen = detector.get_renames(log_init).count
         prOfRenames = detector.get_percentage(nbRen, nbModif)
-
-        #prRenamed = detector.get_prRenamed(log_init, nbRen, 1, files)
-        #prActRenamed = prRenamed
         
-        tables = Couple.new(0, 0)
-        tables = detector.get_prRenamed(log_init, nbRen, 1, files)
-        hren = tables.one
-        hmod = tables.two
-        prActRenamed = hren.count*10000/hmod.count/100.to_f
-        prRenamed = hren.count*10000/nbFiles/100.to_f
-        
-        nbActFiles = hmod.count
-        prActFiles = detector.get_percentage(nbActFiles, nbFiles)
+        if nbModif > 0
+          tables = Couple.new(0, 0)
+          tables = detector.get_prRenamed(log_init, nbRen, 1, files)
+          hren = tables.one
+          hmod = tables.two
+          prActRenamed = hren.count*10000/hmod.count/100.to_f
+          prRenamed = hren.count*10000/nbFiles/100.to_f
+          nbActFiles = hmod.count
+          prActFiles = detector.get_percentage(nbActFiles, nbFiles)
+        else
+          prActRenamed = 0
+          prRenamed = 0
+          prActFiles = 0
+        end
 
         print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
         puts "" 
@@ -257,7 +221,6 @@ class GitRename < Thor
         while i < releases.count-1 do
           vers1 = releases[i]
           vers2 = releases[i+1]
-          #nbCommits = detector.get_nbCommits(vers1, vers2)
           
           log = Array(detector.get_rellog(vers1, vers2))
           log.map{|line| line.strip!}
@@ -266,34 +229,25 @@ class GitRename < Thor
           files.map{|line| line.strip!}
           nbFiles = files.count
           
-          #actFiles = Array(detector.get_actfiles(log, files))
-          #actFiles.map{|line| line.strip!}
-          #nbActFiles = actFiles.count
-
-          #prActFiles = detector.get_percentage(nbActFiles, nbFiles)
-          
           nbModif = detector.get_nbModifiedFiles(log).count
           nbRen = detector.get_renames(log).count
           prOfRenames = detector.get_percentage(nbRen, nbModif)
-          
-          complLog = Array(detector.get_rellog(firstCommit, vers2))
-          complLog.map{|line| line.strip!}
-          nbComplRen = detector.get_renames(complLog).count
-              
-          #prRenamed = detector.get_prRenamed(complLog, nbComplRen, 1, files)
-               
-          tables = Couple.new(0,0)
-          tables = detector.get_prRenamed(log, nbRen, 1, files)
-          hren = tables.one
-          hmod = tables.two
-          #puts hmod.count
-          prActRenamed = hren.count*10000/hmod.count/100.to_f
-          prRenamed = hren.count*10000/nbFiles/100.to_f
+           
+          if nbModif > 0                
+            tables = Couple.new(0,0)
+            tables = detector.get_prRenamed(log, nbRen, 1, files)
+            hren = tables.one
+            hmod = tables.two
+            prActRenamed = hren.count*10000/hmod.count/100.to_f
+            prRenamed = hren.count*10000/nbFiles/100.to_f
+            nbActFiles = hmod.count
+            prActFiles = detector.get_percentage(nbActFiles, nbFiles)
+          else
+            prActRenamed = 0
+            prRenamed = 0
+            prActFiles = 0
+          end
 
-          nbActFiles = hmod.count
-          prActFiles = detector.get_percentage(nbActFiles, nbFiles)
-          
-          
           print vers1,",DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
           puts ""
           
@@ -303,7 +257,6 @@ class GitRename < Thor
         ##last tag to branch head
         vers1 = releases[releases.count-1]
         vers2 = current_branch
-        #nbCommits = detector.get_nbCommits(vers1, vers2)
         
         log = Array(detector.get_rellog(vers1, vers2))
         log.map{|line| line.strip!}
@@ -311,39 +264,30 @@ class GitRename < Thor
         files = Array(detector.get_files(vers2))
         files.map{|line| line.strip!}
         nbFiles = files.count
-        
-       # actFiles = Array(detector.get_actfiles(log, files))
-        #actFiles.map{|line| line.strip!}
-        #nbActFiles = actFiles.count
-        
-       # prActFiles = detector.get_percentage(nbActFiles, nbFiles)
-        
+         
         nbModif = detector.get_nbModifiedFiles(log).count
         nbRen = detector.get_renames(log).count
         prOfRenames = detector.get_percentage(nbRen, nbModif)
         
-        complLog = Array(detector.get_rellog(firstCommit, vers2))
-        complLog.map{|line| line.strip!}
-        nbComplRen = detector.get_renames(complLog).count
-        
-        #prRenamed = detector.get_prRenamed(complLog, nbComplRen, 1, files)
-        #prActRenamed = detector.get_prRenamed(log, nbRen, 1, files)
-        
-        tables = Couple.new(0,0)
-        tables = detector.get_prRenamed(log, nbRen, 1, files)
-        hren = tables.one
-        hmod = tables.two
-        prActRenamed = hren.count*10000/hmod.count/100.to_f
-        prRenamed = hren.count*10000/nbFiles/100.to_f
-          
-        nbActFiles = hmod.count
-        prActFiles = detector.get_percentage(nbActFiles, nbFiles)
-        
+        if nbModif > 0
+          tables = Couple.new(0,0)
+          tables = detector.get_prRenamed(log, nbRen, 1, files)
+          hren = tables.one
+          hmod = tables.two
+          prActRenamed = hren.count*10000/hmod.count/100.to_f
+          prRenamed = hren.count*10000/nbFiles/100.to_f
+          nbActFiles = hmod.count
+          prActFiles = detector.get_percentage(nbActFiles, nbFiles)
+        else
+          prActRenamed = 0
+          prRenamed = 0
+          prActFiles = 0
+        end
+
         print vers1,"(last release !),DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
         puts ""
      
       else ###maintenance branch
-        #nbCommits = detector.get_nbBranchCommits(current_branch)
         
         log = Array(detector.get_branchRellog(current_branch))
         log.map{|line| line.strip!}      
@@ -352,32 +296,24 @@ class GitRename < Thor
         files.map{|line| line.strip!}
         nbFiles = files.count
         
-        #actFiles = Array(detector.get_actfiles(log, files))
-        #actFiles.map{|line| line.strip!}
-        #nbActFiles = actFiles.count
-        
-        #prActFiles = detector.get_percentage(nbActFiles, nbFiles)
-        
         nbModif = detector.get_nbModifiedFiles(log).count
         nbRen = detector.get_renames(log).count
         prOfRenames = detector.get_percentage(nbRen, nbModif)
-              
-        complLog = Array(detector.get_rellog(firstCommit, current_branch))
-        complLog.map{|line| line.strip!}
-        nbComplRen = detector.get_renames(complLog).count
-        
-        #prRenamed = detector.get_prRenamed(complLog, nbComplRen, 1, files)
-        #prActRenamed = detector.get_prRenamed(log, nbRen, 1, files)
              
-        tables = Couple.new(0,0)
-        tables = detector.get_prRenamed(log, nbRen, 1, files)
-        hren = tables.one
-        hmod = tables.two
-        prActRenamed = hren.count*10000/hmod.count/100.to_f
-        prRenamed = hren.count*10000/nbFiles/100.to_f
-         
-        nbActFiles = hmod.count
-        prActFiles = detector.get_percentage(nbActFiles, nbFiles)
+        if nbModif > 0
+          tables = Couple.new(0,0)
+          tables = detector.get_prRenamed(log, nbRen, 1, files)
+          hren = tables.one
+          hmod = tables.two
+          prActRenamed = hren.count*10000/hmod.count/100.to_f
+          prRenamed = hren.count*10000/nbFiles/100.to_f
+          nbActFiles = hmod.count
+          prActFiles = detector.get_percentage(nbActFiles, nbFiles)
+        else
+          prActRenamed = 0
+          prRenamed = 0
+          prActFiles = 0
+        end
         
         print current_branch,",MAINT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
         puts ""
