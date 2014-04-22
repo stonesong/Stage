@@ -24,6 +24,10 @@ class GitRenameDetector #Class for tool function
   def get_branchRellog(vers)
     `git --git-dir #{@folder}/.git log -M --stat=1000,1000 --format=format:"%H" --reverse #{vers} --not master`.split("\n").map
   end
+
+  def get_initRellog(vers)
+    `git --git-dir #{@folder}/.git log -M --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers}`.split("\n").map
+  end
   
   def get_nbCommits(vers1, vers2)
     `git --git-dir #{@folder}/.git log --format=oneline #{vers1}..#{vers2} | wc -l`.strip!.to_i
@@ -89,7 +93,7 @@ class GitRenameDetector #Class for tool function
     ren
   end
 
-  def get_prRenamed(log_array, nbRenames, flag, active_array)
+  def get_prRenamed(log_array, active_array)
     hrenamed = Array.new()
     hmodified = Array.new()
     cpt=0
@@ -127,31 +131,27 @@ class GitRenameDetector #Class for tool function
           end
         end
       end
-      if flag == 1
-        if line.match("delete")
-          file = line.gsub(/(.*)( )(.*)/, '\3')
-          hrenamed.delete(file)
-          hmodified.delete(file)
-        end
-      end
+      #if line.match("delete")
+       # file = line.gsub(/(.*)( )(.*)/, '\3')
+       # hrenamed.delete(file)
+       # hmodified.delete(file)
+      #end
       cpt=cpt+1
     end
-    if flag == 1
-      hmodified = hmodified.uniq
-      hrenamed = hrenamed.uniq
-      i=0
-      tmp = Array.new(hmodified)
-      while i < tmp.count do
-        if !active_array.include?(tmp[i])
-          hmodified.delete(tmp[i])
-          hrenamed.delete(tmp[i])
-        end
-        i=i+1
+    hmodified = hmodified.uniq
+    hrenamed = hrenamed.uniq
+    i=0
+    tmp = Array.new(hmodified)
+    while i < tmp.count do
+      if !active_array.include?(tmp[i])
+        hmodified.delete(tmp[i])
+        hrenamed.delete(tmp[i])
       end
+      i=i+1
     end
-    tab = Couple.new(hrenamed, hmodified)
-    tab
+    Couple.new(hrenamed, hmodified)
   end
+  
 end
 
 
@@ -166,7 +166,7 @@ class GitRename < Thor
     branches.map{|line| line.strip!}
     releases = Array(detector.get_majorReleases)
     releases.map{|line| line.strip!}
-    firstCommit = detector.get_firstCommit
+    #firstCommit = detector.get_firstCommit
 
     cpt = 0
     while cpt < branches.count do
@@ -174,13 +174,12 @@ class GitRename < Thor
       if current_branch == "origin/master"        
         
         ###before first tag
-        vers1 = firstCommit
-        vers2 = releases[0]
+        vers = releases[0]
 	
-        log_init = Array(detector.get_rellog(vers1, vers2))
+        log_init = Array(detector.get_initRellog(vers))
         log_init.map{|line| line.strip!}
         
-        files = Array(detector.get_files(vers2))
+        files = Array(detector.get_files(vers))
         files.map{|line| line.strip!}
         nbFiles = files.count
         
@@ -190,7 +189,7 @@ class GitRename < Thor
         
         if nbModif > 0
           tables = Couple.new(0, 0)
-          tables = detector.get_prRenamed(log_init, nbRen, 1, files)
+          tables = detector.get_prRenamed(log_init, files)
           hren = tables.one
           hmod = tables.two
           prActRenamed = hren.count*10000/hmod.count/100.to_f
@@ -206,15 +205,15 @@ class GitRename < Thor
         print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
         puts "" 
 
-        c=0
-        n=0
-        while c < files.count do
-          if !hmod.include?(files[c])
-            puts files[c]
-            n=n+1
-          end
-          c=c+1
-        end
+        #c=0
+        #n=0
+        #while c < files.count do
+        #  if !hmod.include?(files[c])
+        #    puts files[c]
+        #    n=n+1
+        #  end
+        #  c=c+1
+        #end
         
         ###first tag to last tag
         i=0
@@ -235,7 +234,7 @@ class GitRename < Thor
            
           if nbModif > 0                
             tables = Couple.new(0,0)
-            tables = detector.get_prRenamed(log, nbRen, 1, files)
+            tables = detector.get_prRenamed(log, files)
             hren = tables.one
             hmod = tables.two
             prActRenamed = hren.count*10000/hmod.count/100.to_f
@@ -271,7 +270,7 @@ class GitRename < Thor
         
         if nbModif > 0
           tables = Couple.new(0,0)
-          tables = detector.get_prRenamed(log, nbRen, 1, files)
+          tables = detector.get_prRenamed(log, files)
           hren = tables.one
           hmod = tables.two
           prActRenamed = hren.count*10000/hmod.count/100.to_f
@@ -302,7 +301,7 @@ class GitRename < Thor
              
         if nbModif > 0
           tables = Couple.new(0,0)
-          tables = detector.get_prRenamed(log, nbRen, 1, files)
+          tables = detector.get_prRenamed(log, files)
           hren = tables.one
           hmod = tables.two
           prActRenamed = hren.count*10000/hmod.count/100.to_f
