@@ -58,7 +58,7 @@ class GitRenameDetector #Class for tool function
   end
    
   def get_renames(log_array)
-    log_array.grep(/=>/).grep(/\|/)
+    log_array.grep(/rename /).grep(/=>/).grep(/%/)
   end
   
   def get_percentage(a, b)
