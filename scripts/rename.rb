@@ -18,15 +18,15 @@ class GitRenameDetector #Class for tool function
   end
   
   def get_rellog(vers1, vers2)
-    `git --git-dir #{@folder}/.git log -M --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers1}..#{vers2}`.split("\n").map
+    `git --git-dir #{@folder}/.git log -C --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers1}..#{vers2}`.split("\n").map
   end
 
   def get_branchRellog(vers)
-    `git --git-dir #{@folder}/.git log -M --stat=1000,1000 --format=format:"%H" --reverse #{vers} --not master`.split("\n").map
+    `git --git-dir #{@folder}/.git log -C --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers} --not master`.split("\n").map
   end
 
   def get_initRellog(vers)
-    `git --git-dir #{@folder}/.git log -M --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers}`.split("\n").map
+    `git --git-dir #{@folder}/.git log -C --summary --stat=1000,1000 --format=format:"%H" --reverse #{vers}`.split("\n").map
   end
   
   def get_nbCommits(vers1, vers2)
@@ -71,25 +71,31 @@ class GitRenameDetector #Class for tool function
 
 
   def getn(vers, f)
-    `git --git-dir #{@folder}/.git --work-tree=#{@folder}/ log #{vers} -M --summary --stat=1000,1000 --format=format:"%H" --follow #{@folder}/#{f} | grep "rename" | wc -l`.to_i
+    `git --git-dir #{@folder}/.git --work-tree=#{@folder}/ log #{vers} -M --summary --stat=1000,1000 --format=format:"%H" --follow #{@folder}/#{f}`.split("\n").map
   end
   
   def get_renameCount(vers)
     list = Array(get_files(vers))
     list.map{|line| line.strip!}
     ren = Array.new()
-    nb = 0
     i = 0
     while i < list.count do
       f = list[i]
-      n = getn(vers, f)
-      if n > 0
-        if !ren.include?(f)
-          ren.concat([f])
-          nb=nb+1
+      n = Array(getn(vers, f))
+      n.map{|line| line.strip!}
+      b=0
+      j=0
+      while j < n.count do
+        if n[j].match("rename")
+          if !ren.include?(f)
+            ren.concat([f])
+          end
         end
+        if n[j].match("copy")
+          break
+        end
+        j=j+1
       end
-      n=0
       i=i+1
     end
     ren
@@ -98,29 +104,30 @@ class GitRenameDetector #Class for tool function
   def get_prRenamed(log_array, active_array)
     hrenamed = Array.new()
     hmodified = Array.new()
+
     cpt=0
     while cpt < log_array.count do
-      line = log_array[cpt]
-    
-      if line.match(/\|/)
-        line = line.split("|")[0]
+      line = String.new(log_array[cpt])
+      if (line.match("rename ") || line.match("copy ")) && line.match("=>") && line.match("%")
         line.strip!
-        if line.match("=>")
-          if line.match(/\{/)
-            if line.match(/=> \}/)
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
-            elsif line.match(/\{ =>/)
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
-            else
-              file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-              file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
-            end
+        lineC=String.new(line)
+        line.gsub!(/(.*)( )(.*)( => )(.*)( )(.*)/, '\3\4\5')
+        if line.match(/\{/)
+          if line.match(/=> \}/)
+            file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+            file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
+          elsif line.match(/\{ =>/)
+            file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
+            file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
           else
-            file1=line.gsub(/(.*)( => )(.*)/, '\1')
-            file2=line.gsub(/(.*)( => )(.*)/, '\3')
+            file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+            file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
           end
+        else
+          file1=line.gsub(/(.*)( => )(.*)/, '\1')
+          file2=line.gsub(/(.*)( => )(.*)/, '\3')
+        end
+        if lineC.match("rename ")
           if hrenamed.include?(file1)
             hrenamed.delete(file1)
           end
@@ -128,16 +135,22 @@ class GitRenameDetector #Class for tool function
           hmodified.concat([file2])
           hmodified.delete(file1)
         else
-          file = line
-          if !hmodified.include?(file)
-            hmodified.concat([file])
-          end
+          hmodified.concat([file2])
         end
       end
+      if line.match(/\|/) && !line.match("=>")
+        line = line.split("|")[0]
+        line.strip!
+        file = line
+        if !hmodified.include?(file)
+          hmodified.concat([file])
+        end
+      end
+      #end
       #if line.match("delete")
-       # file = line.gsub(/(.*)( )(.*)/, '\3')
-       # hrenamed.delete(file)
-       # hmodified.delete(file)
+      # file = line.gsub(/(.*)( )(.*)/, '\3')
+      # hrenamed.delete(file)
+      # hmodified.delete(file)
       #end
       cpt=cpt+1
     end
@@ -171,27 +184,27 @@ class GitRename < Thor
     releases.map{|line| line.strip!}
     #firstCommit = detector.get_firstCommit
 
-    files = Array(detector.get_files("origin/master"))
-    files.map{|line| line.strip!}
-    puts "verif: nb ren detected"
-    log = Array(detector.get_initRellog("origin/master"))
-    log.map{|line| line.strip!}
-    ar1 = Couple.new(0, 0)
-    ar1 = detector.get_prRenamed(log, files)
-    hren = ar1.one
-    puts hren.count
-    puts "nb rn total"
-    ar2 = Array(detector.get_renameCount("origin/master"))
+    #files = Array(detector.get_files("origin/master"))
+    #files.map{|line| line.strip!}
+    #puts "verif: nb ren detected"
+    #log = Array(detector.get_initRellog("origin/master"))
+    #log.map{|line| line.strip!}
+    #ar1 = Couple.new(0, 0)
+    #ar1 = detector.get_prRenamed(log, files)
+    #hren = ar1.one
+    #puts hren.count
+    #puts "nb rn total"
+    #ar2 = Array(detector.get_renameCount("origin/master"))
     
-    puts ar2.count
-    puts ""
-    c=0
-    while c < ar2.count do
-      if !hren.include?(ar2[c])
-   #     puts files[c]
-      end
-      c=c+1
-    end
+   # puts ar2.count
+   # puts ""
+   # c=0
+   # while c < ar2.count do
+   #   if !hren.include?(ar2[c])
+   #     puts ar2[c]
+   #   end
+   #   c=c+1
+   # end
 
     cpt = 0
     while cpt < branches.count do
@@ -222,6 +235,7 @@ class GitRename < Thor
           nbActFiles = hmod.count
           prActFiles = detector.get_percentage(nbActFiles, nbFiles)
         else
+          nbActFiles = 0
           prActRenamed = 0
           prRenamed = 0
           prActFiles = 0
@@ -230,15 +244,15 @@ class GitRename < Thor
         print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
         puts "" 
 
-        #c=0
-        #n=0
-        #while c < files.count do
-        #  if !hmod.include?(files[c])
-        #    puts files[c]
-        #    n=n+1
-        #  end
-        #  c=c+1
-        #end
+        c=0
+        n=0
+        while c < files.count do
+          if !hmod.include?(files[c])
+            #puts files[c]
+            n=n+1
+          end
+          c=c+1
+        end
         
         ###first tag to last tag
         i=0
@@ -267,6 +281,7 @@ class GitRename < Thor
             nbActFiles = hmod.count
             prActFiles = detector.get_percentage(nbActFiles, nbFiles)
           else
+            nbActFiles = 0
             prActRenamed = 0
             prRenamed = 0
             prActFiles = 0
@@ -303,6 +318,7 @@ class GitRename < Thor
           nbActFiles = hmod.count
           prActFiles = detector.get_percentage(nbActFiles, nbFiles)
         else
+          nbActFiles = 0
           prActRenamed = 0
           prRenamed = 0
           prActFiles = 0
@@ -334,6 +350,7 @@ class GitRename < Thor
           nbActFiles = hmod.count
           prActFiles = detector.get_percentage(nbActFiles, nbFiles)
         else
+          nbActFiles = 0
           prActRenamed = 0
           prRenamed = 0
           prActFiles = 0
