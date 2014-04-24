@@ -1,0 +1,68 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{url}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{multirow}
+
+
+% One command per author:
+\newboolean{showcomments}
+\setboolean{showcomments}{true}
+%\setboolean{showcomments}{false}
+\ifthenelse{\boolean{showcomments}}
+ { \newcommand{\mynote}[2]{
+      \fbox{\bfseries\sffamily\scriptsize#1}
+        {\small$\blacktriangleright$\textsf{\emph{#2}}$\blacktriangleleft$}}}
+        { \newcommand{\mynote}[2]{}}
+
+
+\newcommand{\xb}[1]{\mynote{Xavier}{#1}}
+\newcommand{\ced}[1]{\mynote{Cedric}{#1}}
+
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\alref}[1]{Algorithm~\ref{alg:#1}}
+\newcommand{\lstref}[1]{Listing~\ref{lst:#1}}
+
+\title{A study on the impact of renaming files on process metrics}
+
+\author{
+\IEEEauthorblockN{Pierre Chanson, Matthieu Foucault, Jean-R\'emy Falleri and Xavier Blanc}
+\IEEEauthorblockA{
+University of Bordeaux \\
+LaBRI, UMR 5800\\
+F-33400, Talence, France\\
+Email: \{pchanson,mfoucault, falleri,xblanc\}@labri.fr}
+}
+
+\begin{document}
+
+
+\maketitle
+\input{abstract}
+\input{introduction}
+\input{rw}
+
+\input{methodology}
+\input{study}
+\input{results}
+\input{threats}
+\input{conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{renaming}
+
+\end{document}
