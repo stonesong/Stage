@@ -182,8 +182,8 @@ class GitRename < Thor
     branches.map{|line| line.strip!}
     releases = Array(detector.get_majorReleases)
     releases.map{|line| line.strip!}
-    #firstCommit = detector.get_firstCommit
 
+    #test:
     #files = Array(detector.get_files("origin/master"))
     #files.map{|line| line.strip!}
     #puts "verif: nb ren detected"
@@ -195,7 +195,6 @@ class GitRename < Thor
     #puts hren.count
     #puts "nb rn total"
     #ar2 = Array(detector.get_renameCount("origin/master"))
-    
    # puts ar2.count
    # puts ""
    # c=0
@@ -244,6 +243,7 @@ class GitRename < Thor
         print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
         puts "" 
 
+        #test:
         c=0
         n=0
         while c < files.count do
