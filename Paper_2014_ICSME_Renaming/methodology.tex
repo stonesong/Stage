@@ -13,14 +13,14 @@ Three types:\\
 We will define here the measure we want to observe on the history of the projects creation.\\\\	
 \textbf{\# of files :} number of files in the whole project at the head of branch , respectively end of release (=beginning to next release)\\
 \textbf{\# of active files:} number of files active (=created or deleted or copied or modified or renamed) in this branch, resp. release.\\
-\textbf{\% of active files:} (\# of active files) / (\# of files) * 100 \\
+\[ \textbf{\% of active files} = \frac{\# of active files}{\# of files} \times 100 \] \\
 \textbf{\# of modifications:}  number of modifications (=create, delete, copy, rename, modif) on files recorded in the branch, resp. release.\\
 \textbf{\# of renames:} number of renames recorded on the branch, resp. release\\
-\textbf{\% of renames:} (\# of renames) / (\# of modifications) \* 100\\
-\textbf{\% of files renamed:} (\# of active files renamed) / (\# of files)\\
-this give you the proportion of all files in the project renamed in this branch, resp. release\\
-\textbf{\% of active files renamed:}  (\# of active files renamed) / (\# of active files)\\
-this give you the proportion of active files in the branch, resp. release, renamed in the branch, resp. release. So “\% of active files renamed” always greater than “\% of files renamed”. \\
+\[ \textbf{\% of renames} = \frac{\# of renames}{\# of modifications} \times 100 \] \\
+\[ \textbf{\% of files renamed} = \frac{\# of active files renamed}{\# of files} \times 100 \] \\
+this give us the proportion of all files in the project renamed in this branch, resp. release and shows its impact on the whole project.\\
+\[ \textbf{\% of active files renamed} = \frac{\# of active files renamed}{\# of active files} \] \\
+this give us the proportion of active files in the branch, resp. release, renamed in the branch, resp. release. So ''\% of active files renamed'' $\geq$ ''\% of files renamed''. \\
 \label{subsec:Measures}
 
 \subsection{Process}
@@ -54,9 +54,9 @@ The major part of the work will be on this commits log. We choosed to work on a 
 We will also need to get all the alive files at the end of the log, at the second revision range (branch head or the end of one release).\\\\
 Then the principal algorithm will browse the log :\\
 Browsing the log in a chronological order will allow us to follow the renames or modifications and rebuilt the history of files.
-The typical rename in the log looks like “rename bob/\{henry => josef\}/george.py (86\%)”
-As exemple, if “bob/henry/george.py” is already recorded, we need to follow “bob/josef/george.py” instead in the renames and modifications record.
-There is some other cases to consider, for exemple “\{henry => \}” or without “\{“ or the “copy” etc.\\
+The typical rename in the log looks like ''rename bob/\{henry $\Rightarrow$ josef\}/george.py (86\%)''
+As exemple, if ''bob/henry/george.py'' is already recorded, we need to follow ''bob/josef/george.py'' instead in the renames and modifications record.
+There is some other cases to consider, for exemple ''\{henry $\Rightarrow$ \}'' or without ''\{'' or the ''copy'' etc.\\
 Each files recorded are unique and only the last name of renamed files is considered.
 We finally need exclude all the files deleted before the end of the commits log comparing with the list of alive files at the end of the revision range calculated earlier.\\ 	
 \label{subsec:Process}
