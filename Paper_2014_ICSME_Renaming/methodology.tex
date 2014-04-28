@@ -11,16 +11,20 @@ Three types:\\
 \label{subsec:Where do we look ?}
 \subsection{Measures}
 We will define here the measure we want to observe on the history of the projects creation.\\\\	
-\textbf{\# of files :} number of files in the whole project at the head of branch , respectively end of release (=beginning to next release)\\
-\textbf{\# of active files:} number of files active (=created or deleted or copied or modified or renamed) in this branch, resp. release.\\
-\[ \textbf{\% of active files} = \frac{\# of active files}{\# of files} \times 100 \] \\
-\textbf{\# of modifications:}  number of modifications (=create, delete, copy, rename, modif) on files recorded in the branch, resp. release.\\
-\textbf{\# of renames:} number of renames recorded on the branch, resp. release\\
-\[ \textbf{\% of renames} = \frac{\# of renames}{\# of modifications} \times 100 \] \\
-\[ \textbf{\% of files renamed} = \frac{\# of active files renamed}{\# of files} \times 100 \] \\
+\textbf{Number of files (\#F):} number of files in the whole project at the head of branch , respectively end of release (=beginning to next release)\\
+\textbf{Number of active files (\#AF):} number of files active (=created or deleted or copied or modified or renamed) in this branch, resp. release.\\
+\textbf{Percentage of active files:\\}
+\[ \%AF = \frac{\#AF}{\#F} \] \\
+\textbf{Number of modification operations (\#MO):}  number of modifications (=create, delete, copy, rename, modif) on files recorded in the branch, resp. release.\\
+\textbf{Number of rename operations (\#RO):} number of renames recorded on the branch, resp. release\\
+\textbf{Percentage of rename operations :}\\
+\[ \%RO = \frac{\#RO}{\#MO}  \] \\
+\textbf{Percentage of files renamed:}\\
+\[ \%F_{R} = \frac{\#AF_{R}}{\#F} \] \\
 this give us the proportion of all files in the project renamed in this branch, resp. release and shows its impact on the whole project.\\
-\[ \textbf{\% of active files renamed} = \frac{\# of active files renamed}{\# of active files} \] \\
-this give us the proportion of active files in the branch, resp. release, renamed in the branch, resp. release. So ''\% of active files renamed'' $\geq$ ''\% of files renamed''. \\
+\textbf{Percentage of active files renamed:}
+\[ \%AF_{R} = \frac{\#AF_{R}}{\#AF} \]\\
+this give us the proportion of active files in the branch, resp. release, renamed in the branch, resp. release. So \[ \%AFR \geq \%FR \] \\
 \label{subsec:Measures}
 
 \subsection{Process}
