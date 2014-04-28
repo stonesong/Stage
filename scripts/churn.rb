@@ -13,7 +13,7 @@ class ChurnTools
   end
 
   def get_logR()
-    `git --git-dir #{@folder}/.git log -C --summary --stat=1000,1000 --format=format:"%H" --reverse #{@rev1}..#{@rev2}`.split("\n").map
+    `git --git-dir #{@folder}/.git log -M --summary --stat=1000,1000 --format=format:"%H" --reverse #{@rev1}..#{@rev2}`.split("\n").map
   end
 
   def get_log()
@@ -30,7 +30,7 @@ class ChurnTools
         file.strip!
         nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
         if nchurn > 0
-            hchurn.merge!({file => nchurn}){ |key, v1, v2| v1+v2 }
+          hchurn.merge!({file => nchurn}){ |key, v1, v2| v1+v2 }
         end
       end
       cpt=cpt+1
@@ -43,6 +43,49 @@ class ChurnTools
     hchurn
   end
   
+  def get_churnR(log, files)
+    hchurnR = Hash.new()
+    cpt=0
+    while cpt < log.count do
+      line = String.new(log[cpt])
+      if line.match(/\|/) && line.match("=>")
+        line.strip!
+        lineF=String.new(line.gsub(/(.*)(\|)(.*)/, '\1'))
+        if line.match(/\{/)
+          if line.match('/=> \}/')
+            file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+            file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
+          elsif line.match(/\{ =>/)
+            file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
+            file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+          else
+            file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+            file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+          end
+        else
+          file1=line.gsub(/(.*)( => )(.*)/, '\1')
+          file2=line.gsub(/(.*)( => )(.*)/, '\3')
+        end
+      end
+      if line.match(/\|/) && !line.match("=>")
+        file = String.new(line.split("|")[0])
+        file.strip!
+        nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
+        if nchurn > 0
+          hchurnR.merge!({file => nchurn}){ |key, v1, v2| v1+v2 }
+        end
+      end
+      cpt=cpt+1
+    end
+    hchurnR.each do |key, value|
+      if !files.include?(key)
+        hchurnR.delete(key)
+      end
+    end
+    hchurnR
+  end
+  
+
 end
 
 class GitChurn < Thor 
