@@ -25,13 +25,23 @@ class ChurnTools
     cpt=0
     while cpt < log.count do
       line = String.new(log[cpt])
+      if line.match("only-regexp.phpt") #&& line.match(" 2 ")
+        puts line
+        c = 0
+        while c < 50 do
+          if !log[cpt-c].match(/\|/)
+           # puts log[cpt-c]
+          end
+          c = c+1
+        end
+      end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
-        if nchurn > 0
+        if !line.match("Bin") && !line.match("bytes")
+          nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
           hchurn.merge!({file => nchurn}){ |key, v1, v2| v1+v2 }
-        end
+        end  
       end
       cpt=cpt+1
     end
@@ -48,32 +58,45 @@ class ChurnTools
     cpt=0
     while cpt < log.count do
       line = String.new(log[cpt])
+      if line.match("only-regexp.phpt")
+        #puts line
+      end
       if line.match(/\|/) && line.match("=>")
-        line.strip!
-        lineF=String.new(line.gsub(/(.*)(\|)(.*)/, '\1'))
-        if line.match(/\{/)
-          if line.match('/=> \}/')
-            file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-            file2=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
-          elsif line.match(/\{ =>/)
-            file1=line.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
-            file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+        lineF=String.new(line.split("|")[0])
+        lineF.strip!
+        if lineF.match(/\{/)
+          if lineF.match('/=> \}/')
+            file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+            file2=lineF.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
+          elsif lineF.match(/\{ =>/)
+            file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\2')
+            file2=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
           else
-            file1=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
-            file2=line.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
+            file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
+            file2=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\4')
           end
         else
-          file1=line.gsub(/(.*)( => )(.*)/, '\1')
-          file2=line.gsub(/(.*)( => )(.*)/, '\3')
+          file1=lineF.gsub(/(.*)( => )(.*)/, '\1')
+          file2=lineF.gsub(/(.*)( => )(.*)/, '\3')
         end
+        if !line.match("Bin") && !line.match("bytes")
+          nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
+          if hchurnR.include?(file1)
+            nchurnOld = hchurnR[file1]
+            hchurnR.merge!({file2 => nchurnOld + nchurn})
+            hchurnR.delete(file1)
+          else
+            hchurnR.merge!({file2 => nchurn})
+          end
+        end  
       end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
-        if nchurn > 0
+        if !line.match("Bin") && !line.match("bytes")
+          nchurn = line.gsub(/(.*)(\| )(.*)( )(.*)/, '\3').to_i
           hchurnR.merge!({file => nchurn}){ |key, v1, v2| v1+v2 }
-        end
+        end  
       end
       cpt=cpt+1
     end
@@ -98,14 +121,38 @@ class GitChurn < Thor
     
     log = Array(tool.get_log())
     log.map{|line| line.strip!}
+    #puts ""
+    #puts log
+    #puts ""
     
-    hchurn = Hash(tool.get_churn(log, files))
-    print "file,churn"
-    puts ""
+    hchurn = tool.get_churn(log, files)
+    #print "file,churn"
+    #puts ""
     hchurn.each do |key, value|
-      print key,",",value
-      puts ""
+      #print key,",",value
+      #puts ""
     end
+    
+    logR = Array(tool.get_logR())
+    logR.map{|line| line.strip!}
+    #puts logR
+    #puts ""
+
+    hchurnR = tool.get_churnR(logR, files)
+    print "file,churn,churnR,diff churn - churnR"
+    puts ""
+    
+    hchurn.each do |key1, value1|
+      hchurnR.each do |key2, value2|
+        if key1 == key2
+          #print key1,",",value1,",",value2,",",value1-value2
+          #puts ""
+        end
+      end
+    end
+
+    
+    
   end
   
 end
