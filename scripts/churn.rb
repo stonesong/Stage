@@ -25,16 +25,6 @@ class ChurnTools
     cpt=0
     while cpt < log.count do
       line = String.new(log[cpt])
-      if line.match("only-regexp.phpt") #&& line.match(" 2 ")
-        puts line
-        c = 0
-        while c < 50 do
-          if !log[cpt-c].match(/\|/)
-           # puts log[cpt-c]
-          end
-          c = c+1
-        end
-      end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
@@ -145,8 +135,8 @@ class GitChurn < Thor
     hchurn.each do |key1, value1|
       hchurnR.each do |key2, value2|
         if key1 == key2
-          #print key1,",",value1,",",value2,",",value1-value2
-          #puts ""
+          print key1,",",value1,",",value2,",",value1-value2
+          puts ""
         end
       end
     end
