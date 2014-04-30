@@ -52,7 +52,7 @@ class ChurnTools
         lineF=String.new(line.split("|")[0])
         lineF.strip!
         if lineF.match(/\{/)
-          if lineF.match('/=> \}/')
+          if lineF.match(/=> \}/)
             file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
             file2=lineF.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
           elsif lineF.match(/\{ =>/)
@@ -138,17 +138,17 @@ class GitChurn < Thor
     res2 = Hash.new(res)
     res2 = res.sort_by{|m, v| m.downcase}
     res2.each do |key, value|
-     # print key,",",value[0],",",value[1],",",value[2],",",value[3]
-     # puts "" 
+      print key,",",value[0],",",value[1],",",value[2],",",value[3]
+      puts "" 
     end
 
     res3 = res2.sort_by{ |m, v| v[1]}.reverse
     
-    puts "top 10 churn order"
+    #puts "top 10 churn order"
     c=0
     res3.each do |key, value|
-      print key,",",value[0],",",value[1],",",value[2],",",value[3]
-      puts "" 
+      #print key,",",value[0],",",value[1],",",value[2],",",value[3]
+      #puts "" 
       c=c+1
       if c == 9
         break
@@ -157,12 +157,12 @@ class GitChurn < Thor
     
     res4 = res2.sort_by {|k, v| v[2]}.reverse
 
-    puts ""
-    puts "top 10 churn with rename order"
+    #puts ""
+    #puts "top 10 churn with rename order"
     c=0
     res4.each do |key, value|
-      print key,",",value[0],",",value[1],",",value[2],",",value[3]
-      puts "" 
+      #print key,",",value[0],",",value[1],",",value[2],",",value[3]
+      #puts "" 
       c=c+1
       if c == 9
         break

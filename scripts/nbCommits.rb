@@ -58,7 +58,7 @@ class NbCommitsTools
         lineF=String.new(line.split("|")[0])
         lineF.strip!
         if lineF.match(/\{/)
-          if lineF.match('/=> \}/')
+          if lineF.match(/=> \}/)
             file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
             file2=lineF.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
           elsif lineF.match(/\{ =>/)
@@ -76,6 +76,7 @@ class NbCommitsTools
           tabF1 = Array(hcommitsR[file1])
           hcommitsR.merge!({file2 => [sha1].concat(tabF1)})
           hcommitsR.delete(file1)
+          #hcommitsR[file1] = hcommitsR[file2]
         else
           hcommitsR.merge!({file2 => [sha1]})
         end

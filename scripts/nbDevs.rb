@@ -26,7 +26,7 @@ class NbDevsTools
     auth = nil
     while cpt < log.count do
       line = String.new(log[cpt])
-      if line.match(/[[a-zA-Z]]/) && !line.match(/[[0-9]]/)
+      if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
         auth = String.new(line).strip
       end
       if line.match(/\|/) && !line.match("=>")
@@ -51,14 +51,14 @@ class NbDevsTools
     auth = nil
     while cpt < log.count do
       line = String.new(log[cpt])
-      if line.match(/[[a-zA-Z]]/) && !line.match(/[[0-9]]/)
+      if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
         auth = String.new(line).strip
       end
       if line.match(/\|/) && line.match("=>")
         lineF=String.new(line.split("|")[0])
         lineF.strip!
         if lineF.match(/\{/)
-          if lineF.match('/=> \}/')
+          if lineF.match(/=> \}/)
             file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
             file2=lineF.gsub(/(\{)(.*)( => )(.*)(\})(\/)/, '\4')
           elsif lineF.match(/\{ =>/)
@@ -76,6 +76,7 @@ class NbDevsTools
           tabF1 = Array(hdevsR[file1])
           hdevsR.merge!({file2 => [auth].concat(tabF1)})
           hdevsR.delete(file1)
+          #hdevsR[file1] = hdevsR[file2]
         else
           hdevsR.merge!({file2 => [auth]})
         end
