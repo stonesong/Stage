@@ -1,3 +1,22 @@
 \section{Introduction}
 
+Process metrics such as Churn, which measures how much a Software artifact has been modified during its life cycle, or Number of developers, which measures how many developers did contribute to a software artifact, reveal the distribution of the workload of a Software project during its life cycle. They are defined to measure developer's activity with the main insight that developers habits have a high impact on the software quality~\cite{rahman_how_2013}. For instance, Bird et al. have shown that the Ownership metrics, which is a variant of the number of developers, has an impact on the number of post release failures in industrial software projects~\cite{bird_dont_2011}.
+
+Measuring process metrics requires to consider a history of a Software project, contrary to classic metrics, such as LOC (Line of Code) or DIT (Depth of Inheritance Tree), that require just one snapshot of the project (usually the last one). Moreover, as software projects are nowadays managed by VCSs (Version Configuration Systems), the history must be composed of successive versions stored by VCS, and must reflect the real evolution of software artifacts. Further, a particular attention should be paid to artifact renaming that have been performed between versions as they may have a deep impact on the measure, and therefore may be an important threat to validity. For example, if we imagine a Software project where all the artifacts have been renamed in the middle of its life cycle, then needless to say that not considering them will return skewed measure for Churn or Number of developers metrics. 
+
+In theory, artifact renaming does have an impact of process metrics. In practice, how many renaming occurs? When do they occur? And, what is their impact on process metrics? This paper aims to answer these questions. To that extent, it proposes a deep study of five real open source software projects with the objective to first propose descriptive statistics helping to understand the importance of artifact renaming in Software projects. The results we observed are highly important as renaming reach almost 50\% of the software artifacts for some projects. We then have computed two measures for process metrics, one that considers artifact renaming and one that does not, with the intent to evaluate the impact of renaming. Finally based on our observations, we propose some guidelines that aim at minimizing the threat of artifact renaming. For instance, we observed that there are less renaming in maintenance branches stored in VCS. As a consequence, when such a branch exists, it is better to compute process metrics on it.
+
+This paper therefore provides the following contributions:
+\begin{itemize}
+\item A study of the artifact renaming phenomena made on five large open source Software projects. 
+\item An impact analysis for process metrics. 
+\item A set of guidelines aiming at reducing the threat of artifact renaming. 
+\end{itemize}
+
+This paper is structured as follows: Section~\ref{sec:rw} explains how process metrics are computed and presents how the artifact renaming has an impact on them. Section~\ref{sec:methodology} presents the detailed methodology of our study, including the construction of the dataset and the different analyses we realized. Section~\ref{sec:results} presents the main results of our study which shows that the artifact renaming phenomena does occur and does have an impact on process metrics. This section also presents our guideline to limit the threat of process metrics.
+Finally, Section~\ref{sec:threats} of our study and Section~\ref{sec:conclusion} concludes this paper.
+
+
+
+
 
