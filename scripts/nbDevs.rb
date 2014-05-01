@@ -38,6 +38,9 @@ class NbDevsTools
     end 
     hdevs.each do |key, value|
       hdevs[key].uniq!
+    end
+    c = hdevs.clone
+    c.each do |key, value|
       if !files.include?(key)
         hdevs.delete(key)
       end
@@ -75,8 +78,8 @@ class NbDevsTools
         if hdevsR.include?(file1)
           tabF1 = Array(hdevsR[file1])
           hdevsR.merge!({file2 => [auth].concat(tabF1)})
-          hdevsR.delete(file1)
-          #hdevsR[file1] = hdevsR[file2]
+          #hdevsR.delete(file1)
+          hdevsR[file1] = hdevsR[file2]
         else
           hdevsR.merge!({file2 => [auth]})
         end
@@ -90,6 +93,9 @@ class NbDevsTools
     end 
     hdevsR.each do |key, value|
       hdevsR[key].uniq!
+    end
+    c = hdevsR.clone
+    c.each do |key, value|
       if !files.include?(key)
         hdevsR.delete(key)
       end

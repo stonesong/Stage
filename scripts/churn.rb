@@ -35,7 +35,8 @@ class ChurnTools
       end
       cpt=cpt+1
     end
-    hchurn.each do |key, value|
+    c = hchurn.clone
+    c.each do |key, value|
       if !files.include?(key)
         hchurn.delete(key)
       end
@@ -87,7 +88,8 @@ class ChurnTools
       end
       cpt=cpt+1
     end
-    hchurnR.each do |key, value|
+    c = hchurnR.clone
+    c.each do |key, value|
       if !files.include?(key)
         hchurnR.delete(key)
       end

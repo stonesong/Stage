@@ -38,6 +38,9 @@ class NbCommitsTools
     end 
     hcommits.each do |key, value|
       hcommits[key].uniq!
+    end
+    c = hcommits.clone
+    c.each do |key, value|
       if !files.include?(key)
         hcommits.delete(key)
       end
@@ -75,8 +78,8 @@ class NbCommitsTools
         if hcommitsR.include?(file1)
           tabF1 = Array(hcommitsR[file1])
           hcommitsR.merge!({file2 => [sha1].concat(tabF1)})
-          hcommitsR.delete(file1)
-          #hcommitsR[file1] = hcommitsR[file2]
+          #hcommitsR.delete(file1)
+          hcommitsR[file1] = hcommitsR[file2]
         else
           hcommitsR.merge!({file2 => [sha1]})
         end
@@ -90,6 +93,9 @@ class NbCommitsTools
     end 
     hcommitsR.each do |key, value|
       hcommitsR[key].uniq!
+    end
+    c = hcommitsR.clone
+    c.each do |key, value|
       if !files.include?(key)
         hcommitsR.delete(key)
       end
