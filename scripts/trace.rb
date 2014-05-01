@@ -129,9 +129,12 @@ class GitTrace < Thor
       #puts ""
     end
 
+    puts "in trace:"
     trace["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|
       print f1,"=>",f2,", "
     end
+    puts ""
+  
     
     puts ""
     test = tool.get_test(rev1, rev2, files)
@@ -143,6 +146,12 @@ class GitTrace < Thor
       end
       #puts ""
     end
+
+    puts "in test:"
+    test["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|
+      print f1,"=>",f2,", "
+    end
+
 
     puts ""
     puts "diff:"
