@@ -12,9 +12,10 @@ end
 
 class GitRenameDetector #Class for tool function
   
-  def initialize(folder, file)
+  def initialize(folder, file, project)
     @folder = folder
     @file = file
+    @project = project
   end
   
   def get_rellog(vers1, vers2)
@@ -67,6 +68,38 @@ class GitRenameDetector #Class for tool function
     else
       0
     end
+  end
+
+  def get_regexp(tab)
+    c = tab.clone
+    case @project
+    when "rails"
+      tab.each do |f|
+        if !f.match(/^((?!test)(?!vendor)(?!examples).)*\.rb$/)
+          c.delete(f)
+        end
+      end
+    when "phpunit"
+      tab.each do |f|
+        if !f.match(/^(?!Tests).*\.php$/)
+          c.delete(f)
+        end
+      end
+    when "pyramid" 
+      tab.each do |f|
+        if !f.match(/((?!test).)*\.py$/)
+          c.delete(f)
+        end
+      end
+    when "jquery"
+    when "jenkins"
+      tab.each do |f|
+        if !f.match(/^((?!test).)*\.java$/)
+          c.delete(f)
+        end
+      end
+    end
+    c
   end
 
 
@@ -133,7 +166,7 @@ class GitRenameDetector #Class for tool function
           end
           hrenamed.concat([file2])
           hmodified.concat([file2])
-          hmodified.delete(file1)
+          #hmodified.delete(file1)
         else
           hmodified.concat([file2])
         end
@@ -146,12 +179,7 @@ class GitRenameDetector #Class for tool function
           hmodified.concat([file])
         end
       end
-      #end
-      #if line.match("delete")
-      # file = line.gsub(/(.*)( )(.*)/, '\3')
-      # hrenamed.delete(file)
-      # hmodified.delete(file)
-      #end
+
       cpt=cpt+1
     end
     hmodified = hmodified.uniq
@@ -175,35 +203,15 @@ class GitRename < Thor
   
   desc "Returns CSV", "Returns a CSV for every maintenance branch and for the commits between tags"
   def csv(folder, file)
-    detector = GitRenameDetector.new(folder, file)
+    proj = String.new(folder.gsub(/(.*)(\/)(.*)/, '\3'))
+    detector = GitRenameDetector.new(folder, file, proj)
     
-    puts "Name,Type,# of files,# of active files,% of active files,# of modifications,# of renames,% of renames,% of files renamed,% of active files renamed,"
+    puts "Name,Type,# of files,# of active files,% of active files,% of files renamed,% of active files renamed,"## of modifications,# of renames,% of renames,
     branches = Array(detector.get_branches)
     branches.map{|line| line.strip!}
     releases = Array(detector.get_majorReleases)
     releases.map{|line| line.strip!}
 
-    #test:
-    #files = Array(detector.get_files("origin/master"))
-    #files.map{|line| line.strip!}
-    #puts "verif: nb ren detected"
-    #log = Array(detector.get_initRellog("origin/master"))
-    #log.map{|line| line.strip!}
-    #ar1 = Couple.new(0, 0)
-    #ar1 = detector.get_prRenamed(log, files)
-    #hren = ar1.one
-    #puts hren.count
-    #puts "nb rn total"
-    #ar2 = Array(detector.get_renameCount("origin/master"))
-   # puts ar2.count
-   # puts ""
-   # c=0
-   # while c < ar2.count do
-   #   if !hren.include?(ar2[c])
-   #     puts ar2[c]
-   #   end
-   #   c=c+1
-   # end
 
     cpt = 0
     while cpt < branches.count do
@@ -218,11 +226,32 @@ class GitRename < Thor
         
         files = Array(detector.get_files(vers))
         files.map{|line| line.strip!}
+        
+        exfiles = files.clone
+        files = detector.get_regexp(exfiles)
         nbFiles = files.count
+
+        
+        
+        #puts ""
+        #puts "deads :"
+        #ccc = 0
+        #exfiles.each do |e|
+         # if !files.include?(e)
+            #if e.match(".html") || e.match(".properties") || e.match(".css") ||  e.match(".png")||  e.match(".gif")
+          #  if e.match("test")
+           #   ccc= ccc+1
+            #else
+              #puts e
+           # end
+            #puts e
+          #end
+       # end
+       # puts ccc
         
         nbModif = detector.get_nbModifiedFiles(log_init).count
-        nbRen = detector.get_renames(log_init).count
-        prOfRenames = detector.get_percentage(nbRen, nbModif)
+        #nbRen = detector.get_renames(log_init).count
+        #prOfRenames = detector.get_percentage(nbRen, nbModif)
         
         if nbModif > 0
           tables = Couple.new(0, 0)
@@ -240,19 +269,9 @@ class GitRename < Thor
           prActFiles = 0
         end
 
-        print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
+        
+        print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#,nbModif,",",nbRen,",",prOfRenames
         puts "" 
-
-        #test:
-        c=0
-        n=0
-        while c < files.count do
-          if !hmod.include?(files[c])
-            #puts files[c]
-            n=n+1
-          end
-          c=c+1
-        end
         
         ###first tag to last tag
         i=0
@@ -265,11 +284,14 @@ class GitRename < Thor
           
           files = Array(detector.get_files(vers2))
           files.map{|line| line.strip!}
+
+          exfiles = files.clone
+          files = detector.get_regexp(exfiles)
           nbFiles = files.count
           
           nbModif = detector.get_nbModifiedFiles(log).count
-          nbRen = detector.get_renames(log).count
-          prOfRenames = detector.get_percentage(nbRen, nbModif)
+          #nbRen = detector.get_renames(log).count
+          #prOfRenames = detector.get_percentage(nbRen, nbModif)
            
           if nbModif > 0                
             tables = Couple.new(0,0)
@@ -287,7 +309,11 @@ class GitRename < Thor
             prActFiles = 0
           end
 
-          print vers1,",DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
+          files.each do |f|
+            #puts f
+          end
+
+          print vers1,",DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#nbModif,",",nbRen,",",prOfRenames,
           puts ""
           
           i=i+1
@@ -302,11 +328,14 @@ class GitRename < Thor
         
         files = Array(detector.get_files(vers2))
         files.map{|line| line.strip!}
+
+        exfiles = files.clone
+        files = detector.get_regexp(exfiles)
         nbFiles = files.count
          
         nbModif = detector.get_nbModifiedFiles(log).count
-        nbRen = detector.get_renames(log).count
-        prOfRenames = detector.get_percentage(nbRen, nbModif)
+        #nbRen = detector.get_renames(log).count
+        #prOfRenames = detector.get_percentage(nbRen, nbModif)
         
         if nbModif > 0
           tables = Couple.new(0,0)
@@ -324,7 +353,7 @@ class GitRename < Thor
           prActFiles = 0
         end
 
-        print vers1,"(last release !),DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
+        print vers1,"(last release !),DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#,nbModif,",",nbRen,",",prOfRenames
         puts ""
      
       else ###maintenance branch
@@ -334,18 +363,25 @@ class GitRename < Thor
         
         files = Array(detector.get_files(current_branch))
         files.map{|line| line.strip!}
+
+        exfiles = files.clone
+        files = detector.get_regexp(exfiles)
         nbFiles = files.count
         
         nbModif = detector.get_nbModifiedFiles(log).count
-        nbRen = detector.get_renames(log).count
-        prOfRenames = detector.get_percentage(nbRen, nbModif)
+        #nbRen = detector.get_renames(log).count
+        #prOfRenames = detector.get_percentage(nbRen, nbModif)
              
         if nbModif > 0
           tables = Couple.new(0,0)
           tables = detector.get_prRenamed(log, files)
           hren = tables.one
           hmod = tables.two
-          prActRenamed = hren.count*10000/hmod.count/100.to_f
+          if hmod.count != 0
+            prActRenamed = hren.count*10000/hmod.count/100.to_f
+          else
+            prActRenamed = 0
+          end
           prRenamed = hren.count*10000/nbFiles/100.to_f
           nbActFiles = hmod.count
           prActFiles = detector.get_percentage(nbActFiles, nbFiles)
@@ -356,7 +392,7 @@ class GitRename < Thor
           prActFiles = 0
         end
         
-        print current_branch,",MAINT,",nbFiles,",",nbActFiles,",",prActFiles,",",nbModif,",",nbRen,",",prOfRenames,",",prRenamed,",",prActRenamed,","
+        print current_branch,",MAINT,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#,nbModif,",",nbRen,",",prOfRenames
         puts ""
     
       end

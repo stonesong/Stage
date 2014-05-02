@@ -56,7 +56,7 @@ class NbCommitsTools
       line = String.new(log[cpt])
       if line.match(/[0-9a-f]{40}/)
         sha1 = String.new(line).strip
-      end
+      end       
       if line.match(/\|/) && line.match("=>")
         lineF=String.new(line.split("|")[0])
         lineF.strip!
@@ -79,7 +79,8 @@ class NbCommitsTools
           tabF1 = Array(hcommitsR[file1])
           hcommitsR.merge!({file2 => [sha1].concat(tabF1)})
           #hcommitsR.delete(file1)
-          hcommitsR[file1] = hcommitsR[file2]
+          #hcommitsR[file1] = hcommitsR[file2]
+          hcommitsR.merge!({file1 => [sha1]}){|key, v1, v2| v1.concat(v2)}
         else
           hcommitsR.merge!({file2 => [sha1]})
         end
@@ -88,7 +89,7 @@ class NbCommitsTools
         file = String.new(line.split("|")[0])
         file.strip!
         hcommitsR.merge!({file => [sha1]}){|key, v1, v2| v1.concat(v2)}
-      end
+      end      
       cpt=cpt+1
     end 
     hcommitsR.each do |key, value|

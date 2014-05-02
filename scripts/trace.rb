@@ -97,12 +97,12 @@ class TraceTools
       end      
       cpt=cpt+1
     end 
-    c = htrace.clone
-    htrace.each do |key, value|
-      if !files.include?(key)
-        htrace.delete(key)
-      end
-    end
+    #c = htrace.clone
+    #c.each do |key, value|
+    #  if !files.include?(key)
+    #    htrace.delete(key)
+    #  end
+    #end
     htrace
   end
   
@@ -120,50 +120,52 @@ class GitTrace < Thor
     logR.map{|line| line.strip!}
 
     trace = tool.get_trace(logR, files)
-    puts "trace:"
-    trace.each do |f, h|
-      #print f," :   "
-      trace[f].each do |h, v|
-        #print h,"=>",v,", " 
-      end
-      #puts ""
-    end
-
-    puts "in trace:"
-    trace["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|
-      print f1,"=>",f2,", "
-    end
-    puts ""
-  
+    #puts "trace:"
     
-    puts ""
-    test = tool.get_test(rev1, rev2, files)
-    puts "test:"
-    test.each do |f, h|
-      #print f," :   "
-      test[f].each do |h, v|
-        #print h,"=>",v,", "
-      end
-      #puts ""
-    end
-
-    puts "in test:"
-    test["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|
-      print f1,"=>",f2,", "
-    end
-
-
-    puts ""
-    puts "diff:"
-    test.each do |f, h|
-      if !trace.include?(f)
-        print f," :   "
-        test[f].each do |f1, f2|
-          print f1,"=>",f2,", "
-        end
+    puts "{"
+    trace.each do |f, h|
+      trace[f].each do |f1, f2|
+        print "\"",f1,"\"",":","\"",f,"\"",","
         puts ""
       end
     end
+    puts"}"
+
+   # puts "in trace:"
+   # trace["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|
+    #  print f1,"=>",f2,", "
+    #end
+    #puts ""
+  
+    
+   # puts ""
+   # test = tool.get_test(rev1, rev2, files)
+   # puts "test:"
+   # test.each do |f, h|
+      #print f," :   "
+   #   test[f].each do |h, v|
+        #print h,"=>",v,", "
+    #  end
+      #puts ""
+   # end
+
+   # puts "in test:"
+   # test["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|
+   #   print f1,"=>",f2,", "
+   # end
+
+
+    #puts ""
+   # puts "diff:"
+   # test.each do |f, h|
+    #  if !trace.include?(f)
+     #   print f," :   "
+      #  test[f].each do |f1, f2|
+       #   print f1,"=>",f2,", "
+       # end
+       # puts ""
+      #end
+    #end
 
     
     
