@@ -1,0 +1,135 @@
+
+@incollection{java_why_2009,
+	title = {Why we twitter: An analysis of a microblogging community},
+	booktitle = {Advances in Web Mining and Web Usage Analysis},
+	publisher = {Springer},
+	author = {Java, Akshay and Song, Xiaodan and Finin, Tim and Tseng, Belle},
+	year = {2009},
+	pages = {118{\textendash}138}
+}
+
+@inproceedings{wilson_user_2009,
+	address = {New York, {NY}, {USA}},
+	series = {{EuroSys} '09},
+	title = {User Interactions in Social Networks and Their Implications},
+	isbn = {978-1-60558-482-9},
+	url = {http://doi.acm.org/10.1145/1519065.1519089},
+	doi = {10.1145/1519065.1519089},
+	booktitle = {Proceedings of the 4th {ACM} European Conference on Computer Systems},
+	publisher = {{ACM}},
+	author = {Wilson, Christo and Boe, Bryce and Sala, Alessandra and Puttaswamy, Krishna {P.N.} and Zhao, Ben Y.},
+	year = {2009},
+	keywords = {networks, online, social},
+	pages = {205{\textendash}218}
+}
+
+@inproceedings{jiang_understanding_2013,
+	title = {Understanding project dissemination on a social coding site},
+	doi = {10.1109/WCRE.2013.6671288},
+	abstract = {Popular social coding sites like {GitHub} and {BitBucket} are changing software development. Users follow some interesting developers, listen to their activities and find new projects. Social relationships between users are utilized to disseminate projects, attract contributors and increase the popularity. A deep understanding of project dissemination on social coding sites can provide important insights into questions of project diffusion characteristics and into the improvement of the popularity. In this paper, we seek a deeper understanding of project dissemination in {GitHub.} We collect 2,665 projects and 272,874 events. Moreover, we crawl 747,107 developers and 2,234,845 social links to construct social graphs. We analyze topological characteristics and reciprocity of social graphs. We then study the speed and the range of project dissemination, and the role of social links. Our main observations are: (1) Social relationships are not reciprocal. (2) The popularity increases gradually for a long time. (3) Projects spread to users far away from their creators. (4) Social links play a notable role of project dissemination. These results can be leveraged to increase the popularity. Specifically, we suggest that project owners should (1) encourage experienced developers to choose some promising new developers, follow them in return and provide guidance. (2) promote projects for a long time. (3) advertise projects to a wide range of developers. (4) fully utilize social relationships to advertise projects and attract contributors.},
+	booktitle = {2013 20th Working Conference on Reverse Engineering ({WCRE)}},
+	author = {Jiang, Jing and Zhang, Li and Li, Lei},
+	month = oct,
+	year = {2013},
+	keywords = {{BitBucket}, Encoding, {GitHub}, Open source software, Organizations, project diffusion characteristics, project dissemination understanding, social coding site, social graphs reciprocity, social graphs topological characteristics, social links, social networking (online), social relationships, software development, Software Engineering, Standards organizations, Twitter},
+	pages = {132--141},
+	file = {IEEE Xplore Abstract Record:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/9TN5TM34/abs_all.html:text/html;IEEE Xplore Full Text PDF:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/9758M6GM/Jiang et al. - 2013 - Understanding project dissemination on a social co.pdf:application/pdf}
+}
+
+@techreport{falleri_harmony_2013,
+	title = {The Harmony Platform},
+	url = {http://arxiv.org/abs/1309.0456},
+	institution = {Univ. Bordeaux, {LaBRI}, {UMR} 5800},
+	author = {Falleri, J.-R. and Teyton, C. and Foucault, M. and Palyart, M. and Morandat, F. and Blanc, X.},
+	month = sep,
+	year = {2013}
+}
+
+@inproceedings{gousios_ghtorrent_2013,
+	address = {Piscataway, {NJ}, {USA}},
+	series = {{MSR} '13},
+	title = {The {GHTorrent} dataset and tool suite},
+	isbn = {978-1-4673-2936-1},
+	url = {http://dl.acm.org/citation.cfm?id=2487085.2487132},
+	booktitle = {Proceedings of the 10th Working Conference on Mining Software Repositories},
+	publisher = {{IEEE} Press},
+	author = {Gousios, Georgios},
+	year = {2013},
+	pages = {233{\textendash}236}
+}
+
+@inproceedings{dabbish_social_2012,
+	address = {New York, {NY}, {USA}},
+	series = {{CSCW} '12},
+	title = {Social coding in {GitHub:} transparency and collaboration in an open software repository},
+	isbn = {978-1-4503-1086-4},
+	url = {http://doi.acm.org/10.1145/2145204.2145396},
+	doi = {10.1145/2145204.2145396},
+	booktitle = {Proceedings of the {ACM} 2012 conference on Computer Supported Cooperative Work},
+	publisher = {{ACM}},
+	author = {Dabbish, Laura and Stuart, Colleen and Tsay, Jason and Herbsleb, Jim},
+	year = {2012},
+	pages = {1277{\textendash}1286},
+	file = {cscw2012_Github-paper-FinalVersion-1.pdf:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/BM49666V/cscw2012_Github-paper-FinalVersion-1.pdf:application/pdf}
+}
+
+@inproceedings{teyton_mining_2012,
+	title = {Mining Library Migration Graphs},
+	doi = {10.1109/WCRE.2012.38},
+	abstract = {Software systems intensively depend on external libraries, chosen at conception time. However, relevance of any library irremediably changes during projects and/or library life cycle. As a consequence, projects developers must periodically reconsider the libraries they depend on, and must think about library migration. When they want to migrate their libraries, they then have to identify candidate libraries that offer similar facilities and thus can substitute to each other. They also have to compare candidates to choose the one that best fits their needs. Finding a relevant library replacement is a well known tedious and time-consuming task. In this paper, we propose an approach that identifies sets of similar libraries and that produces what we call library migration graphs that show how existing projects have performed migrations among them. These graphs, constructed from the observation of a large number of software projects, ease the discovery and selection of library replacements.},
+	booktitle = {2012 19th Working Conference on Reverse Engineering ({WCRE)}},
+	author = {Teyton, C. and Falleri, J.-R. and Blanc, X.},
+	month = oct,
+	year = {2012},
+	keywords = {Data mining, dependencies management, external software library, Google, graph theory, Libraries, library life cycle, library migration graph mining, library replacement, Manuals, project life cycle, search engines, Software, Software algorithms, software evolution, Software libraries, software maintenance, software project, software system},
+	pages = {289--298},
+	file = {IEEE Xplore Abstract Record:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/DPUGHAFN/articleDetails.html:text/html;IEEE Xplore Full Text PDF:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/7HBATDMT/Teyton et al. - 2012 - Mining Library Migration Graphs.pdf:application/pdf}
+}
+
+@article{dabbish_leveraging_2013,
+	title = {Leveraging Transparency},
+	volume = {30},
+	issn = {0740-7459},
+	doi = {10.1109/MS.2012.172},
+	abstract = {A new generation of development environments takes a radical approach to communication and coordination by fusing social networking functionality with flexible, distributed version control. Through these transparent work environments, people, repositories, development activities, and their histories are immediately and easily visible to all users. Developers quickly acquire the skill to interpret this rich information to find useful resources, connect with people, solve technical problems, and enhance their learning opportunities. This article presents the results of a qualitative study of users of one such environment, {GitHub.} It describes how transparency helps developers on {GitHub} manage their projects, handle dependencies more effectively, reduce communication needs, and figure out what requires their attention. Although transparency is not a silver bullet, the approach shows great promise for enhancing collaboration and coordination. The Web extra at {http://www.youtube.com/watch?v=LpGA2fmAHvM} is a video of Joel Spolsky discussing the structure, software, technology, and culture of Stack Exchange.},
+	number = {1},
+	journal = {{IEEE} Software},
+	author = {Dabbish, L. and Stuart, C. and Tsay, J. and Herbsleb, J.},
+	month = jan,
+	year = {2013},
+	keywords = {Collaboration, coordination, development environments, distributed version control, {GitHub}, group interfaces, {HCI}, information interfaces and representation, Information technology, information technology and systems, Internet, learning opportunities, Organizational aspects, organizational management, organization interfaces, project management, security of data, social networking functionality, social networking (online), Social network services, Software Engineering, software engineering tools and techniques, software management, transparency leverage, User interfaces},
+	pages = {37--43}
+}
+
+@inproceedings{teyton_automatic_2013,
+	title = {Automatic discovery of function mappings between similar libraries},
+	doi = {10.1109/WCRE.2013.6671294},
+	abstract = {Library migration is the process of replacing a third-party library in favor of a competing one during software maintenance. The process of transforming a software source code to become compliant with a new library is cumbersome and error-prone. Indeed, developers have to understand a new Application Programming Interface ({API)} and search for the right replacements for the functions they use from the old library. As the two libraries are independent, the functions may have totally different structures and names, making the search of mappings very difficult. To assist the developers in this difficult task, we introduce an approach that analyzes source code changes from software projects that already underwent a given library migration to extract mappings between functions. We demonstrate the applicability of our approach on several library migrations performed on the Java open source software projects.},
+	booktitle = {2013 20th Working Conference on Reverse Engineering ({WCRE)}},
+	author = {Teyton, C. and Falleri, J.-R. and Blanc, X.},
+	month = oct,
+	year = {2013},
+	keywords = {Algorithm design and analysis, {API}, application program interfaces, application programming interface, Approximation algorithms, Context, function mapping automatic discovery, Java, Java open source software projects, Libraries, library migration, project management, public domain software, Software libraries, software maintenance, software source code, Software systems, third-party library},
+	pages = {192--201},
+	file = {IEEE Xplore Abstract Record:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/PZXZNF7H/articleDetails.html:text/html;IEEE Xplore Full Text PDF:/home/cedric/.zotero/zotero/wwg4f3eh.default/zotero/storage/F3CW6VVN/Teyton et al. - 2013 - Automatic discovery of function mappings between s.pdf:application/pdf}
+}
+
+@unpublished{teyton_study_2013,
+	title = {A Study of Library Migration in Java Software},
+	url = {http://hal.archives-ouvertes.fr/hal-00838713},
+	abstract = {Software intensively depends on external libraries whose relevance may change during its life cycle. As a consequence, software developers must periodically reconsider the libraries they depend on, and must think about \textit{library migration}. To our knowledge, no existing study has been done to understand library migration although it is known to be an expensive maintenance task. Are library migrations frequent? For which software are they performed and when? For which libraries? For what reasons? The purpose of this paper is to answer these questions with the intent to help software developers that have to replace their libraries. To that extent, we have performed a statistical analysis of a large set of open source software to mine their library migration. To perform this analysis we have defined an approach that identifies library migrations in a pseudo-automatic fashion by analyzing the source code of the software. We have implemented this approach for the Java programming language and applied it on Java Open Source Software stored in large hosting services. The main result of our study is that library migration is not a frequent practice but depends a lot on the nature of the software as well as the nature of the libraries.},
+	language = {Anglais},
+	author = {Teyton, C{\'e}dric and Falleri, Jean-R{\'e}my and Palyart, Marc and Blanc, Xavier},
+	month = apr,
+	year = {2013},
+	keywords = {Code analysis, empirical study, open source software, Software libraries}
+}
+
+@article{gousios_exploratory_2014,
+	series = {{ICSE} '14},
+	title = {An Exploratory Study of the Pull-Based Software Development Model},
+	journal = {Proceedings of the {2014International} Conference on Software Engineering},
+	author = {Gousios, Georgios and Pinzger, Martin and van Deursen, Arie},
+	month = jun,
+	year = {2014}
+}
