@@ -81,17 +81,22 @@ class GitRenameDetector #Class for tool function
       end
     when "phpunit"
       tab.each do |f|
-        if !f.match(/^(?!Tests).*\.php$/)
+        if !f.match(/^(?!Tests).*\.php$/) || !f.match(/^(?!tests).*\.php$/)
           c.delete(f)
         end
       end
     when "pyramid" 
       tab.each do |f|
-        if !f.match(/((?!test).)*\.py$/)
+        if !f.match(/pyramid\/((?!test).)*\.py$/)
           c.delete(f)
         end
       end
     when "jquery"
+      tab.each do |f|
+        if !f.match(/^src\/.*/)
+          c.delete(f)
+        end
+      end
     when "jenkins"
       tab.each do |f|
         if !f.match(/^((?!test).)*\.java$/)
@@ -270,6 +275,10 @@ class GitRename < Thor
         end
 
         
+        files.each do |f|
+           # puts f
+        end
+        
         print "before first release tag,INIT,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#,nbModif,",",nbRen,",",prOfRenames
         puts "" 
         
@@ -342,7 +351,11 @@ class GitRename < Thor
           tables = detector.get_prRenamed(log, files)
           hren = tables.one
           hmod = tables.two
-          prActRenamed = hren.count*10000/hmod.count/100.to_f
+          if hmod.count != 0
+            prActRenamed = hren.count*10000/hmod.count/100.to_f
+          else
+            prActRenamed = 0
+          end
           prRenamed = hren.count*10000/nbFiles/100.to_f
           nbActFiles = hmod.count
           prActFiles = detector.get_percentage(nbActFiles, nbFiles)
@@ -351,6 +364,10 @@ class GitRename < Thor
           prActRenamed = 0
           prRenamed = 0
           prActFiles = 0
+        end
+
+        files.each do |f|
+           #puts f
         end
 
         print vers1,"(last release !),DEV,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#,nbModif,",",nbRen,",",prOfRenames
@@ -390,6 +407,10 @@ class GitRename < Thor
           prActRenamed = 0
           prRenamed = 0
           prActFiles = 0
+        end
+        
+        files.each do |f|
+           #puts f
         end
         
         print current_branch,",MAINT,",nbFiles,",",nbActFiles,",",prActFiles,",",prRenamed,",",prActRenamed,","#,nbModif,",",nbRen,",",prOfRenames

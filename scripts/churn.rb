@@ -2,10 +2,11 @@ require 'rubygems'
 require 'thor'
 
 class ChurnTools
-  def initialize(folder, rev1, rev2)
+  def initialize(folder, rev1, rev2, project)
     @folder = folder
     @rev1 = rev1
     @rev2 = rev2
+    @project = project
   end
   
   def get_files()
@@ -18,6 +19,43 @@ class ChurnTools
 
   def get_log()
     `git --git-dir #{@folder}/.git log --summary --stat=1000,1000 --format=format:"%H" --reverse #{@rev1}..#{@rev2}`.split("\n").map
+  end
+
+  def get_regexp(tab)
+    c = tab.clone
+    case @project
+    when "rails"
+      tab.each do |f|
+        if !f.match(/^((?!test)(?!vendor)(?!examples).)*\.rb$/)
+          c.delete(f)
+        end
+      end
+    when "phpunit"
+      tab.each do |f|
+        if !f.match(/^(?!Tests).*\.php$/) || !f.match(/^(?!tests).*\.php$/)
+          c.delete(f)
+        end
+      end
+    when "pyramid" 
+      tab.each do |f|
+        if !f.match(/pyramid\/((?!test).)*\.py$/)
+          c.delete(f)
+        end
+      end
+    when "jquery"
+      tab.each do |f|
+        if !f.match(/^src\/.*/)
+          c.delete(f)
+        end
+      end
+    when "jenkins"
+      tab.each do |f|
+        if !f.match(/^((?!test).)*\.java$/)
+          c.delete(f)
+        end
+      end
+    end
+    c
   end
 
   def get_churn(log, files)
@@ -103,10 +141,13 @@ end
 class GitChurn < Thor 
   desc "Returns churn", "Returns churn calculated on git repository between revisions"
   def churn(folder, rev1, rev2)
-    tool = ChurnTools.new(folder, rev1, rev2)
+    proj = String.new(folder.gsub(/(.*)(\/)(.*)/, '\3'))
+    tool = ChurnTools.new(folder, rev1, rev2, proj)
     
     files = Array(tool.get_files())
     files.map{|line| line.strip!}
+    exfiles = files.clone
+    files = tool.get_regexp(exfiles)
     
     log = Array(tool.get_log())
     log.map{|line| line.strip!}

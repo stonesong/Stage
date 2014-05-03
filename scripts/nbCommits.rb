@@ -2,10 +2,11 @@ require 'rubygems'
 require 'thor'
 
 class NbCommitsTools
-  def initialize(folder, rev1, rev2)
+  def initialize(folder, rev1, rev2, project)
     @folder = folder
     @rev1 = rev1
     @rev2 = rev2
+    @project = project
   end 
   
   def get_files()
@@ -18,6 +19,43 @@ class NbCommitsTools
 
   def get_log()
     `git --git-dir #{@folder}/.git log --summary --stat=1000,1000 --format=format:"%H" --reverse #{@rev1}..#{@rev2}`.split("\n").map
+  end
+
+  def get_regexp(tab)
+    c = tab.clone
+    case @project
+    when "rails"
+      tab.each do |f|
+        if !f.match(/^((?!test)(?!vendor)(?!examples).)*\.rb$/)
+          c.delete(f)
+        end
+      end
+    when "phpunit"
+      tab.each do |f|
+        if !f.match(/^(?!Tests).*\.php$/) || !f.match(/^(?!tests).*\.php$/)
+          c.delete(f)
+        end
+      end
+    when "pyramid" 
+      tab.each do |f|
+        if !f.match(/pyramid\/((?!test).)*\.py$/)
+          c.delete(f)
+        end
+      end
+    when "jquery"
+      tab.each do |f|
+        if !f.match(/^src\/.*/)
+          c.delete(f)
+        end
+      end
+    when "jenkins"
+      tab.each do |f|
+        if !f.match(/^((?!test).)*\.java$/)
+          c.delete(f)
+        end
+      end
+    end
+    c
   end
 
   def get_commits(log, files)
@@ -80,7 +118,7 @@ class NbCommitsTools
           hcommitsR.merge!({file2 => [sha1].concat(tabF1)})
           #hcommitsR.delete(file1)
           #hcommitsR[file1] = hcommitsR[file2]
-          hcommitsR.merge!({file1 => [sha1]}){|key, v1, v2| v1.concat(v2)}
+          #hcommitsR.merge!({file1 => [sha1]}){|key, v1, v2| v1.concat(v2)}
         else
           hcommitsR.merge!({file2 => [sha1]})
         end
@@ -109,10 +147,13 @@ end
 class GitNbCommits < Thor 
   desc "Returns nb Commits", "Returns nb Commits calculated on git repository between revisions"
   def nbCommits(folder, rev1, rev2)
-    tool = NbCommitsTools.new(folder, rev1, rev2)  
+    proj = String.new(folder.gsub(/(.*)(\/)(.*)/, '\3'))
+    tool = NbCommitsTools.new(folder, rev1, rev2, proj)  
    
     files = Array(tool.get_files())
     files.map{|line| line.strip!}
+    exfiles = files.clone
+    files = tool.get_regexp(exfiles)
     
     log = Array(tool.get_log())
     log.map{|line| line.strip!}
