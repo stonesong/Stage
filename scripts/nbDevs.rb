@@ -64,14 +64,14 @@ class NbDevsTools
     cpt=0
     auth = Array.new()
     while cpt < log.count do
-      line = String.new(log[cpt])
+      line = String.new(log[cpt]) 
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
-        auth = line.split(/\+|\&| and |\&\&|\,/).map
-        auth.map{|line| line.strip!}
-        if line.match(/\+|\&| and |\&\&|\,/)
-          puts line
-          puts auth
-        end
+        auth = Array(line.split(/\+|\&| and |\&\&|\,/).map)
+        auth.map{|l| l.strip!}
+      end
+      if line.match("activesupport/lib/active_support/duration.rb") && line.match(/\|/)
+        puts line
+        puts auth
       end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
@@ -88,23 +88,27 @@ class NbDevsTools
       if !files.include?(key)
         hdevs.delete(key)
       end
-    end
+    end   
+    puts "hdevs !"   
+    puts hdevs["activesupport/lib/active_support/duration.rb"]
     hdevs
   end
+
 
   def get_devsR(log, files)
     hdevsR = Hash.new()
     cpt=0
     auth = Array.new()
     while cpt < log.count do
-      line = String.new(log[cpt])
+      line = String.new(log[cpt]) 
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
-        auth = line.split(/\+|\&| and |\&\&|\,/).map
-        auth.map{|line| line.strip!}
+        auth = Array(line.split(/\+|\&| and |\&\&|\,/).map)
+        auth.map{|l| l.strip!}
       end
-      #if line.match("action_controller") && line.match("base.rb") && !line.match("abstract") && line.match(/\|/) && line.match("=>")
-      # puts line
-      #end
+      if line.match("activesupport/lib/active_support/duration.rb") && line.match(/\|/)
+        puts line
+        puts auth
+      end
       if line.match(/\|/) && line.match("=>")
         lineF=String.new(line.split("|")[0])
         lineF.strip!
@@ -124,6 +128,7 @@ class NbDevsTools
           file2=lineF.gsub(/(.*)( => )(.*)/, '\3')
         end
         if hdevsR.include?(file1)
+          hdevsR[file1].uniq!
           tabF1 = Array(hdevsR[file1])
           hdevsR.merge!({file2 => auth.concat(tabF1)})
           #hdevsR.delete(file1)
@@ -132,23 +137,6 @@ class NbDevsTools
         else
           hdevsR.merge!({file2 => auth})
         end
-        # if line.match("action_controller") && line.match("base.rb") && !line.match("abstract")
-        #  print "table ",file2," !"
-        # puts ""
-        #hdevsR[file2].uniq!
-        #hdevsR[file2].each do |d|
-        #    print d,", "
-        #  puts ""
-        #  end
-        #puts ""
-        #print "table ",file1," !"
-        #puts ""
-        #hdevsR[file1].uniq!
-        #hdevsR[file1].each do |d|
-        #    print d,", "
-        #    puts ""
-        #  end
-        #end
       end      
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
@@ -165,7 +153,9 @@ class NbDevsTools
       if !files.include?(key)
         hdevsR.delete(key)
       end
-    end
+    end   
+puts "hdevRR !"   
+puts hdevsR["activesupport/lib/active_support/duration.rb"]
     hdevsR
   end
   
@@ -191,7 +181,7 @@ class GitNbDevs < Thor
     logR = Array(tool.get_logR())
     logR.map{|line| line.strip!}
 
-    #hdevsR = tool.get_devsR(logR, files)
+    hdevsR = tool.get_devsR(logR, files)
     #puts hdevsR
     print "fileName,active,#devs,#devsWithRename,diff(#devsWR-#devs)"
     puts ""
@@ -199,16 +189,16 @@ class GitNbDevs < Thor
     res = Hash.new()
 
     hdevs.each do |key1, v1|
-      #hdevsR.each do |key2, v2|       
-        #if key1 == key2
-      value1=v1.count
-          #value2=v2.count
+      hdevsR.each do |key2, v2|       
+        if key1 == key2
+          value1=v1.count
+          value2=v2.count
           #print key1,",",value1,",",value2,",",value2-value1
           #puts ""
-          #res.merge!({key1 => [1, value1,  value2, value2-value1]})
-      res.merge!({key1 => [1, value1]})
-        #end
-      #end
+          res.merge!({key1 => [1, value1,  value2, value2-value1]})
+      #res.merge!({key1 => [1, value1]})
+        end
+      end
     end
     
     files.each do |key|
