@@ -68,6 +68,10 @@ class NbDevsTools
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
         auth = line.split(/\+|\&| and |\&\&|\,/).map
         auth.map{|line| line.strip!}
+        if line.match(/\+|\&| and |\&\&|\,/)
+          puts line
+          puts auth
+        end
       end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
@@ -187,7 +191,7 @@ class GitNbDevs < Thor
     logR = Array(tool.get_logR())
     logR.map{|line| line.strip!}
 
-    hdevsR = tool.get_devsR(logR, files)
+    #hdevsR = tool.get_devsR(logR, files)
     #puts hdevsR
     print "fileName,active,#devs,#devsWithRename,diff(#devsWR-#devs)"
     puts ""
@@ -195,15 +199,16 @@ class GitNbDevs < Thor
     res = Hash.new()
 
     hdevs.each do |key1, v1|
-      hdevsR.each do |key2, v2|       
-        if key1 == key2
-          value1=v1.count
-          value2=v2.count
+      #hdevsR.each do |key2, v2|       
+        #if key1 == key2
+      value1=v1.count
+          #value2=v2.count
           #print key1,",",value1,",",value2,",",value2-value1
           #puts ""
-          res.merge!({key1 => [1, value1,  value2, value2-value1]})
-        end
-      end
+          #res.merge!({key1 => [1, value1,  value2, value2-value1]})
+      res.merge!({key1 => [1, value1]})
+        #end
+      #end
     end
     
     files.each do |key|
@@ -216,8 +221,8 @@ class GitNbDevs < Thor
     
     res2 = res.sort_by{ |m, v1, v2, v3, v4| m.downcase}
     res2.each do |key, value|
-      print key,",",value[0],",",value[1],",",value[2],",",value[3]
-      puts "" 
+      #print key,",",value[0],",",value[1],",",value[2],",",value[3]
+      #puts "" 
     end
     
   end
