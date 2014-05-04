@@ -62,16 +62,17 @@ class NbDevsTools
   def get_devs(log, files)
     hdevs = Hash.new()
     cpt=0
-    auth = nil
+    auth = Array.new()
     while cpt < log.count do
       line = String.new(log[cpt])
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
-        auth = String.new(line).strip
+        auth = line.split(/\+|\&| and |\&\&|\,/).map
+        auth.map{|line| line.strip!}
       end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        hdevs.merge!({file => [auth]}){|key, v1, v2| v1.concat(v2)}
+        hdevs.merge!({file => auth}){|key, v1, v2| v1.concat(v2)}
       end
       cpt=cpt+1
     end 
@@ -90,27 +91,16 @@ class NbDevsTools
   def get_devsR(log, files)
     hdevsR = Hash.new()
     cpt=0
-    auth = nil
+    auth = Array.new()
     while cpt < log.count do
       line = String.new(log[cpt])
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
-        if line.match(/ \+ /)
-          auth1=String.new(line.gsub(/(.*)( \+ )(.*)(,)/, '\1')).strip
-          auth2=String.new(line.gsub(/(.*)( \+ )(.*)(,)/, '\3')).strip
-          auth=[auth1].concat([auth2])
-        elsif  line.match(" and ")
-          auth1=String.new(line.gsub(/(.*)( and )(.*)(,)/, '\1')).strip
-          auth2=String.new(line.gsub(/(.*)( and )(.*)(,)/, '\3')).strip
-          auth=[auth1].concat([auth2])
-        else
-          a = String.new(line).strip
-          auth = Array[a]
-        end
+        auth = line.split(/\+|\&| and |\&\&|\,/).map
+        auth.map{|line| line.strip!}
       end
-      if line.match("action_controller") && line.match("base.rb") && !line.match("abstract") && line.match(/\|/) && line.match("=>")
-        puts line
-      end
-        
+      #if line.match("action_controller") && line.match("base.rb") && !line.match("abstract") && line.match(/\|/) && line.match("=>")
+      # puts line
+      #end
       if line.match(/\|/) && line.match("=>")
         lineF=String.new(line.split("|")[0])
         lineF.strip!
@@ -134,30 +124,28 @@ class NbDevsTools
           hdevsR.merge!({file2 => auth.concat(tabF1)})
           #hdevsR.delete(file1)
           #hdevsR[file1] = hdevsR[file2]
-          hdevsR.merge!({file1 => auth}){|key, v1, v2| v1.concat(v2)}
-
+          #hdevsR.merge!({file1 => auth}){|key, v1, v2| v1.concat(v2)}
         else
           hdevsR.merge!({file2 => auth})
         end
-
-      if line.match("action_controller") && line.match("base.rb") && !line.match("abstract")
-        print "table ",file2," !"
-        puts ""
-        hdevsR[file2].uniq!
-        hdevsR[file2].each do |d|
-            print d,", "
-          puts ""
-          end
-        puts ""
-        print "table ",file1," !"
-        puts ""
-        hdevsR[file1].uniq!
-        hdevsR[file1].each do |d|
-            print d,", "
-            puts ""
-          end
-      end
-    end      
+        # if line.match("action_controller") && line.match("base.rb") && !line.match("abstract")
+        #  print "table ",file2," !"
+        # puts ""
+        #hdevsR[file2].uniq!
+        #hdevsR[file2].each do |d|
+        #    print d,", "
+        #  puts ""
+        #  end
+        #puts ""
+        #print "table ",file1," !"
+        #puts ""
+        #hdevsR[file1].uniq!
+        #hdevsR[file1].each do |d|
+        #    print d,", "
+        #    puts ""
+        #  end
+        #end
+      end      
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
