@@ -64,7 +64,7 @@ class NbDevsTools
     cpt=0
     while cpt < log.count do
       line = String.new(log[cpt])
-      if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
+      if line.match(/[a-zA-Z]/) && !line.match(/\(|\||\/|\.| [0-9]+ /)
         auth = line.split(/\+|\&| and |\&\&|\,/).map!{|l| l.strip}
       end
       if line.match(/\|/) && !line.match("=>")
@@ -83,7 +83,8 @@ class NbDevsTools
       if !files.include?(key)
         hdevs.delete(key)
       end
-    end   
+    end    
+    hdevs
   end
 
 
@@ -92,7 +93,7 @@ class NbDevsTools
     cpt=0
     while cpt < log.count do
       line = String.new(log[cpt]) 
-      if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
+      if line.match(/[a-zA-Z]/) && !line.match(/\(|\||\/|\.| [0-9]+ /)
         auth = line.split(/\+|\&| and |\&\&|\,/).map!{|l| l.strip}
       end
       if line.match(/\|/) && line.match("=>")
@@ -115,15 +116,15 @@ class NbDevsTools
         end
         if hdevsR.include?(file1)
           hdevsR[file1].uniq!
-          tabF1 = Array(hdevsR[file1])
-          hdevsR.merge!({file2 => auth.clone.concat(tabF1)})
+          tabF1 = Array(hdevsR[file1]) 
+          hdevsR.merge!({file2 => auth.clone.concat(tabF1)}){|key, v1, v2| v1.concat(v2)}
           #hdevsR.delete(file1)
           #hdevsR[file1] = hdevsR[file2]
-          #hdevsR.merge!({file1 => auth}){|key, v1, v2| v1.concat(v2)}
+          #hdevsR.merge!({file1 => auth}){|key, v1, v2| v1.concat(v2)}       
         else
           hdevsR.merge!({file2 => auth.clone})
         end
-      end      
+      end  
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
@@ -140,7 +141,7 @@ class NbDevsTools
       if !files.include?(key)
         hdevsR.delete(key)
       end
-    end   
+    end 
     hdevsR
   end
   
