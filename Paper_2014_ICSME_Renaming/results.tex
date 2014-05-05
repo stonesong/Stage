@@ -1,4 +1,74 @@
 \section{Results}
 \label{sec:results}
 
-\pgfplotstabletypeset[col sep=comma,string type,]{data/tables/test.csv}
+\subsection{First Experiment}
+
+The results of the first experiment are shown in \tabref{jenkins}, \tabref{jquery}, \tabref{phpunit}, \tabref{pyramid} and \tabref{rails}. These tables show several interesting particularities. Firstly, the amount of renaming vary a lot between projects and release. For instance Jenkins has at most $10\%$ of its files renamed in the worst period while PHPUnit has $98.51\%$. In general, there is a large amount of periods with $0\%$ of renamed files.
+
+Regarding the location, the init period seems to be the worst one. It generally has the greater percentage of renamed files (except in PHPUnit). The dev periods are more prone to renaming than the maint periods, as all five projects have close to $0\%$ of renamed files in maint periods. Finally dev periods can contain a lot of renaming. The results seems to indicate that the major releases are the worse.
+
+\begin{table}
+\centering
+\small
+\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule, after table=]{data/tables/jenkins.csv}%
+{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in Jenkins}
+\label{tab:jenkins}
+\end{table}
+
+\begin{table}
+\centering
+\small
+\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/jquery.csv}%
+{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in JQuery}
+\label{tab:jquery}
+\end{table}
+
+\begin{table}
+\centering
+\small
+\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/phpunit.csv}%
+{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in PHPUnit}
+\label{tab:phpunit}
+\end{table}
+
+\begin{table}
+\centering
+\small
+\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/pyramid.csv}%
+{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in Pyramid}
+\label{tab:pyramid}
+\end{table}
+
+\begin{table}
+\centering
+\small
+\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/rails.csv}%
+{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in Rails}
+\label{tab:rails}
+\end{table}
+
+\subsection{Second Experiment}
+
+\begin{table*}
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Period & Code churn & Nb of developers & Nb of modifications\\
+\midrule
+PHPUnit 3.7.0-4.0.0 & 0.60 & 0.4 & 0.60\\
+\bottomrule
+\end{tabular}
+\caption{Spearman correlation coefficients between values of change metrics with and without renaming.}
+\label{tab:spearman}
+\end{table*}

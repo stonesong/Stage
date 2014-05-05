@@ -70,7 +70,7 @@ class NbCommitsTools
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        hcommits.merge!({file => [sha1]}){|key, v1, v2| v1.concat(v2)}
+        hcommits.merge!({file => [sha1.clone]}){|key, v1, v2| v1.concat(v2)}
       end
       cpt=cpt+1
     end 
@@ -115,18 +115,18 @@ class NbCommitsTools
         end
         if hcommitsR.include?(file1)
           tabF1 = Array(hcommitsR[file1])
-          hcommitsR.merge!({file2 => [sha1].concat(tabF1)})
+          hcommitsR.merge!({file2 => [sha1.clone].concat(tabF1)})
           #hcommitsR.delete(file1)
           #hcommitsR[file1] = hcommitsR[file2]
           #hcommitsR.merge!({file1 => [sha1]}){|key, v1, v2| v1.concat(v2)}
         else
-          hcommitsR.merge!({file2 => [sha1]})
+          hcommitsR.merge!({file2 => [sha1.clone]})
         end
       end      
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        hcommitsR.merge!({file => [sha1]}){|key, v1, v2| v1.concat(v2)}
+        hcommitsR.merge!({file => [sha1.clone]}){|key, v1, v2| v1.concat(v2)}
       end      
       cpt=cpt+1
     end 
@@ -151,18 +151,18 @@ class GitNbCommits < Thor
     tool = NbCommitsTools.new(folder, rev1, rev2, proj)  
    
     files = Array(tool.get_files())
-    files.map{|line| line.strip!}
+    files.map!{|line| line.strip}
     exfiles = files.clone
     files = tool.get_regexp(exfiles)
     
     log = Array(tool.get_log())
-    log.map{|line| line.strip!}
+    log.map!{|line| line.strip}
     
     hcommits = tool.get_commits(log, files)
     #puts hcommits
     
     logR = Array(tool.get_logR())
-    logR.map{|line| line.strip!}
+    logR.map!{|line| line.strip}
 
     hcommitsR = tool.get_commitsR(logR, files)
     #puts hcommitsR

@@ -62,21 +62,16 @@ class NbDevsTools
   def get_devs(log, files)
     hdevs = Hash.new()
     cpt=0
-    auth = Array.new()
     while cpt < log.count do
-      line = String.new(log[cpt]) 
+      line = String.new(log[cpt])
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
-        auth = Array(line.split(/\+|\&| and |\&\&|\,/).map)
-        auth.map{|l| l.strip!}
-      end
-      if line.match("activesupport/lib/active_support/duration.rb") && line.match(/\|/)
-        puts line
-        puts auth
+        auth = line.split(/\+|\&| and |\&\&|\,/).map!{|l| l.strip}
       end
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        hdevs.merge!({file => auth}){|key, v1, v2| v1.concat(v2)}
+        hdevs.merge!({file => auth.clone}){|key, v1, v2| Array(v1.concat(v2))}
+        hdevs[file].uniq! 
       end
       cpt=cpt+1
     end 
@@ -89,25 +84,16 @@ class NbDevsTools
         hdevs.delete(key)
       end
     end   
-    puts "hdevs !"   
-    puts hdevs["activesupport/lib/active_support/duration.rb"]
-    hdevs
   end
 
 
   def get_devsR(log, files)
     hdevsR = Hash.new()
     cpt=0
-    auth = Array.new()
     while cpt < log.count do
       line = String.new(log[cpt]) 
       if line.match(/[a-zA-Z]/) && !line.match(/[0-9]/)
-        auth = Array(line.split(/\+|\&| and |\&\&|\,/).map)
-        auth.map{|l| l.strip!}
-      end
-      if line.match("activesupport/lib/active_support/duration.rb") && line.match(/\|/)
-        puts line
-        puts auth
+        auth = line.split(/\+|\&| and |\&\&|\,/).map!{|l| l.strip}
       end
       if line.match(/\|/) && line.match("=>")
         lineF=String.new(line.split("|")[0])
@@ -130,18 +116,19 @@ class NbDevsTools
         if hdevsR.include?(file1)
           hdevsR[file1].uniq!
           tabF1 = Array(hdevsR[file1])
-          hdevsR.merge!({file2 => auth.concat(tabF1)})
+          hdevsR.merge!({file2 => auth.clone.concat(tabF1)})
           #hdevsR.delete(file1)
           #hdevsR[file1] = hdevsR[file2]
           #hdevsR.merge!({file1 => auth}){|key, v1, v2| v1.concat(v2)}
         else
-          hdevsR.merge!({file2 => auth})
+          hdevsR.merge!({file2 => auth.clone})
         end
       end      
       if line.match(/\|/) && !line.match("=>")
         file = String.new(line.split("|")[0])
         file.strip!
-        hdevsR.merge!({file => auth}){|key, v1, v2| v1.concat(v2)}
+        hdevsR.merge!({file => auth.clone}){|key, v1, v2| v1.concat(v2)}
+        hdevsR[file].uniq!
       end
       cpt=cpt+1
     end 
@@ -154,8 +141,6 @@ class NbDevsTools
         hdevsR.delete(key)
       end
     end   
-puts "hdevRR !"   
-puts hdevsR["activesupport/lib/active_support/duration.rb"]
     hdevsR
   end
   
@@ -168,7 +153,7 @@ class GitNbDevs < Thor
     tool = NbDevsTools.new(folder, rev1, rev2, proj)  
    
     files = Array(tool.get_files())
-    files.map{|line| line.strip!}
+    files.map!{|line| line.strip}
     exfiles = files.clone
     files = tool.get_regexp(exfiles)
     
@@ -179,7 +164,7 @@ class GitNbDevs < Thor
     #puts hdevs
     
     logR = Array(tool.get_logR())
-    logR.map{|line| line.strip!}
+    logR.map!{|line| line.strip}
 
     hdevsR = tool.get_devsR(logR, files)
     #puts hdevsR
@@ -211,8 +196,8 @@ class GitNbDevs < Thor
     
     res2 = res.sort_by{ |m, v1, v2, v3, v4| m.downcase}
     res2.each do |key, value|
-      #print key,",",value[0],",",value[1],",",value[2],",",value[3]
-      #puts "" 
+      print key,",",value[0],",",value[1],",",value[2],",",value[3]
+      puts "" 
     end
     
   end

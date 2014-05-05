@@ -1,4 +1,0 @@
-\section{Results}
-\label{sec:results}
-
-\pgfplotstabletypeset[col sep=comma,string type,]{data/tables/test.csv}

@@ -4,73 +4,37 @@
 In this section we present the methodology of our experiment. We want to answer the following research questions:
 
 \begin{enumerate}
-	\item Where in the history of projects is located the renaming, and what is its typical amount?
-	\item Is the renaming able to skew significantly the values of change metric?
+	\item When in the history of projects is renaming located, and what is the typical amount of renaming?
+	\item Is renaming able to skew significantly the values of change metrics?
 \end{enumerate}
 
-To answer these questions we conduct two successive experiments. In these experiments, we will use a dataset of five popular and mature open-source projects.
+To answer these questions we conduct two successive experiments. In these experiments, we will use a dataset of five popular and mature open-source projects. As explained before, VCSs do not handle renaming out of the box, except Git. Therefore, the five projects we selected are managed by Git.
 
-\subsection{Location and Amount of Renaming}
+\subsection{First Experiment: Location and Amount}
 
-Software projects usually undergo distinct phases in their life-cycle. Usually the development is started, then a version is released to the public and maintained, while a new version is being prepared, and so on. Therefore we want to assess the amount of renaming in these different phases. To that extent we split a project history in various \emph{locations}. A location is a sequence of commits. Additionnaly, each location has a \emph{location kind} as described in \figref{branches}.
+Software projects usually undergo distinct phases in their life-cycle. Usually the development is started, then a version is released to the public and maintained, while a new version is being prepared, and so on. In our study we want to assess the amount of renaming in these phases. To that extent, we split a project history in various \emph{periods}. As described in \secref{changemetrics}, a period is a sequence of commits. Each period has a kind, as described in \figref{periods}. The \emph{init} kind is given to the period containing the commits from the beginning of the development to the first release. The \emph{dev} kind is given to periods where a release is being developed. The \emph{maint} kind is given to periods where a release is being maintained. In our project, we can distinguish dev and maint periods because the project we selected have separate branches for software maintenance and development. Our intuition concerning the amount of renaming it is the higher in the init period. Then it is from low to high in dev periods. Finally it is low in maint periods, because the maintenance phase is mostly dedicated to bug fixes.
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=1\linewidth,keepaspectratio]{data/figures/branches.png}
-	\caption{Our location kinds. \emph{Maint:} commmits from a maintenance branch. \emph{Init:} commits from the first version (included) to the first release tag on the master branch. \emph{Dev:} commits between two succesive release tags on the master branch.}
-	\label{fig:branches}
+	\includegraphics[width=1\linewidth,keepaspectratio]{data/figures/periods.png}
+	\caption{Our period kinds, as follows. \emph{Init:} versions from the beginning (included) to the first release. \emph{Dev:} development versions between two successive releases. \emph{Maint:} maintenance versions for a specific release.}
+	\label{fig:periods}
 \end{figure}
 
-For each location we compute the following metrics:
+To measure the location and amount of renaming in the projects, we manually extract the periods from the VCSs of our projects. For each period, we use the Git built-in algorithm to detect renamed files. Finally, for each period, we compute the following metrics:
 
 \begin{itemize}
-	\item \emph{Number of files ($\#F$):} number of files in the project at the last version of the location
-	\item \emph{Number of active files ($\#AF$):} number of files created, deleted, copied, modified or renamed that are still present at the last version of the location.
+	\item \emph{Number of files ($\#F$):} number of files in the project at the last version of the period.
+	\item \emph{Number of active files ($\#AF$):} number of files created, deleted, copied, modified or renamed during the period and present at the last version of the period.
+	\item \emph{Percentage of active files ($\%AF$):} $\%AF = \frac{\#AF}{\#F}$.
 	\item \emph{Number of renamed active files ($\#AF_{r}$):} number of active files that have been renamed.
-	\item \emph{Percentage of active files ($\%AF$):} \[ \%AF = \frac{\#AF}{\#F} \]
-	\item \emph{Number of modification operations ($\#MO$):}  number of modifications (create, delete, copy, rename, modif) on files recorded in the location.
-	\item \emph{Number of rename operations ($\#RO$):} number of renames performed on the location.
-	\item \emph{Percentage of rename operations ($\%RO$):} \[ \%RO = \frac{\#RO}{\#MO}  \]
-	\item \emph{Percentage of files renamed ($\%F_{R}$):} \[ \%F_{R} = \frac{\#AF_{R}}{\#F} \]
-	\item \emph{Percentage of active files renamed ($\%AF_{R}$):} \[ \%AF_{R} = \frac{\#AF_{R}}{\#AF} \]
+	%\item \emph{Number of modification operations ($\#MO$):}  number of modifications (create, delete, copy, rename, modif) on files recorded in the location.
+	%\item \emph{Number of rename operations ($\#RO$):} number of renames performed on the location.
+	%\item \emph{Percentage of rename operations ($\%RO$):} \[ \%RO = \frac{\#RO}{\#MO}  \]
+	\item \emph{Percentage of files renamed ($\%F_{R}$):} $\%F_{R} = \frac{\#AF_{R}}{\#F}$.
+	\item \emph{Percentage of active files renamed ($\%AF_{R}$):} $\%AF_{R} = \frac{\#AF_{R}}{\#AF}$.
 \end{itemize}
 
-\subsection{Process}
+\subsection{Second Experiment: Effect on Metrics}
 
-We will describe here the process to follow to obtain this numbers considering any git repository which follows our model. A Ruby script implementation of the following process is given in annexe.\\
-First of all we need to list major releases tags in a chronological ascending order. This part can not be automated because of the different tag conventions between projetcs like:
-\begin{itemize}
-\item PHPunit: 3.5.0, 3.6.0 etc. 
-\item Pyramid: 1.0, 1.1 etc.
-\item Jenkins: jenkins-1\_400,  jenkins-1\_410 etc.
-\item Rails: v2.0.0, v2.1.0 etc. 
-\end{itemize}
-\medskip
-Begin the process:\\
-We list the project remotes branches. Browsing the branches, all of them we be considered as maintenance branch except origin/master, the initial and developement branch. Most of the time, specific maintenance branches are followed by “stable”. But if the branch is listed here, it means it has it’s head out of master branch and so it is a maintenance branch since its last merge with master.\\\\
-The work is divided in two major step:
-\begin{itemize}
-\item The maintenance branches
-\item origin/master
-\end{itemize}
-\medskip
-If the branch is origin/master, the work will be divided again in:
-\begin{itemize}
-\item first commit(included) to first release tag
-\item fisrt tag to last tag (one release after another)
-\item last tag to HEAD
-\end{itemize}
-\medskip
-So in any of the four conditions, we will generate the git log between revision range.
-The major part of the work will be on this commits log. We choosed to work on a general log more than mining the history of every files one after the other for performance reasons. Especially on big projects (rails, jenkins). Moreover this technique only works for the files alive at the HEAD of the project and not from one previous revision. So we analyse all the log in one block, with the good command and options it contains enough informations. Log lines stored in simple structures like arrays, we can easily count modifications or renames detected.\\
-We will also need to get all the alive files at the end of the log, at the second revision range (branch head or the end of one release).\\\\
-Then the principal algorithm will browse the log :\\
-Browsing the log in a chronological order will allow us to follow the renames or modifications and rebuilt the history of files.
-The typical rename in the log looks like ''rename bob/\{henry $\Rightarrow$ josef\}/george.py (86\%)''
-As exemple, if ''bob/henry/george.py'' is already recorded, we need to follow ''bob/josef/george.py'' instead in the renames and modifications record.
-There is some other cases to consider, for exemple ''\{henry $\Rightarrow$ \}'' or without ''\{'' or the ''copy'' etc.\\
-Each files recorded are unique and only the last name of renamed files is considered.
-We finally need exclude all the files deleted before the end of the commits log comparing with the list of alive files at the end of the revision range calculated earlier.\\ 	
-\label{subsec:Process}
-		
-
+By conducting the first experiment, we will obtain the amount of renaming of each period of each project. The goal of this second experiment is to assess if renaming can skew significantly the values of change metrics. Our objective is to provide a worst-case analysis. Therefore, we will select in the results of the first experiment the dev or maint period with the higher amount of renaming. In these period, we will compute three well-known change metrics (already described in \secref{changemetrics}): \emph{code churn}, \emph{number of developers} and \emph{number of modifications}. This metrics will be computed two times: once without renaming detection, and once with renaming detection. We will finally examine if the metrics computed without renaming detection correlate with the values computed using renaming detection.
