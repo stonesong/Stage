@@ -8,7 +8,7 @@ In this section we present the methodology of our experiment. We want to answer 
 	\item Is renaming able to skew significantly the values of change metrics?
 \end{enumerate}
 
-To answer these questions we conduct two successive experiments. In these experiments, we will use a dataset of five popular and mature open-source projects. As explained before, VCSs do not handle renaming out of the box, except Git. Therefore, the five projects we selected are managed by Git.
+To answer these questions we conduct two successive experiments. In these experiments, we will use a dataset of five popular and mature open-source projects. As explained before, VCSs do not handle renaming out of the box, except Git. Therefore, the five projects we selected are managed by Git. As change metrics are usually computed on source code files, we browsed the files of each project and discarded the non code files from the analysis.
 
 \subsection{First Experiment: Location and Amount}
 
@@ -16,8 +16,8 @@ Software projects usually undergo distinct phases in their life-cycle. Usually t
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=1\linewidth,keepaspectratio]{data/figures/periods.png}
-	\caption{Our period kinds, as follows. \emph{Init:} versions from the beginning (included) to the first release. \emph{Dev:} development versions between two successive releases. \emph{Maint:} maintenance versions for a specific release.}
+	\includegraphics[width=1\linewidth,keepaspectratio]{data/figures/periods.pdf}
+	\caption{Our period kinds, as follows. \emph{Init:} versions from the beginning (included) to the first release. \emph{Dev:} development versions between two successive releases. \emph{Maint:} maintenance versions for a specific release. Note that all the versions after the last release are discarded.}
 	\label{fig:periods}
 \end{figure}
 
@@ -37,4 +37,4 @@ To measure the location and amount of renaming in the projects, we manually extr
 
 \subsection{Second Experiment: Effect on Metrics}
 
-By conducting the first experiment, we will obtain the amount of renaming of each period of each project. The goal of this second experiment is to assess if renaming can skew significantly the values of change metrics. Our objective is to provide a worst-case analysis. Therefore, we will select in the results of the first experiment the dev or maint period with the higher amount of renaming. In these period, we will compute three well-known change metrics (already described in \secref{changemetrics}): \emph{code churn}, \emph{number of developers} and \emph{number of modifications}. This metrics will be computed two times: once without renaming detection, and once with renaming detection. We will finally examine if the metrics computed without renaming detection correlate with the values computed using renaming detection.
+By conducting the first experiment, we will obtain the amount of renaming of each period of each project. The goal of this second experiment is to assess if renaming can skew significantly the values of change metrics. Our objective is to provide a worst-case analysis. Therefore, we will select in the results of the first experiment the dev or maint period with the higher amount of renaming in each project. In these periods, we will compute three well-known change metrics (already described in \secref{changemetrics}): \emph{code churn}, \emph{number of developers} and \emph{number of modifications}. This metrics will be computed two times: once without renaming detection, and once with renaming detection. We will finally examine if the metrics computed without renaming detection correlate with the values computed using renaming detection.

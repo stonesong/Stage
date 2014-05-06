@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Nouveau document 1">
+   sodipodi:docname="example.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,7 +25,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="215.05778"
+     inkscape:cx="216.48635"
      inkscape:cy="57.34544"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -173,7 +173,7 @@
          id="tspan3944"
          x="380.03629"
          y="154.50504"
-         style="font-style:italic">Version 0</tspan><tspan
+         style="font-style:italic">version 0</tspan><tspan
          sodipodi:role="line"
          x="380.03629"
          y="174.50504"
@@ -190,7 +190,7 @@
          id="tspan3944-0"
          x="381.20981"
          y="239.04131"
-         style="font-style:italic">Version 2</tspan><tspan
+         style="font-style:italic">version 2</tspan><tspan
          sodipodi:role="line"
          x="381.20981"
          y="259.04132"
@@ -207,7 +207,7 @@
          id="tspan3944-0-8"
          x="383.44699"
          y="318.98163"
-         style="font-style:italic">Version 3</tspan><tspan
+         style="font-style:italic">version 3</tspan><tspan
          sodipodi:role="line"
          x="383.44699"
          y="338.98163"

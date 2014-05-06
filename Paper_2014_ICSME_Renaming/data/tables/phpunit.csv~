@@ -1,5 +1,5 @@
 name,kind,nf,naf,paf,pfr,pafr
-init $\triangleright$ 3.5,INIT,130,130,100.0,60.76,60.76
+init,INIT,130,130,100.0,60.76,60.76
 3.5 $\triangleright$ 3.6,DEV,121,121,100.0,4.13,4.13
 3.6 $\triangleright$ 3.7,DEV,124,124,100.0,0.8,0.8
 3.7 $\triangleright$ 4.0,DEV,135,135,100.0,98.51,98.51

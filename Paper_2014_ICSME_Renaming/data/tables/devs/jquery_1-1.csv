@@ -1,0 +1,17 @@
+fileName,active,#devs,#devsWithRename,diff(#devsWR-#devs)
+src/fx.js,1,7,6
+src/event.js,1,7,6
+src/ajax.js,1,7,6
+src/selector.js,1,7,6
+src/intro.js,1,1,0
+src/core.js,1,7,6
+src/outro.js,1,1,0
+src/offset.js,1,1,0
+src/ajax.js,1,1,7,6
+src/core.js,1,1,7,6
+src/event.js,1,1,7,6
+src/fx.js,1,1,7,6
+src/intro.js,1,1,1,0
+src/offset.js,1,1,1,0
+src/outro.js,1,1,1,0
+src/selector.js,1,1,7,6

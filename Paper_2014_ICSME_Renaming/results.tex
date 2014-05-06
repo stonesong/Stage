@@ -9,66 +9,69 @@ Regarding the location, the init period seems to be the worst one. It generally 
 
 \begin{table}
 \centering
-\small
-\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule, after table=]{data/tables/jenkins.csv}%
-{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
-{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule, after table=]{data/tables/jenkins.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
 \caption{Amount and location of renaming in Jenkins}
 \label{tab:jenkins}
 \end{table}
 
 \begin{table}
 \centering
-\small
-\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/jquery.csv}%
-{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
-{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/jquery.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
 \caption{Amount and location of renaming in JQuery}
 \label{tab:jquery}
 \end{table}
 
 \begin{table}
 \centering
-\small
-\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/phpunit.csv}%
-{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
-{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/phpunit.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
 \caption{Amount and location of renaming in PHPUnit}
 \label{tab:phpunit}
 \end{table}
 
 \begin{table}
 \centering
-\small
-\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/pyramid.csv}%
-{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
-{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/pyramid.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
 \caption{Amount and location of renaming in Pyramid}
 \label{tab:pyramid}
 \end{table}
 
 \begin{table}
 \centering
-\small
-\csvreader[tabular=lcccccc, table head=\toprule Name & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/rails.csv}%
-{1=\name,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
-{\emph{\name} & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/rails.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
 \caption{Amount and location of renaming in Rails}
 \label{tab:rails}
 \end{table}
 
 \subsection{Second Experiment}
 
+The results of the second experiment are shown in \tabref{spearman}. It shows that the correlation between the metrics highly depend on the considered period and metric. Change metrics of the Jenkins, Pyramid and Rails projects are not affected by renaming as correlation values are close to $1$ in every case. On the other hand, change metrics for the PHPUnit and JQuery projects can be severely impacted by renaming. On JQuery, the churn metric is resilient to renaming, but number of developers and modifications are significantly impacted. On PHPUnit, all the metrics are significantly impacted by renaming. On these two projects, the metric more sensible to renaming is number of developers. In this case, it could seriously invalidate the result of a study using these metrics.
+
 \begin{table*}
+%project,churn_active,churn_all,devs_active,devs_all,modification_active,modifications_all
 \centering
 \small
-\begin{tabular}{lcccc}
-\toprule
-Period & Code churn & Nb of developers & Nb of modifications\\
-\midrule
-PHPUnit 3.7.0-4.0.0 & 0.60 & 0.4 & 0.60\\
-\bottomrule
-\end{tabular}
-\caption{Spearman correlation coefficients between values of change metrics with and without renaming.}
+\csvreader[tabular=rcccccc, table head=\toprule & \multicolumn{6}{c}{Change metric}\\\cmidrule{2-7}& \multicolumn{2}{c}{Churn} & \multicolumn{2}{c}{Devs} & \multicolumn{2}{c}{Modifications}\\\cmidrule(r){2-3}\cmidrule(r){4-5}\cmidrule(r){6-7} Period & Active & All & Active & All & Active & All\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/correlations.csv}%
+{1=\period,2=\churnactive,3=\churnall,4=\devsactive,5=\devall,6=\modificationsactive,7=\modificationsall}%
+{\period & \churnactive & \churnall & \devsactive & \devall & \modificationsactive & \modificationsall}
+\caption{Spearman correlation coefficients between values of change metrics with and without renaming. Values followed by a * are not significant under the $0.05$ p-value.}
 \label{tab:spearman}
 \end{table*}
+
+\subsubsection{Guidelines}
+
+According to the results of our two experiments, we can deduce several simple guidelines to compute change metrics. Firstly, it is important to avoid init periods at all costs. Indeed, these periods usually undergo a significant amount of renaming. On the other hand, maint periods can be picked safely as they very seldomly contain renaming, in tiny amount. Computing change metrics on dev periods is more tricky. As we have seen, it can contain low to high amount of renaming. Dev periods corresponding to major revisions seems to contain much more renaming, so it is recommended to be extra careful with these periods. Anyway, we recommend to apply a renaming detection algorithm systematically to avoid picking up the wrong period. 

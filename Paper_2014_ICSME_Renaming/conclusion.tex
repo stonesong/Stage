@@ -1,2 +1,6 @@
 \section{Conclusion}
 \label{sec:conclusion}
+
+In this article, we assessed the impact of renaming on the values of software change metrics. We conducted an empirical study on five popular and mature open-source software projects. We observed that the initial development period of the projects are more prone to renaming than the other periods of the history. We also observed that maintainance periods contain only a tiny amount of renaming. More importantly, we observed that development periods can contain a significant amount of renaming, especially those that correspond to major release. Finally, we observed that renaming can significantly skew the value of change metrics. Therefore, researchers and practitioners should be very careful when computing change metrics. We recommend to avoid computing change metrics on initial development periods. On the contrary, change metrics can be computed out of the box on maitainance periods. Finally, we highly recommend to use rename detection algorithm when computing change metrics on development periods as it can change significantly the values of change metrics.
+
+As a future work, we plan to evaluate and compare the accuracy of existing renaming detection algorithms. We also plan to evaluate the impact of code merging on software change metrics.

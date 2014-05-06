@@ -122,7 +122,7 @@ class NbDevsTools
           #hdevsR[file1] = hdevsR[file2]
           #hdevsR.merge!({file1 => auth}){|key, v1, v2| v1.concat(v2)}       
         else
-          hdevsR.merge!({file2 => auth.clone})
+          hdevsR.merge!({file2 => auth.clone}){|key, v1, v2| v1.concat(v2)}
         end
       end  
       if line.match(/\|/) && !line.match("=>")

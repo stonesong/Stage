@@ -103,6 +103,12 @@ class GitRenameDetector #Class for tool function
           c.delete(f)
         end
       end
+    when "hibernate-orm"
+      tab.each do |f|
+        if !f.match(/^hibernate(?!\-testing)((?!test).)*\.java$/)
+          c.delete(f)
+        end
+      end
     end
     c
   end
@@ -385,7 +391,11 @@ class GitRename < Thor
         files = detector.get_regexp(exfiles)
         nbFiles = files.count
         
-        nbModif = detector.get_nbModifiedFiles(log).count
+        if nbFiles == 0
+          nbModif = 0
+        else
+          nbModif = detector.get_nbModifiedFiles(log).count
+        end
         #nbRen = detector.get_renames(log).count
         #prOfRenames = detector.get_percentage(nbRen, nbModif)
              

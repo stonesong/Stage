@@ -69,7 +69,6 @@ class TraceTools
       if line.match(/\|/) && line.match("=>")
         lineF=String.new(line.split("|")[0])
         lineF.strip!
-      
         if lineF.match(/\{/)
           if lineF.match(/=> \}/)
             file1=lineF.gsub(/(\{)(.*)( => )(.*)(\})/, '\2')
@@ -85,7 +84,6 @@ class TraceTools
           file1=lineF.gsub(/(.*)( => )(.*)/, '\1')
           file2=lineF.gsub(/(.*)( => )(.*)/, '\3')
         end
-      
         if htrace.include?(file1)
           htab = htrace[file1].clone
           htrace.merge!({file2 => htab.merge!({file1 => file2})})
@@ -97,12 +95,12 @@ class TraceTools
       end      
       cpt=cpt+1
     end 
-    #c = htrace.clone
-    #c.each do |key, value|
-    #  if !files.include?(key)
-    #    htrace.delete(key)
-    #  end
-    #end
+    c = htrace.clone
+    c.each do |key, value|
+      if !files.include?(key)
+        htrace.delete(key)
+      end
+    end
     htrace
   end
   
@@ -121,15 +119,22 @@ class GitTrace < Thor
 
     trace = tool.get_trace(logR, files)
     #puts "trace:"
-    
-    puts "{"
     trace.each do |f, h|
+      puts f
       trace[f].each do |f1, f2|
-        print "\"",f1,"\"",":","\"",f,"\"",","
+        print f1," => ",f2
         puts ""
       end
     end
-    puts"}"
+    
+    #puts "{"
+    #trace.each do |f, h|
+    #  trace[f].each do |f1, f2|
+    #    print "\"",f1,"\"",":","\"",f,"\"",","
+    #    puts ""
+    #  end
+    #end
+    #puts"}"
 
    # puts "in trace:"
    # trace["railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb"].each do |f1, f2|

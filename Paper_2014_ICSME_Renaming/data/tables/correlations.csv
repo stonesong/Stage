@@ -1,0 +1,6 @@
+project,churn_active,churn_all,devs_active,devs_all,modification_active,modifications_all
+jenkins 1.420 $\triangleright$ 1.430,0.89,1,1,1,1,1
+jquery 1.1 $\triangleright$ 1.2,0.98,0.98,0.08*,0.08*,0.59*,0.59*
+phpunit 3.7.0 $\triangleright$ 4.7.0,0.6,0.6,0.38,0.38,0.71,0.71
+pyramid 1.0 $\triangleright$ 1.1,0.96,0.97,1,1,1,1
+rails 2.3.0 $\triangleright$ 3.0.0,0.98,0.98,0.96,0.96,0.93,0.93
