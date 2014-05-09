@@ -1,0 +1,9 @@
+fileName,active,churn,churnWithRename,diff(churnWR-churn)
+src/ajax.js,1,480,1043,563
+src/core.js,1,1246,3209,1963
+src/event.js,1,528,1384,856
+src/fx.js,1,412,993,581
+src/intro.js,1,9,9,0
+src/offset.js,1,91,91,0
+src/outro.js,1,2,2,0
+src/selector.js,1,457,671,214
