@@ -1,27 +1,29 @@
 \section{Introduction}
 \label{sec:intro}
 
-Software \emph{change metrics} measure how the artifacts of a software project have been modified during their life-cycle. For instance, the \emph{code churn} measures how much lines have been added or removed, and \emph{number of developers} measures how many developers did contribute to the artifact. The main hypothesis behind these metrics is that the manner in which the artifacts have been developed has a huge impact on their quality. Such an hypothesis have been confirmed in several studies, such as~\cite{graves_predicting_2000,nagappan_use_2005,weyuker_too_2008,moser_comparative_2008,matsumoto_analysis_2010,bird_dont_2011,dambros_evaluating_2012,illes-seifert_exploring_2010,posnett_dual_2013}. For instance, Bird et al. have shown that the ownership metrics, which are variants of the number of developers metric, are strongly correlated to the number of post-release defects in industrial software projects~\cite{bird_dont_2011}.
+Defect prediction, which mainly aims to anticipate the number of defects that will be contained in a software project, and to guess their location in the source code, is one of the famous challenges of software engineering with the objective to identify the best metrics that can serve as a defect predictor~\cite{fenton_critique_1999}. 
 
-Contrarily to classical product metrics (such as \emph{number of methods}) which only require one version of a software project, change metrics require its history. Generally, software artifacts are seen as a sequence of versions, and change metrics are computed from measures performed on each version of the sequence. Generally, computing change metrics is straightforward when the projects are managed by a version control system (VCS), which is almost always the case.
+In~\cite{nagappan_mining_2006}, Nagappan et al. show that neither classical metrics such as LOC (line of code) nor object-oriented ones such as inheritance tree (DIT) can be used as a predictor for defects in all projects. Since then, many recent studies show that software change metrics (also called process metrics) give much better results~\cite{nagappan_use_2005,weyuker_too_2008,bird_dont_2011,giger_can_2012}.
 
-However, retrieving the complete sequence of version of a software artifact is not always easy. Indeed, it is not rare that developers change some artifacts name during the project life-cycle. When such a situation occurs, relating the versions of the renamed artifacts with the versions before its renaming is not easy. If renaming is not taken into account, all its versions before renaming are lost and it can therefore have a huge effect on the change metrics values.
+Change metrics focus on evolution, and measure how artifacts of a software project are modified during its life-cycle. The main hypothesis behind these metrics is that the manner in which artifacts are changed has a huge impact on their quality, and therefore on defects they will contain. 
 
-In theory, artifact renaming does have an impact on change metrics. In practice, how many renaming occurs? When do they occur? What is their impact on change metrics? This paper aims at answering these questions. To that extent, we perform an in-depth study of mature and popular open-source software projects. Our objective is first to provide descriptive statistics helping to understand the amount and location of artifact renaming in software projects. Then we assess the impact of taking into account renaming on the values of classical change metrics. Finally, based on our observations, we provide simple guidelines that will help researchers and practitioners to better compute change metrics.
+In \cite{radjenovic_software_2013}, Radjenovic et al. identify that the three most used change metrics for defect prediction are: the Number of Developers (NoD)~\cite{weyuker_too_2008}, the Number of Changes (NoC)~\cite{graves_predicting_2000} and Code Churn (CC)~\cite{munson_code_1998}. NoD measures how many developers did contribute to an artifact. NoC measures how many changes have been made to an artifact. Code churn measures how many lines of code were added or removed to an artifact.
 
-Our results indicate that artifact renaming do occur in projects and can be intensive. We observed up to 99\% of renamed files in one project. We also observed that renaming is most likely to happen in software development rather than in software maintenance, especially in the first release. Finally, we also observed that it can significantly alter the values of change metrics, and therefore can be a serious threat to the validity of studies using such metrics.
+Computing change metrics seems to be straightforward at first sight. For a given software project, it consists in observing all the changes performed to each software artifact it contains. To that purpose, the use of a Versioning Configuration Systems (VCSs) is of a great help as it tracks all changes made by all developers to all artifacts. However, VCSs provide few support to artifact renaming, which makes the computation of change metrics tricky and error prone. 
 
-To sum-up, this article makes the following contributions:
+Artifact renaming occurs when a developer modifies the name of an artifact or when she moves it into another directory. In theory, artifact renaming does have an impact on the computation of change metrics as it shortens the life of the artifacts when it is not considered. In practice, we don't know the amount of renaming and its impact on change metrics.
+
+This article tackles the problem of the impact of artifact renaming on the computation of change metrics. We present an in-depth empirical study of five mature and popular open-source software projects with the intent to provide some insight on the amount of artifact renaming in software projects. Additionally, we assess the impact of artifact renaming on change metrics by computing the three most used change metrics on the projects of our corpus with and without considering artifact renaming.
+
+Our results indicate that artifact renaming do occur in projects and can be intensive. We observed up to 99\% of files renamed in one project. We also observed that it can significantly alter the values of change metrics, and therefore can be a serious threat to the validity of studies using such metrics. Based on our observations, we provide a brief analysis of the possible impact of artifact renaming in past studies that used change metrics for defect prediction, and we provide simple guidelines that will help researchers and practitioners to better compute change metrics.
+
+To sum up, this article makes the following contributions:
 \begin{itemize}
-	\item A study of the artifact renaming phenomenon on five mature and popular open-source software projects.
-	\item Detailed information on the amount and location of renaming.
-	\item An analysis of the impact of taking renaming into account on the values of change metrics.
+	\item An empirical study of the artifact renaming phenomenon on five mature and popular open-source software projects.
+	\item Detailed information on the amount of renaming.
+	\item An analysis of the impact of not taking renaming into account on the values of change metrics.
+	\item An analysis of past studies that used change metrics for defect prediction with the intent to evaluate if they are possibly impacted by the artifact renaming phenomenon.
 	\item Several simple guidelines aiming at reducing the threat of artifact renaming when computing change metrics.
 \end{itemize}
 
-This paper is structured as follows: \secref{changemetrics} explains how change metrics are computed and presents how artifact renaming has an impact on them. \secref{methodology} presents the detailed methodology of our study, including the construction of our corpus and the different experiments we performed. \secref{results} presents the results of our study which shows that the artifact renaming phenomenon does occur and does have an impact on change metrics. This section also presents our guidelines to limit the threat of renamed artifacts when computing change metrics. Finally \secref{conclusion} concludes this paper.
-
-
-
-
-
+This paper is structured as follows: \secref{changemetrics} explains how change metrics are computed and presents how artifact renaming has an impact on them. \secref{methodology} presents the detailed methodology of our study, including the construction of our corpus and the experiments we performed. \secref{results} presents the results of our study which show that artifact renaming does occur and does have an impact on change metrics. \secref{study} presents the possible threat of artifact renaming in past studies as well as our guidelines to limit its impact. Finally \secref{conclusion} concludes this paper.

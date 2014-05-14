@@ -1,25 +1,67 @@
 \section{Change Metrics}
 \label{sec:changemetrics}
 
-In this section, we give some background information on change metrics, and how there are computed using version control systems. Then, we explain using a concrete example how renaming can affect the values of these metrics.
+This section first describes how change metrics are computed. Then it explains how artifact renaming can impact change metrics. Finally, it describes how Version Control Systems (VCSs) handle artifact renaming.
 
 \subsection{Computing Change Metrics}
 
-As explained in \secref{intro}, change metrics are computed from the sequence of versions of a software artifact. Since projects are almost stored in version control systems (VCSs), we described how the software artifacts are stored in such VCSs. A VCS generally considers a project as a set of files. It stores every version of the project since the beginning of its development. Several metadata are attached to each version: the identity of the developer that committed it, the files that have been added, modified or deleted since the previous version, and its date.
+Change metrics measure how much software artifacts have been modified during a given period of time. The approaches that use them to predict defects usually consider a period included between two releases of a software project (quite often the last release and the one before). Moreover, as they aim to predict the defects that will exist after the period, they only consider the software artifacts that are still there at the end of the period, and not the ones that have been deleted during the period. Computing change metrics then requires to fetch all the changes made during the period to software artifacts that exist at its end.
 
-To recognize the files across the versions, VCSs use their absolute path in the repository. It means that as soon as a file is moved or renamed, the VCS will detect it as the deletion of the file with the old absolute path, and the addition of the file with the new absolute path. Although several VCSs provide commands or algorithms to record renamed and moved files, only Git handles this problem out of the box.
+A VCS offers several facilities to compute change metrics. It stores an ordered set of versions where each version indicates which artifacts have been changed, what changes have been done to them, who did these changes, and when. Further, it supports getting the content of all the artifacts of a software project at a given version, by returning a snapshot of the software project for that version. To compute change metrics, it can therefore be used first to obtain all the artifacts that exist at the end of the considered period (by obtaining a snapshot of that period), and second to return all changes made during the period and to filter in the ones that target the considered artifacts.
 
-Computing change metrics is a straightforward process. Change metrics are computed in a period of time. Such period is represented as a sequence of versions in the VCS. Change metrics are usually computed for every file present at the last version of the period. Then the sequence of versions is browsed backwards until it reaches the first version or the creation of the file. When the version metadata indicates that the file of interest have been modified or created, this file version is included in the sequence of versions concerning the file. Then the change metric is computed using this sequence of file versions.
+More precisely, let us explain how a VCS can be used to compute the three most used change metrics: Number of Developers (NoD), Number of Changes (NoC) and Code Churn (CC). In this example, we consider as a period the one included between the last release of a software project and the one just before. To compute the change metrics, we first use the VCS to get a snapshot of the last release with the objective to get all the artifacts that do exist at the end of the considered period. We note $A$ this set of artifacts. Secondly, we use the VCS to get all changes performed during the period. We note $C$ this ordered set of changes. Thirdly, we iterate on this ordered set of changes starting with the older one ($c_0 \in C$) and ending with the more recent one ($c_n \in C$) in order to compute the change metrics for each of the artifact. We note $\mu_{a}^{M}$ the value of the change metrics $M$ for the artifact $a$. Then we compute the change metrics as follow (we note $c_i$ the current change we iterate on):
+
+\begin{description}
+	\item[NoD] For each artifact $a$ targeted by $c_i$ that also belongs to $A$ ($a \in A$), we add to $\mu_{a}^{NoD}$ the number of authors that performed the change $c_i$ and that was modifying $a$ for the first time in the period.
+	\item[NoC] For each artifact $a$ targeted by $c_i$ that also belongs to $A$ ($a \in A$), we add one to $\mu_{a}^{C}$ as the change $c_i$ states that one more change has been performed.
+	\item[CC] For each artifact $a$ targeted by $c_i$ that also belongs to $A$ ($a \in A$), we first check if the change is not an artifact creation. If it is the case it means that the artifact has been created during the period, then we initialize its $\mu_{a}^{CC}$ to its number of lines. Then, we use the VCS to fetch the next change $c_j$ in the period ($i < j$) that targets $a$, and we then compare the two versions $i$ and $j$ of the artifact $a$ to compute how many lines have been added or removed, and we add this number to $\mu_{a}^{CC}$.
+\end{description}
 
 \subsection{Renaming and Change Metrics}
 
-\figref{example} shows an example of a simple software project history. This project contains only one file, \texttt{Test.php}, which is renamed in the last version to \texttt{Hello.php}. As an example of change metrics we will use \emph{code churn}, \emph{number of developers} and \emph{number of modifications}. The definition of number of developers and number of modifications is straightforward. Code churn correspond to the number of lines added and deleted in the file since its initial version.
+As we just explained, a VCS drastically helps for computing change metrics. However, it should be noted that a VCS identifies artifacts only by their qualified name (path + name). As a consequence, artifact renaming has an impact on the computation of change metrics. To explain this impact, we present a simple example of a software project period in \figref{example}. This project contains only one artifact, \texttt{Test.php}, which is renamed to \texttt{Hello.php} in the last version. In this example we compute the change metrics NoD, NoC and CC, for the period included between version 1 and 3.
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.8\linewidth,keepaspectratio]{data/figures/example.pdf}
-	\caption{Example of a project history. The project is composed of only one file \texttt{Test.php} which is renamed to \texttt{Hello.php} in the last version.}
+	\caption{Example of a project period. The project is composed of only one file \texttt{Test.php} which is renamed to \texttt{Hello.php} in the last version.}
 	\label{fig:example}
 \end{figure}
 
-If renaming is not taken into account, the last version of the project of \figref{example} contains only one file, that has only one version. Therefore its code churn is $2$ (it has 2 lines of codes), and the number of developers and modification is $1$. However, if renaming is taken into account, the last version of the project contains one file that has $3$ versions. In this case the code churn is $4$ ($1$ for version 1, $2$ for version 2 and $1$ for version $3$). The number of developers and modifications are $3$. Therefore this small example shows the importance of taking renaming into account.
+The last version of the period contains only one artifact. As a consequence, only this artifact will be considered by approaches that aim to predict defects. Further, if the renaming of this artifact is not taken into account to compute the change metrics, there is only one version (version 3) that targets it. As a consequence, computing the change metrics is quite trivial. As there is only one developer then $\mu^{NoD}=1$. As there is only one change then $\mu^{NoC}=1$. As the artifact has been created during the period then $\mu^{CC}=2$.
+
+However, if the renaming of this artifact is taken into account then there are $3$ versions that target the artifact. As a consequence, the change metrics have completely different values. As three developers contributed to the artifact, then $\mu^{NoD}=3$. As three changes were made to it, then $\mu^{NoC}=3$. Finally, the code churn for the three versions is $\mu^{CC}=4$ ($1$ for the creation during the period, $2$ between versions 1 and 2, $1$ between versions 2 and 3).
+
+Our example shows that artifact renaming can have an impact on change metrics. More generally, the values of the NoD and NoC metrics can only be greater when the renaming is taken into account as the longer the life of an artifact, the more developers work on it, and the more changes are made to it. The value of code churn can increase or decrease if renaming is taken into account. In particular, artifact renaming induces that the renamed artifact has been created during the period. It results in adding to the CC metric the number of lines of the artifact at the version where it was renamed. Therefore, if the artifact is big, its CC will be much higher than it should be. Another interesting effect we can remark is that the closer to the end of the period an artifact is renamed, the worse the effect will be. In particular, if it is renamed just before the last version then almost all the changes that target it are lost.
+
+\subsection{Renaming and VCSs}
+
+We have performed an in-depth analysis of the main VCSs (CVS, Subversion, Git and Mercurial) with the intent to describe the mechanisms they provide to handle renaming. All these VCSs are file-based meaning that software artifacts are files, which are identified by their full path. For all these VCSs, a change in the path of a file, which can be achieved by moving it between directories or by a change of its name, leads to a file deletion and a file creation.
+
+Some VCSs provide a mechanism to handle renaming. The renaming handling can be either manual or automatic. A renaming handling mechanism is said to be manual when the developers have to manually perform a command to indicate that their change is a file renaming. A renaming handling mechanism is automatic when the VCS provides an algorithm that can automatically detect renaming. Further, an automatic mechanism can be by default when the VCS applies the algorithm automatically when the changes targeting a file are searched for, or optional when the VCS apply the algorithm only if the user has explicitly provided some command line options. 
+
+\begin{table}[b]
+\centering
+\begin{tabular}{rccc}
+\toprule
+ & \multicolumn{3}{c}{Renaming handling}\\
+\cmidrule{2-4}
+& & \multicolumn{2}{c}{Automatic}\\
+\cmidrule{3-4}
+VCS & Manual & Default & Optional\\
+\midrule
+CVS & & &\\
+Subversion & $\times$ & &\\
+Mercurial & $\times$ & &\\
+Git & & & $\times$\\
+\bottomrule
+\end{tabular}
+\caption{Handling of renaming of the main VCSs.}
+\label{tab:vcs}
+\end{table}
+
+\tabref{vcs} shows how the main VCSs handle renaming. CVS does not handle renaming. Subversion and Mercurial just provide a manual renaming handling mechanism. Git provides an automatic but optional renaming handling mechanism. Finally, we can see that no VCS provides automatic renaming handling by default. The renaming handling of these VCSs however fail to limit the impact of renaming on the computation of change metrics.
+
+On the one hand, the manual renaming handling assumes that developers do use the command provided by their VCS. However, several studies point out that it is not the case at all. In particular, two studies observed that renaming without using the VCS command can be up to 89\% of all renaming~\cite{lavoie_inferring_2012,steidl_incremental_2014}. Additionally, the study of Kim et al. shows that 51\% of the developers prefer to perform refactoring (including renaming) without using the commands provided by their VCS~\cite{kim_field_2012}. These three studies, conducted in both open-source and industrial settings, show that it is very dangerous to rely on the assumption that the developers do use the VCS command provided to handle renaming.
+
+On the other hand, optional automatic renaming handling require to have a significant knowledge of the internal settings of the VCSs, in order to use the right options to handle renaming. However, we never encountered any information explaining how the VCSs were tuned in any study that aims to predict defect by using change metrics. This is not a surprise as our analysis of past studies described in \secref{study} indicates that no past study ever used a software project managed by Git, which is the only VCS that provides optional automatic renaming handling.

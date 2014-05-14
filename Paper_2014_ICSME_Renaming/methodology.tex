@@ -1,40 +1,41 @@
 \section{Methodology}
 \label{sec:methodology}
 
-In this section we present the methodology of our experiment. We want to answer the following research questions:
+In this section we present the methodology of our experiments that consist in studying the phenomenon of artifact renaming and its impact on the computation of change metrics. Our main objective is to evaluate if artifact renaming has a significant impact on the values of change metrics, and thus can be a threat to the validity of studies that aim to predict defects by using such metrics. To fulfill this goal, we conduct two successive experiments.
+
+The goal of the first experiment is to analyze the amount of renaming in all the development periods of our corpus of projects. Leveraging on the results of this first experiment, our second experiment provides a worst case analysis of the impact of renaming on change metrics. For these two experiments, we use a corpus of five popular and mature open-source projects as shown in \tabref{projects}. Our corpus contains projects with different programming language and having a medium to high number of lines of code and developers. Moreover, the five projects we selected are all managed by Git because it provides a mechanism to automatically detect renaming (see \secref{changemetrics}). Finally, it should be noted that we choose to exclude non source code files from our corpus as defect prediction is usually only performed on source code files, therefore change metrics are computed only on such files.
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{rcccc}
+\toprule
+Project & Main language & Size (LoC) & Number of developers & URL\\
+\midrule
+Jenkins & Java & 200851 & 454 & \url{github.com/jenkinsci/jenkins} \\
+JQuery & JavaScript & 41656 & 223 & \url{github.com/jquery/jquery} \\
+PHPUnit & PHP & 21799 & 152 & \url{github.com/sebastianbergmann/phpunit}\\
+Pyramid & Python & 38726 & 205 & \url{github.com/Pylons/pyramid} \\
+Rails & Ruby & 181002 & 2767 & \url{github.com/rails/rails}\\
+\bottomrule
+\end{tabular}
+\caption{Our corpus of software projects.}
+\label{tab:projects}
+\end{table*}
+
+\subsection{First Experiment}
+
+The objective of our first experiment is to better understand the phenomenon of artifact renaming. In particular, we aim to observe when renaming occurs and in which amount. To that extent, we decided to split the projects of our corpus in several periods, and to analyze artifact renaming in each period. As described in \secref{changemetrics}, a period is delimited by two releases and is composed of an ordered set of versions. Additionally, we distinguish several kinds of periods. Firstly, each project have a period that starts at its creation and ends at the first release. We call this period the initial period. Then the other periods can be divided into two groups: periods for a major release (major periods) and periods for a minor release (minor periods). On the one hand,major periods usually contain a large amount of changes. They happens when the release number differs significantly from the previous one. For instance the period 1.9 - 2.0 for JQuery is such a period. On the other hand, minor periods usually contain a low to medium amount of changes. They happens when the release number differs only slightly from the previous one. For instance the period 1.6 - 1.7 for JQuery is such a period. Since versioning scheme are specific to projects, we manually analyzed the repositories of the projects from our corpus to identify their minor and major periods.
+
+To identify artifact renaming, we decided to rely on the automatic mechanism provided by Git. More precisely, we follow this three steps process to compute the amount of artifact renaming within a period:
 
 \begin{enumerate}
-	\item When in the history of projects is renaming located, and what is the typical amount of renaming?
-	\item Is renaming able to skew significantly the values of change metrics?
-\end{enumerate}
+	\item list the files at then end of the period.
+	\item for each such file, extract its set of changes during the period by activating renaming detection (using the \texttt{git log -M} command)
+	\item compute the ratio of files $\%F_{R}$ that include a renaming in their corresponding set of changes
+\end{enumerate} 
 
-To answer these questions we conduct two successive experiments. In these experiments, we will use a dataset of five popular and mature open-source projects. As explained before, VCSs do not handle renaming out of the box, except Git. Therefore, the five projects we selected are managed by Git. As change metrics are usually computed on source code files, we browsed the files of each project and discarded the non code files from the analysis.
+Git provides a dedicated algorithm to track artifact renaming based on file similarity. To the best of our knowledge, there exists no empirical evaluation on Git's algorithm. Therefore, we proceeded to a manual assessment of its behavior on a random subset of renamed files detected in our corpus, as described in \secref{threats}. We did not encounter any false positive during this manual assessment.
 
-\subsection{First Experiment: Location and Amount}
+\subsection{Second Experiment}
 
-Software projects usually undergo distinct phases in their life-cycle. Usually the development is started, then a version is released to the public and maintained, while a new version is being prepared, and so on. In our study we want to assess the amount of renaming in these phases. To that extent, we split a project history in various \emph{periods}. As described in \secref{changemetrics}, a period is a sequence of commits. Each period has a kind, as described in \figref{periods}. The \emph{init} kind is given to the period containing the commits from the beginning of the development to the first release. The \emph{dev} kind is given to periods where a release is being developed. The \emph{maint} kind is given to periods where a release is being maintained. In our project, we can distinguish dev and maint periods because the project we selected have separate branches for software maintenance and development. Our intuition concerning the amount of renaming it is the higher in the init period. Then it is from low to high in dev periods. Finally it is low in maint periods, because the maintenance phase is mostly dedicated to bug fixes.
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=1\linewidth,keepaspectratio]{data/figures/periods.pdf}
-	\caption{Our period kinds, as follows. \emph{Init:} versions from the beginning (included) to the first release. \emph{Dev:} development versions between two successive releases. \emph{Maint:} maintenance versions for a specific release. Note that all the versions after the last release are discarded.}
-	\label{fig:periods}
-\end{figure}
-
-To measure the location and amount of renaming in the projects, we manually extract the periods from the VCSs of our projects. For each period, we use the Git built-in algorithm to detect renamed files. Finally, for each period, we compute the following metrics:
-
-\begin{itemize}
-	\item \emph{Number of files ($\#F$):} number of files in the project at the last version of the period.
-	\item \emph{Number of active files ($\#AF$):} number of files created, deleted, copied, modified or renamed during the period and present at the last version of the period.
-	\item \emph{Percentage of active files ($\%AF$):} $\%AF = \frac{\#AF}{\#F}$.
-	\item \emph{Number of renamed active files ($\#AF_{r}$):} number of active files that have been renamed.
-	%\item \emph{Number of modification operations ($\#MO$):}  number of modifications (create, delete, copy, rename, modif) on files recorded in the location.
-	%\item \emph{Number of rename operations ($\#RO$):} number of renames performed on the location.
-	%\item \emph{Percentage of rename operations ($\%RO$):} \[ \%RO = \frac{\#RO}{\#MO}  \]
-	\item \emph{Percentage of files renamed ($\%F_{R}$):} $\%F_{R} = \frac{\#AF_{R}}{\#F}$.
-	\item \emph{Percentage of active files renamed ($\%AF_{R}$):} $\%AF_{R} = \frac{\#AF_{R}}{\#AF}$.
-\end{itemize}
-
-\subsection{Second Experiment: Effect on Metrics}
-
-By conducting the first experiment, we will obtain the amount of renaming of each period of each project. The goal of this second experiment is to assess if renaming can skew significantly the values of change metrics. Our objective is to provide a worst-case analysis. Therefore, we will select in the results of the first experiment the dev or maint period with the higher amount of renaming in each project. In these periods, we will compute three well-known change metrics (already described in \secref{changemetrics}): \emph{code churn}, \emph{number of developers} and \emph{number of modifications}. This metrics will be computed two times: once without renaming detection, and once with renaming detection. We will finally examine if the metrics computed without renaming detection correlate with the values computed using renaming detection.
+The goal of our second experiment is to assess if renaming can skew significantly the values of change metrics. To fulfill this goal, we perform a worst-case analysis. To that extent, we select for each project from our corpus the period that has the greater amount of renaming, excluding the initial period which is usually not used in defect prediction studies. For such periods, we compute the three change metrics described in \secref{changemetrics} (NoD, NoC and CC) with and without using renaming detection. Finally, we compute the Spearman correlation coefficients between the metrics with and without renaming detection. High correlation coefficients (close to 1) would indicate that the metrics with and without renaming detection are very similar whereas low correlation coefficients (close to 0.5 and less) would indicate that the metrics with and without renaming detection are very different.

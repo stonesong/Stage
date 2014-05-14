@@ -1,0 +1,19 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Etat de l'art}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Evolution logiciel et refactoring}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}M\IeC {\'e}triques de proc\IeC {\'e}d\IeC {\'e}s et \IeC {\'e}volution logiciel}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}M\IeC {\'e}triques et Renommage}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}M\IeC {\'e}triques et Renommage Existant}{4}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Les outils}{4}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}``Origin Analysis''}{4}{subsection.2.6}
+\contentsline {section}{\numberline {3}Probl\IeC {\'e}matique}{4}{section.3}
+\contentsline {section}{\numberline {4}Un ensemble de projet}{5}{section.4}
+\contentsline {section}{\numberline {5}Premi\IeC {\`e}re analyse \IeC {\`a} grain fin}{5}{section.5}
+\contentsline {section}{\numberline {6}Analyse \IeC {\`a} gros grain}{5}{section.6}
+\contentsline {subsection}{\numberline {6.1}Premi\IeC {\`e}re experience}{5}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{5}{subsection.6.2}
+\contentsline {section}{\numberline {7}Resultats}{5}{section.7}
+\contentsline {subsection}{\numberline {7.1}resultats premi\IeC {\`e}re exp\IeC {\'e}rience}{5}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}resultats deuxi\IeC {\`e}me exp\IeC {\'e}rience}{5}{subsection.7.2}
+\contentsline {section}{\numberline {8}Conclusion}{5}{section.8}
