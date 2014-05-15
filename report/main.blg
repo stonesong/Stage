@@ -2,47 +2,45 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
-I found no \citation commands---while reading file main.aux
 Database file #1: renaming.bib
-You've used 0 entries,
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            497 strings with 3989 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
+            527 strings with 4819 characters,
+and the built_in function-call counts, 1635 in all, are:
+= -- 160
+> -- 77
+< -- 1
++ -- 30
+- -- 26
+* -- 128
+:= -- 262
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 4
+duplicate$ -- 62
+empty$ -- 122
+format.name$ -- 26
+if$ -- 343
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 23
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 21
 quote$ -- 0
-skip$ -- 1
+skip$ -- 50
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 117
+swap$ -- 20
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 16
 warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There was 1 error message)
+while$ -- 14
+width$ -- 5
+write$ -- 46

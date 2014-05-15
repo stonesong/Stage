@@ -1,26 +1,24 @@
 \documentclass[11pt,a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[margin=3.5cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{makeidx}
 \usepackage{url}
 \usepackage{subcaption}
-%\usepackage{enumerate}
-%\usepackage{enumitem}
-%\usepackage{ifthen}
-%\usepackage{amssymb}
-%\usepackage{dsfont}
-%\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{multicol}
 \usepackage[hidelinks]{hyperref}
-%\usepackage{amsmath}
-%\usepackage{multirow}
-%\usepackage{pgfplotstable}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{pgfplotstable}
 \usepackage{booktabs}
 \usepackage{csvsimple}
-
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
 
 \title{\vspace{4cm}\textbf{Impact of Renaming on Software Change Metrics}\vspace{3cm}}
 
@@ -30,8 +28,7 @@ Mémoire de stage de Master2\\
 Encadrants: Jean-Rémy Falleri et Matthieu Foucault\\\\
 LaBRI, UMR 5800\\
 F-33400, Talence, France\\\\
-\texttt{Email: pierre.chanson@etu.u-bordeaux.fr,}\and
-\texttt{\{falleri,mfoucault\}@labri.fr}\\
+\texttt{Email: pierre.chanson@etu.u-bordeaux.fr, \{falleri,mfoucaul,xblanc\}@labri.fr}\\
 }
 
 

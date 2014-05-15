@@ -1,0 +1,4 @@
+\section{Introduction}
+\label{sec:intro}
+
+L'accès aux dépôts logiciels a rendu possible de nombreux travaux de recherche sur l'évolution logicielle. Plus particulièrement, les dépôts de code source gérés par des outils de contrôle de versions (Version Control System, VCS, comme SVN, Mercurial ou encore Git) contiennent l'historique de construction d'un logiciel. Au cours de son histoire, un fichier peut être renommé et/ou déplacé, actions qui doivent être prises en compte par les études qui analysent l'évolution des fichiers de code source. Le refactoring est present dans le developement des logiciels à succès d'aujourd'hui, mais sous estimé. Lors de mon stage, les résultats de mes expérimentations améneront à une publication dans la conference ICSME, article en annexe.\\

@@ -2,28 +2,11 @@
 \label{sec:etat_de_lart}
 
 \subsection{Evolution logiciel et refactoring}
-Pourtant, nombre d'article parlent en introduction de l'importance du refactoring, ce qui inclue le renommage, dans les projets à succès (TODO) mais on obtient pas de chiffres précis.\\
+On peut régulièrement lire en introduction d'articles des propos sur l'importance du refactoring, ce qui inclue le renommage, dans les projets à succès (TODO) mais on obtient pas de chiffres précis.\\
 
 \subsection{Métriques de procédés et évolution logiciel}
-Les métriques de procédés (change metrics) permettent de calculer à quel point une entité de code source à été modifiée au cours d'une période donnée. On les utilises usuellement pour prédire les bugs entre deux révisions d'un logiciel, souvent la dernière période. L'objectif étant de prédire les bugs qui apparaitront lors de la prochaine release, elles ne considère que les entités étant toujours présentes à la fin de la période. Elles vont donc se concentrer sur les entités actives lors de la période et que l'on retrouvera à la fin.\\
-Un gestionnaire de versions offre plusieurs moyens de calculer ces métriques car il stocke les informations sur les entités modifiés à chaque nouvelle version, l'auteur de ces modifications, la date etc. De plus il permet la récupération du contenu de chaque entité et de l'ensemble d'un projet à une version donnée. Pour calculer ces métriques, il est donc possible d'analyser chaque entités modifiés lors d'une période puis de ne garder uniquement les entités toujours présente à la dernière version de notre période.\\
-Nous avons choisi de nous concentrer sur les trois métriques de procédés les plus connues identifiés par Radjenovic et al (TODO) pour mesurer l'impact du renomage: Le nombre de développeurs (NoD), le nombre de modifications (NoC), et le Code Churn (CC).\\
-En exemple nous allons considerer $A$, l'ensemble des entités existantes entre deux versions.  TODO
-NOD:\\
-NOC:\\
-CC:\\ 
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=0.8\linewidth,keepaspectratio]{data/figures/example.pdf}
-	\caption{Example of a project history. The project is composed of only one file \texttt{Test.php} which is renamed to \texttt{Hello.php} in the last version.}
-	\label{fig:example}
-\end{figure}
-
-\subsection{Métriques et Renommage}
-Comme on l'a expliqué plus tôt, un gestionnaire de versions est très pratique pour calculer les métriques de procédés. Par ailleurs, il faut noter qu'un gestionnaire de version identifie une entité par son chemin + nom de fichier. On en déduit qu'un renommage de cette identité, dans le chemin ou le nom de fichier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, on présente un exemple d'historique d'un logiciel figure 1. Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple nous calculons NoD, NoC, CC entre la version 1 et 3.\\
-La dernière version ne contient qu'une entité. C'est donc cette entité uniquement qui sera considérée. De plus l'identité exacte de cette entité n'aparait que lors de la version 3. Le calcul des métriques est donc trivial, NoD = 1, NoC = 1, CC = 2.\\
-Par ailleurs, si on prend en compte le fait que ce fichié a été renommé, il y a trois versions à regarder en ce qui concerne l'entité. etc...TODO\\
+Les métriques de procédés (change metrics) permettent de calculer à quel point une entité de code source à été modifiée au cours d'une période donnée dans l'histoire d'un logiciel. On les utilises usuellement dans la dernière période avant la dernière version, l'objectif étant de prédire les bugs qui apparaitront lors de la prochaine release. Elles ne considère donc que les entités étant toujours présentes à la fin de la période et qui ont étés actives dans la période.\\
+Radjenovic et al \cite{radjenovic_software_2013} identifient trois métriques de procédés les plus utilisés pour la prédiction de bugs: Le nombre de développeurs ~\cite{weyuker_too_2008} (Number of Developers, NoD), Le nombre de modifications ~\cite{graves_predicting_2000} (Number of Changes, NoC) et le Code Churn ~\cite{munson_code_1998} (CC). Nous donnerons une définition et une méthode précise pour les calculer dans nos expérimentations.\\
 
 \subsection{Métriques et Renommage Existant}
 Nous nous somme donc intéressés aux études passées qui pouvaient traiter les métriques de procédés dans la prédiction de bugs, et vérifié si ces études avaient considérés le renommage de fichiers. L'article (TODO) référence 26 articles qui nous intéresse, 15 sur des projets industriels, 11 sur des logiciels open-source. TODO \\

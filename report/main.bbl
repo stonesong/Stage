@@ -1,3 +1,26 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{graves_predicting_2000}
+Todd~L. Graves, Alan~F. Karr, J.~S. Marron, and Harvey Siy.
+\newblock Predicting fault incidence using software change history.
+\newblock {\em {IEEE} Trans. Softw. Eng.}, 26(7):653–661, July 2000.
+
+\bibitem{munson_code_1998}
+John~C. Munson and Sebastian~G. Elbaum.
+\newblock Code churn: A measure for estimating the impact of code change.
+\newblock In {\em Software Maintenance, 1998. Proceedings. International
+  Conference on}, page 24–31, 1998.
+
+\bibitem{radjenovic_software_2013}
+Danijel Radjenović, Marjan Heričko, Richard Torkar, and Aleš Živkovič.
+\newblock Software fault prediction metrics: A systematic literature review.
+\newblock {\em Information and Software Technology}, 55(8):1397--1418, August
+  2013.
+
+\bibitem{weyuker_too_2008}
+Elaine~J. Weyuker, Thomas~J. Ostrand, and Robert~M. Bell.
+\newblock Do too many cooks spoil the broth? using the number of developers to
+  enhance defect prediction models.
+\newblock {\em Empirical Software Engineering}, 13(5):539--559, October 2008.
 
 \end{thebibliography}
