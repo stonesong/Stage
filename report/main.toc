@@ -2,18 +2,19 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}
 \contentsline {section}{\numberline {2}Etat de l'art}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}Evolution logiciel et refactoring}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}M\IeC {\'e}triques de proc\IeC {\'e}d\IeC {\'e}s et \IeC {\'e}volution logiciel}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}M\IeC {\'e}triques et Renommage Existant}{4}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Les outils}{4}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}``Origin Analysis''}{4}{subsection.2.5}
-\contentsline {section}{\numberline {3}Probl\IeC {\'e}matique}{5}{section.3}
-\contentsline {section}{\numberline {4}Un ensemble de projet}{5}{section.4}
-\contentsline {section}{\numberline {5}Premi\IeC {\`e}re analyse \IeC {\`a} grain fin}{5}{section.5}
-\contentsline {section}{\numberline {6}Analyse \IeC {\`a} gros grain}{5}{section.6}
-\contentsline {subsection}{\numberline {6.1}Premi\IeC {\`e}re experience}{5}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{5}{subsection.6.2}
-\contentsline {subsubsection}{\numberline {6.2.1}M\IeC {\'e}triques et Renommage}{5}{subsubsection.6.2.1}
-\contentsline {section}{\numberline {7}Resultats}{6}{section.7}
-\contentsline {subsection}{\numberline {7.1}resultats premi\IeC {\`e}re exp\IeC {\'e}rience}{6}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}resultats deuxi\IeC {\`e}me exp\IeC {\'e}rience}{6}{subsection.7.2}
-\contentsline {section}{\numberline {8}Conclusion}{6}{section.8}
+\contentsline {subsection}{\numberline {2.2}Les outils}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}``Origin Analysis''}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}M\IeC {\'e}triques de proc\IeC {\'e}d\IeC {\'e}s et \IeC {\'e}volution logiciel}{5}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}M\IeC {\'e}triques et Renommage Existant}{5}{subsection.2.5}
+\contentsline {section}{\numberline {3}Probl\IeC {\'e}matique}{6}{section.3}
+\contentsline {section}{\numberline {4}Premi\IeC {\`e}re analyse \IeC {\`a} grain fin}{6}{section.4}
+\contentsline {section}{\numberline {5}Un mod\IeC {\`e}le}{6}{section.5}
+\contentsline {section}{\numberline {6}Un ensemble de projet}{6}{section.6}
+\contentsline {section}{\numberline {7}Analyse \IeC {\`a} gros grain}{7}{section.7}
+\contentsline {subsection}{\numberline {7.1}Premi\IeC {\`e}re experience}{7}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{7}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}M\IeC {\'e}triques et Renommage}{7}{subsubsection.7.2.1}
+\contentsline {section}{\numberline {8}Resultats}{8}{section.8}
+\contentsline {subsection}{\numberline {8.1}resultats premi\IeC {\`e}re exp\IeC {\'e}rience}{8}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}resultats deuxi\IeC {\`e}me exp\IeC {\'e}rience}{8}{subsection.8.2}
+\contentsline {section}{\numberline {9}Conclusion}{8}{section.9}

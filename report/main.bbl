@@ -1,9 +1,129 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{arisholm_systematic_2010}
+Erik Arisholm, Lionel~C. Briand, and Eivind~B. Johannessen.
+\newblock A systematic and comprehensive investigation of methods to build and
+  evaluate fault prediction models.
+\newblock {\em Journal of Systems and Software}, 83(1):2 -- 17, 2010.
+\newblock {SI:} Top Scholars.
+
+\bibitem{bacchelli_are_2010}
+Alberto Bacchelli, Marco {D'Ambros}, and Michele Lanza.
+\newblock Are popular classes more defect prone?
+\newblock In {\em Proceedings of the 13th International Conference on
+  Fundamental Approaches to Software Engineering}, {FASE'10}, page 59–73,
+  Berlin, Heidelberg, 2010. Springer-Verlag.
+
+\bibitem{caglayan_merits_2009}
+Bora Caglayan, Ayse Bener, and Stefan Koch.
+\newblock Merits of using repository metrics in defect prediction for open
+  source projects.
+\newblock In {\em Proceedings of the 2009 {ICSE} Workshop on Emerging Trends in
+  {Free/Libre/Open} Source Software Research and Development}, {FLOSS} '09,
+  page 31–36, Washington, {DC}, {USA}, 2009. {IEEE} Computer Society.
+
+\bibitem{dambros_relationship_2009}
+M.~{D'Ambros}, M.~Lanza, and R.~Robbes.
+\newblock On the relationship between change coupling and software defects.
+\newblock In {\em Reverse Engineering, 2009. {WCRE} '09. 16th Working
+  Conference on}, pages 135--144, October 2009.
+
+\bibitem{dambros_extensive_2010}
+M.~{D'Ambros}, M.~Lanza, and R.~Robbes.
+\newblock An extensive comparison of bug prediction approaches.
+\newblock In {\em Mining Software Repositories ({MSR)}, 2010 7th {IEEE} Working
+  Conference on}, pages 31--41, May 2010.
+
+\bibitem{dambros_evaluating_2012}
+Marco {D’Ambros}, Michele Lanza, and Romain Robbes.
+\newblock Evaluating defect prediction approaches: a benchmark and an extensive
+  comparison.
+\newblock {\em Empirical Software Engineering}, 17(4-5):531–577, 2012.
+
+\bibitem{godfrey_tracking_2002}
+Michael Godfrey and Qiang Tu.
+\newblock Tracking structural evolution using origin analysis.
+\newblock In {\em Proceedings of the International Workshop on Principles of
+  Software Evolution}, {IWPSE} '02, page 117–119, New York, {NY}, {USA},
+  2002. {ACM}.
+
+\bibitem{godfrey_using_2005}
+{M.W.} Godfrey and Lijie Zou.
+\newblock Using origin analysis to detect merging and splitting of source code
+  entities.
+\newblock {\em {IEEE} Transactions on Software Engineering}, 31(2):166--181,
+  2005.
 
 \bibitem{graves_predicting_2000}
 Todd~L. Graves, Alan~F. Karr, J.~S. Marron, and Harvey Siy.
 \newblock Predicting fault incidence using software change history.
 \newblock {\em {IEEE} Trans. Softw. Eng.}, 26(7):653–661, July 2000.
+
+\bibitem{illes-seifert_exploring_2010}
+Timea Illes-Seifert and Barbara Paech.
+\newblock Exploring the relationship of a file’s history and its
+  fault-proneness: An empirical method and its application to open source
+  programs.
+\newblock {\em Information and Software Technology}, 52(5):539--558, May 2010.
+
+\bibitem{khoshgoftaar_using_2000}
+{T.M.} Khoshgoftaar, R.~Shan, and {E.B.} Allen.
+\newblock Using product, process, and execution metrics to predict fault-prone
+  software modules with classification trees.
+\newblock In {\em High Assurance Systems Engineering, 2000, Fifth {IEEE}
+  International Symposim on. {HASE} 2000}, pages 301--310, 2000.
+
+\bibitem{kim_field_2012}
+Miryung Kim, Thomas Zimmermann, and Nachiappan Nagappan.
+\newblock A field study of refactoring challenges and benefits.
+\newblock In {\em Proceedings of the {ACM} {SIGSOFT} 20th International
+  Symposium on the Foundations of Software Engineering}, {FSE} '12, page
+  50:1–50:11, New York, {NY}, {USA}, 2012. {ACM}.
+
+\bibitem{lavoie_inferring_2012}
+T.~Lavoie, F.~Khomh, E.~Merlo, and Ying Zou.
+\newblock Inferring repository file structure modifications using
+  nearest-neighbor clone detection.
+\newblock In {\em Reverse Engineering ({WCRE)}, 2012 19th Working Conference
+  on}, pages 325--334, October 2012.
+
+\bibitem{layman_iterative_2008}
+Lucas Layman, Gunnar Kudrjavets, and Nachiappan Nagappan.
+\newblock Iterative identification of fault-prone binaries using in-process
+  metrics.
+\newblock In {\em Proceedings of the Second {ACM-IEEE} International Symposium
+  on Empirical Software Engineering and Measurement}, {ESEM} '08, page
+  206–212, New York, {NY}, {USA}, 2008. {ACM}.
+
+\bibitem{li_finding_2005}
+Paul~Luo Li, Mary Shaw, and Jim Herbsleb.
+\newblock Finding predictors of field defects for open source software systems
+  in commonly available data sources: A case study of openbsd.
+\newblock In {\em {IN:} {METRICS} ’05: {PROCEEDINGS} {OF} {THE} {11TH} {IEEE}
+  {INTERNATIONAL} {SOFTWARE} {METRICS} {SYMPOSIUM}, {IEEE} {COMPUTER}
+  {SOCIETY}}, page~32, 2005.
+
+\bibitem{matsumoto_analysis_2010}
+Shinsuke Matsumoto, Yasutaka Kamei, Akito Monden, Ken-ichi Matsumoto, and
+  Masahide Nakamura.
+\newblock An analysis of developer metrics for fault prediction.
+\newblock In {\em Proceedings of the 6th International Conference on Predictive
+  Models in Software Engineering}, page~18, 2010.
+
+\bibitem{moser_analysis_2008}
+Raimund Moser, Witold Pedrycz, and Giancarlo Succi.
+\newblock Analysis of the reliability of a subset of change metrics for defect
+  prediction.
+\newblock In {\em Proceedings of the Second {ACM-IEEE} International Symposium
+  on Empirical Software Engineering and Measurement}, {ESEM} '08, page
+  309–311, New York, {NY}, {USA}, 2008. {ACM}.
+
+\bibitem{moser_comparative_2008}
+Raimund Moser, Witold Pedrycz, and Giancarlo Succi.
+\newblock A comparative analysis of the efficiency of change metrics and static
+  code attributes for defect prediction.
+\newblock In {\em {ACM/IEEE} 30th International Conference on Software
+  Engineering}, page 181–190, 2008.
 
 \bibitem{munson_code_1998}
 John~C. Munson and Sebastian~G. Elbaum.
@@ -11,16 +131,93 @@ John~C. Munson and Sebastian~G. Elbaum.
 \newblock In {\em Software Maintenance, 1998. Proceedings. International
   Conference on}, page 24–31, 1998.
 
+\bibitem{nagappan_change_2010}
+N.~Nagappan, A.~Zeller, T.~Zimmermann, K.~Herzig, and B.~Murphy.
+\newblock Change bursts as defect predictors.
+\newblock In {\em Software Reliability Engineering ({ISSRE)}, 2010 {IEEE} 21st
+  International Symposium on}, pages 309--318, November 2010.
+
+\bibitem{nagappan_use_2005}
+Nachiappan Nagappan and Thomas Ball.
+\newblock Use of relative code churn measures to predict system defect density.
+\newblock In {\em Proceedings of the 27th international conference on Software
+  engineering}, {ICSE} '05, page 284–292, New York, {NY}, {USA}, 2005. {ACM}.
+
+\bibitem{nagappan_using_2007}
+Nachiappan Nagappan and Thomas Ball.
+\newblock Using software dependencies and churn metrics to predict field
+  failures: An empirical case study.
+\newblock In {\em Proceedings of the First International Symposium on Empirical
+  Software Engineering and Measurement}, {ESEM} '07, page 364–373,
+  Washington, {DC}, {USA}, 2007. {IEEE} Computer Society.
+
+\bibitem{nagappan_using_2006}
+Nachiappan Nagappan, Thomas Ball, and Brendan Murphy.
+\newblock Using historical in-process and product metrics for early estimation
+  of software failures.
+\newblock In {\em Proceedings of the 17th International Symposium on Software
+  Reliability Engineering}, {ISSRE} '06, page 62–74, Washington, {DC}, {USA},
+  2006. {IEEE} Computer Society.
+
+\bibitem{nagappan_influence_2008}
+Nachiappan Nagappan, Brendan Murphy, and Victor Basili.
+\newblock The influence of organizational structure on software quality: an
+  empirical case study.
+\newblock In {\em Proceedings of the 30th international conference on Software
+  engineering}, page 521–530, 2008.
+
+\bibitem{nikora_building_2006}
+Allen~P. Nikora and John~C. Munson.
+\newblock Building high-quality software fault predictors.
+\newblock {\em Software: Practice and Experience}, 36(9):949–969, 2006.
+
+\bibitem{ostrand_programmer-based_2010}
+Thomas~J. Ostrand, Elaine~J. Weyuker, and Robert~M. Bell.
+\newblock Programmer-based fault prediction.
+\newblock In {\em Proceedings of the 6th International Conference on Predictive
+  Models in Software Engineering}, {PROMISE} '10, page 19:1–19:10, New York,
+  {NY}, {USA}, 2010. {ACM}.
+
 \bibitem{radjenovic_software_2013}
 Danijel Radjenović, Marjan Heričko, Richard Torkar, and Aleš Živkovič.
 \newblock Software fault prediction metrics: A systematic literature review.
 \newblock {\em Information and Software Technology}, 55(8):1397--1418, August
   2013.
 
+\bibitem{schroter_if_2006}
+Adrian Schröter, Thomas Zimmermann, Rahul Premraj, and Andreas Zeller.
+\newblock If your bug database could talk.
+\newblock In {\em Proceedings of the 5th international symposium on empirical
+  software engineering}, volume~2, page 18–20, 2006.
+
+\bibitem{steidl_incremental_2014}
+Daniela Steidl, Benjamin Hummel, and Elmar Juergens.
+\newblock Incremental origin analysis of source code files.
+\newblock {\em Proceedings of the 11th Working Conference on Mining Software
+  Repositories}, 2014.
+
+\bibitem{tu_integrated_2002}
+Qiang Tu and {M.W.} Godfrey.
+\newblock An integrated approach for studying architectural evolution.
+\newblock In {\em 10th International Workshop on Program Comprehension, 2002.
+  Proceedings}, pages 127--136, 2002.
+
+\bibitem{weyuker_using_2007}
+Elaine~J. Weyuker, Thomas~J. Ostrand, and Robert~M. Bell.
+\newblock Using developer information as a factor for fault prediction.
+\newblock In {\em Proceedings of the Third International Workshop on Predictor
+  Models in Software Engineering}, page~8, 2007.
+
 \bibitem{weyuker_too_2008}
 Elaine~J. Weyuker, Thomas~J. Ostrand, and Robert~M. Bell.
 \newblock Do too many cooks spoil the broth? using the number of developers to
   enhance defect prediction models.
 \newblock {\em Empirical Software Engineering}, 13(5):539--559, October 2008.
+
+\bibitem{yuan_application_2000}
+X.~Yuan, {T.M.} Khoshgoftaar, {E.B.} Allen, and K.~Ganesan.
+\newblock An application of fuzzy clustering to software quality prediction.
+\newblock In {\em Application-Specific Systems and Software Engineering
+  Technology, 2000. Proceedings. 3rd {IEEE} Symposium on}, pages 85--90, 2000.
 
 \end{thebibliography}

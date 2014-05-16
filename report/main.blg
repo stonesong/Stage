@@ -3,44 +3,49 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: renaming.bib
-You've used 4 entries,
+Repeated entry---line 721 of file renaming.bib
+ : @article{godfrey_using_2005
+ :                            ,
+I'm skipping whatever remains of this entry
+You've used 33 entries,
             2118 wiz_defined-function locations,
-            527 strings with 4819 characters,
-and the built_in function-call counts, 1635 in all, are:
-= -- 160
-> -- 77
-< -- 1
-+ -- 30
-- -- 26
-* -- 128
-:= -- 262
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 25
+            693 strings with 11377 characters,
+and the built_in function-call counts, 14811 in all, are:
+= -- 1547
+> -- 599
+< -- 25
++ -- 241
+- -- 200
+* -- 872
+:= -- 2121
+add.period$ -- 110
+call.type$ -- 33
+change.case$ -- 199
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 62
-empty$ -- 122
-format.name$ -- 26
-if$ -- 343
+cite$ -- 33
+duplicate$ -- 764
+empty$ -- 1122
+format.name$ -- 200
+if$ -- 3414
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 4
-newline$ -- 23
-num.names$ -- 8
-pop$ -- 23
+int.to.str$ -- 33
+missing$ -- 33
+newline$ -- 169
+num.names$ -- 66
+pop$ -- 240
 preamble$ -- 1
-purify$ -- 21
+purify$ -- 166
 quote$ -- 0
-skip$ -- 50
+skip$ -- 695
 stack$ -- 0
-substring$ -- 117
-swap$ -- 20
-text.length$ -- 1
+substring$ -- 844
+swap$ -- 378
+text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 16
+type$ -- 132
 warning$ -- 0
-while$ -- 14
-width$ -- 5
-write$ -- 46
+while$ -- 117
+width$ -- 35
+write$ -- 397
+(There was 1 error message)
