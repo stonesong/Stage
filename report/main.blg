@@ -1,11 +1,14 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: renaming.bib
 Repeated entry---line 721 of file renaming.bib
  : @article{godfrey_using_2005
  :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 761 of file renaming.bib
+ : @inproceedings{kim_field_2012
+ :                              ,
 I'm skipping whatever remains of this entry
 You've used 33 entries,
             2118 wiz_defined-function locations,
@@ -48,4 +51,4 @@ warning$ -- 0
 while$ -- 117
 width$ -- 35
 write$ -- 397
-(There was 1 error message)
+(There were 2 error messages)

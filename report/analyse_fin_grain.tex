@@ -2,8 +2,13 @@
 \label{sec:analyse_fin_grain}
 
 Le premier travail réalisé durant le stage a été de faire une étude manuelle des renommages dans les VCS. Nous avons sélectionnés 100 commits de manière aléatoire dans un projet et étudié le renommage d'entités dans ces commits.\\
-Nous avons choisit Hibernate-ORM, un projet open-source connue et assez gros, $750000$ LOC, avec suffisament de développeurs, $138$, et en JAVA afin de pouvoir differencier les renommages à different niveaux de granularités.
-Nous prenons $4$ niveaux de granularité: Dossier, fichier, classe et fonction. Nous définissons l'identité d'une entité de code source par son path. (ex: TODO)
-
-Enfin nous avons diférencié le renommage direct du renommage induit (TODO)\\
+Nous avons choisit Hibernate-ORM, un projet open-source connue et assez gros, $750000$ LOC, avec suffisament de développeurs, $138$, et en JAVA afin de pouvoir differencier les renommages à different niveaux de granularités.\\
+Nous prenons $4$ niveaux de granularité: Dossier, fichier, classe et fonction. Nous définissons l'identité d'une entité de code source par son path plus un type. \\\\
+dossier = folder/folder/ | FOLDER\\
+fichier = folder/folder/file | FILE\\
+classe = folder/folder/file | CLASS\\
+fonction = folder/folder/file\#func(types) | FUNC\\
+classe interne = folder/folder/file\$class | CLASS\\\\
+Un renommage ou un déplacement seraient donc un changement dans l'identité. Enfin nous avons diférencié le changement d'identité direct, lorsque l'entité elle même est direcetement modifié, du changement d'identité induit, un changement d'identité de l'entité due à un changement d'identité d'un de ses parents. Si l'entité est changé de manière induite puis de manière directe, on compte uniquement le changement direct.\\
+Nous obtenons 17\% de commits contenant des changements d'identité à tout les niveaux de granularité. (TODO tableau)\\
 
