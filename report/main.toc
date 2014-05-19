@@ -3,12 +3,12 @@
 \contentsline {section}{\numberline {2}Etat de l'art}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}Evolution logiciel et refactoring}{3}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Les outils}{4}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}``Origin Analysis''}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}``Origin Analysis''}{5}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}M\IeC {\'e}triques de proc\IeC {\'e}d\IeC {\'e}s et \IeC {\'e}volution logiciel}{5}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}M\IeC {\'e}triques et Renommage Existant}{5}{subsection.2.5}
 \contentsline {section}{\numberline {3}Probl\IeC {\'e}matique}{6}{section.3}
 \contentsline {section}{\numberline {4}Premi\IeC {\`e}re analyse \IeC {\`a} grain fin}{6}{section.4}
-\contentsline {section}{\numberline {5}Un mod\IeC {\`e}le}{6}{section.5}
+\contentsline {section}{\numberline {5}Un mod\IeC {\`e}le}{7}{section.5}
 \contentsline {section}{\numberline {6}Un ensemble de projet}{8}{section.6}
 \contentsline {section}{\numberline {7}Analyse \IeC {\`a} gros grain}{8}{section.7}
 \contentsline {subsection}{\numberline {7.1}Premi\IeC {\`e}re experience}{8}{subsection.7.1}
@@ -16,6 +16,6 @@
 \contentsline {subsection}{\numberline {7.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{10}{subsection.7.2}
 \contentsline {section}{\numberline {8}Resultats}{11}{section.8}
 \contentsline {subsection}{\numberline {8.1}resultats premi\IeC {\`e}re exp\IeC {\'e}rience}{11}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}resultats deuxi\IeC {\`e}me exp\IeC {\'e}rience}{12}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}v\IeC {\'e}rifications}{12}{subsection.8.3}
-\contentsline {section}{\numberline {9}Conclusion}{12}{section.9}
+\contentsline {subsection}{\numberline {8.2}resultats deuxi\IeC {\`e}me exp\IeC {\'e}rience}{14}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}v\IeC {\'e}rifications}{16}{subsection.8.3}
+\contentsline {section}{\numberline {9}Conclusion}{16}{section.9}
