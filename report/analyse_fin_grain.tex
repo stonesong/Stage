@@ -1,14 +1,15 @@
 \section{Première analyse à grain fin}
 \label{sec:analyse_fin_grain}
 
-Le premier travail réalisé durant le stage a été de faire une étude manuelle des renommages dans les VCS. Nous avons sélectionnés 100 commits de manière aléatoire dans un projet et étudié le renommage d'entités dans ces commits.\\
-Nous avons choisit Hibernate-ORM, un projet open-source connue et assez gros, $750000$ LOC, avec suffisament de développeurs, $138$, et en JAVA afin de pouvoir differencier les renommages à different niveaux de granularités.\\
-Nous prenons $4$ niveaux de granularité: Dossier, fichier, classe et fonction. Nous définissons l'identité d'une entité de code source par son path plus un type. \\\\
+Le premier travail réalisé durant le stage a été de faire une étude manuelle des renommages dans les VCS. Nous avons sélectionné 100 commits de manière aléatoire dans un projet et étudié le renommage d'entités dans ces commits.\\
+Nous avons choisi Hibernate-ORM, un projet open-source connue et assez gros, $750000$ LOC, avec suffisamment de développeurs, $138$, et en JAVA afin de pouvoir différencier les renommages à différents niveaux de granularité.\\
+Nous prenons $4$ niveaux de granularité: Dossier, fichier, classe et fonction. Nous définissons l'identité d'une entité de code source par son path plus un type. \\
+
 dossier = folder/folder/ | FOLDER\\
 fichier = folder/folder/file | FILE\\
 classe = folder/folder/file | CLASS\\
 fonction = folder/folder/file\#func(types) | FUNC\\
-classe interne = folder/folder/file\$class | CLASS\\\\
-Un renommage ou un déplacement seraient donc un changement dans l'identité. Enfin nous avons diférencié le changement d'identité direct, lorsque l'entité elle même est direcetement modifié, du changement d'identité induit, un changement d'identité de l'entité due à un changement d'identité d'un de ses parents. Si l'entité est changé de manière induite puis de manière directe, on compte uniquement le changement direct.\\
-Nous obtenons 17\% de commits contenant des changements d'identité à tout les niveaux de granularité. (TODO tableau)\\
+classe interne = folder/folder/file\$class | CLASS\\
 
+Nous nous sommes ensuite intéressés à la localisation des renommages. Sont-ils plus proches des releases majeurs que des releases mineurs ? Nous nous sommes aussi demandé si Git détectait ces renommages au niveau des fichiers, et si cela pouvait être un indicateur pour tous les changements d'identité.\\
+Nous avons donc décidé d'utiliser à partir de maintenant la détection de renommages de Git, afin de couvrir un grand nombre de commits dans plusieurs projets et plusieurs langages de programmation et donc nous fixer à un seul niveau de granularité, les fichiers.\\
