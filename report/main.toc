@@ -12,8 +12,9 @@
 \contentsline {section}{\numberline {6}Un ensemble de projet}{8}{section.6}
 \contentsline {section}{\numberline {7}Analyse \IeC {\`a} gros grain}{8}{section.7}
 \contentsline {subsection}{\numberline {7.1}Premi\IeC {\`e}re experience}{8}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}M\IeC {\'e}triques et Renommage}{9}{subsubsection.7.1.1}
-\contentsline {subsection}{\numberline {7.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{10}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{9}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}M\IeC {\'e}triques et Renommage}{9}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}deuxi\IeC {\`e}me exp\IeC {\'e}rience}{10}{subsubsection.7.2.2}
 \contentsline {section}{\numberline {8}Resultats}{11}{section.8}
 \contentsline {subsection}{\numberline {8.1}resultats premi\IeC {\`e}re exp\IeC {\'e}rience}{11}{subsection.8.1}
 \contentsline {subsection}{\numberline {8.2}resultats deuxi\IeC {\`e}me exp\IeC {\'e}rience}{11}{subsection.8.2}
