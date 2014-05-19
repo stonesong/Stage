@@ -3,13 +3,11 @@
 
 Le premier travail réalisé durant le stage a été de faire une étude manuelle des renommages dans les VCS. Nous avons sélectionné 100 commits de manière aléatoire dans un projet et étudié le renommage d'entités dans ces commits.\\
 Nous avons choisi Hibernate-ORM, un projet open-source connue et assez gros, $750000$ LOC, avec suffisamment de développeurs, $138$, et en JAVA afin de pouvoir différencier les renommages à différents niveaux de granularité.\\
-Nous prenons $4$ niveaux de granularité: Dossier, fichier, classe et fonction. Nous définissons l'identité d'une entité de code source par son path plus un type. \\
-
+Nous prenons $4$ niveaux de granularité: Dossier, fichier, classe et fonction. Nous définissons l'identité d'une entité de code source par son path plus un type. \\\\
 dossier = folder/folder/ | FOLDER\\
 fichier = folder/folder/file | FILE\\
 classe = folder/folder/file | CLASS\\
 fonction = folder/folder/file\#func(types) | FUNC\\
-classe interne = folder/folder/file\$class | CLASS\\
-
+classe interne = folder/folder/file\$class | CLASS\\\\
 Nous nous sommes ensuite intéressés à la localisation des renommages. Sont-ils plus proches des releases majeurs que des releases mineurs ? Nous nous sommes aussi demandé si Git détectait ces renommages au niveau des fichiers, et si cela pouvait être un indicateur pour tous les changements d'identité.\\
 Nous avons donc décidé d'utiliser à partir de maintenant la détection de renommages de Git, afin de couvrir un grand nombre de commits dans plusieurs projets et plusieurs langages de programmation et donc nous fixer à un seul niveau de granularité, les fichiers.\\
