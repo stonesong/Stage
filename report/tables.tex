@@ -1,0 +1,51 @@
+\label{sec:tables}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule, after table=]{data/tables/jenkins.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in Jenkins}
+\label{tab:jenkins}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/jquery.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in JQuery}
+\label{tab:jquery}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/phpunit.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in PHPUnit}
+\label{tab:phpunit}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/pyramid.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in Pyramid}
+\label{tab:pyramid}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\csvreader[tabular=rcccccc, table head=\toprule & & \multicolumn{5}{c}{Renaming metrics}\\\cmidrule{3-7} Period & Kind & $\#F$ & $\#AF$ & $\%AF$ & $\%F_r$ & $\%AF_r$\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/rails.csv}%
+{1=\period,2=\kind,3=\nf,4=\naf,5=\paf,6=\pfr,7=\pafr}%
+{\period & \kind & \nf & \naf & \paf & \pfr & \pafr}
+\caption{Amount and location of renaming in Rails}
+\label{tab:rails}
+\end{table}
