@@ -5,7 +5,7 @@
 
 Les résultats de la première expérience sont montrés dans la \figref{renaming}. Tout d'abord, le nombre de renommage varie beaucoup entre les projets. Par exemple, Jenkins a au plus $10\%$ de ses fichiers renommés dans la pire période alors que PHPUnit a deux périodes à plus de $50\%$. Le nombre de renommages varie aussi en fonction des périodes, par exemple dans PHPUnit la période $3.6 - 3.7$ a moins de $5\%$ de fichiers renommés alors que la période $3.7 - 4.0$ a presque $99\%$. En général, il y a beaucoup de périodes avec $0\%$ de fichiers renommés.\\
 
-\begin{figure*}[t]
+\begin{figure*}[h]
 	\centering
 	\includegraphics[width=0.85\linewidth,keepaspectratio]{data/figures/renaming.pdf}
 	\caption{Pourcentage de fichiers renommés ($\%F_R$) dans chaque période de chaque projet de notre corpus. La période initiale est en gris foncé, les périodes majeures en gris et les périodes mineures en gris clair.}
@@ -13,7 +13,7 @@ Les résultats de la première expérience sont montrés dans la \figref{renamin
 \end{figure*}
 
 Par rapport à la localisation de ces renommages, la période initiale semble la plus prolifique au renommage. En général, elle contient le plus grand nombre de fichiers renommés (sauf pour PHPUnit). Les périodes de développement sont plus susceptibles d'avoir des renommages que les périodes de maintenance. Ainsi, les $5$ projets sont quasiment à $0\%$ de fichiers renommés dans les périodes de maintenance (voir tableaux détails). Finalement, certaines périodes de développement peuvent contenir beaucoup de renommages. Les résultats montrent que les releases majeures sont souvent les pires périodes de développement en nombre de fichiers renommés: C'est le cas pour PHPUnit et Rails alors que Jenkins et Pyramid ne contiennent pas de releases majeures.\\
-\newpage
+
 Le détail des résultats obtenus par notre outil de détection de renommage sont montrés dans les tables en annexes \tabref{jenkins}, \tabref{jquery}, \tabref{phpunit}, \tabref{pyramid} et \tabref{rails}. Ces tables mettent en avant les valeurs suivantes:\\
 
 \begin{itemize}

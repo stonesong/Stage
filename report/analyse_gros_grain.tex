@@ -2,21 +2,58 @@
 \label{sec:analyse_gros_grain}
 
 \subsection{Première experience}
-L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. En particulier, d'observer quand les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période comme décrites précédemment sur chaque projet de notre corpus. Nous comptons donc sur la détection automatique de renommage de Git et l'utilisons dans notre outil développé en Ruby pour obtenir nos chiffres (détails dans la section résultats). (TODO pourquoi Ruby ?) Plus précisément nous suivons ces trois étapes entre chaque période:
+L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. En particulier, d'observer quand les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période comme décrites précédemment sur chaque projet de notre corpus. Nous comptons donc sur la détection automatique de renommage de Git et l'utilisons dans notre outil développé en Ruby pour obtenir nos chiffres (détails dans la section résultats). (TODO pourquoi Ruby ?) Nous suivons ces trois étapes entre chaque période:
 \begin{enumerate}
 \item On liste les fichiers existant à la fin de la période.
 \item Pour chacun de ces fichiers, on extrait sa séquence de modification durant la période en activant la détection de renommage (commande \texttt{git log -M})
 \item On calcule à partir des informations receuillies. Par exemple le pourcentage de fichiers $\%F_{R}$ qui ont été renommés au moins une fois durant la période.
 \end{enumerate}
+\medskip
+Plus précisément voici le déroulement général de notre outil:
 
-À notre connaissance, il n'existe pas d'évaluation empirique de l'algorithme utilisé par Git. Néanmoins, nous procédons à une évaluation manuelle de son comportement dans la partie conclusion et nous n'avons pas noté de faux positif sur 100 renommages aléatoire récupérés par notre outil. (TODO : plus de détails sur le tool de détection de renommages ?)\\
+Avant tout nous avons besoin de la liste des tags de release trié dans l'ordre chronologique. Cette partie ne peut être automatisé en raison des conventions de nom de tags différentes entre chaque projets. Par exemple: 
+\begin{itemize}
+\item PHPunit: \texttt{3.5.0, 3.6.0} etc.
+\item Pyramid: \texttt{1.0, 1.1} etc.
+\item Jenkins: \texttt{jenkins-1\_400, jenkins-1\_410} etc.
+\item Rails: \texttt{v2.0.0, v2.1.0} etc.
+\end{itemize}
+\medskip
+Enfin voici le déroulement du processus :
+
+Nous parcourons les branches distantes (\texttt{remotes}) du dépôt Git du projet. Toute les branches sont considérés comme branche de maintenance, sauf la branche \texttt{master}. La plus part du temps, les branches spécifiques de maintenance contiennent ``-stable'' dans leur nom, mais si une branche est listée ici, cela veut dire que la tête de branche, c'est à dire sa dernière version, est séparée et n'est pas joignable de la branche \texttt{master}. C'est donc une branche de maintenance depuis son dernier \texttt{merge} avec master, c'est à dire depuis leur dernière fusion. Il est laissé à la discrétion de chacun d'éliminer les branches qui ne sont pas spécifiquement de maintenance au préalable, mais dans nos expériences, ces branches n'ont pas faussé notre étude. En général les branches présentes sur le dépôt qui ne sont ni \texttt{master} ni de maintenance ne contennaient peux ou pas de \texttt{commits}.
+
+La branche \texttt{origin/master} contient la partie initiale (init) et la partie de développement (dev).\\  
+Le travail est donc réalisé sur: 
+\begin{itemize}
+\item Les branches de maintenance
+\item La branche \texttt{origin/master}
+\end{itemize}
+\medskip
+Si la branche est \texttt{origin/master}, le travail est divisé encore dans les périodes:
+\begin{itemize}
+\item Du premier commit(inclue) jusqu'au premier tag de release.
+\item Du premier jusqu'au dernier tag (une release après l'autre forme une période).*
+\end{itemize}
+\medskip
+
+(* nous ne considérons pas la période du dernier tag jusqu'à la tête de la branche master, car la release n'étant pas terminé, le nombre de commit ne sera pas de la taille d'une release normale et les chiffres obtenus sur cette partie ne seront donc pas pertinants)
+
+Ainsi, pour chacune de nos trois conditions, maintenance(maint), période initiale(init) et releases(dev) qui formes l'ensemble des périodes que nous analysons, nous allons générer le \texttt{log}. Le \texttt{log} donné par la commande \texttt{git log} contient l'ensemble des \texttt{commits} dans nos périodes avec toute les informations nécessaires pour chacun d'eux.
+
+La majeure partie du travail réalisé se situe sur ces \texttt{log}. Nous avons choisis de travailler sur un \texttt{log} général plutôt qu'en récupérant l'historique de chaque fichier (avec l'option \texttt{``--follow''}) l'un après l'autre pour des raisons de performances. Particulièrement sur les gros projets tels que Rails ou Jenkins, cette dernière technique n'est presque pas réalisable. De plus elle n'est réalisable que sur les fichiers présent à la tête de la branche et pas à partir d'une version antérieure, ce qui impliquerais un travail supplémentaire pour configurer le dépôt à chaque release sur la branche \texttt{master}.\\
+
+Nous listons les fichiers existants à la fin de chaque période. Dans notre expérience nous écartons les fichiers qui ne sont pas du code source. 
+Enfin l'algorithme principal, qui parcours des informations contenus par les \texttt{log} dans l'ordre chronologique, va nous permettre de suivre les renommages et les modifications et ainsi reconstruire l'histoire des fichiers. Un renommage typique ressemble à \texttt{``rename bob/\{henry $\Rightarrow$ josef\}/george.py (86\%)''}. Si \texttt{''bob/henry/george.py''} à été enregistré au préalable par notre algorithme nous suivrons maintenant \texttt{''bob/josef/george.py''} à la place. Il y a de nombreux cas particuliers à prendre en compte et de nombreuses applications possible par rapport aux informations récupérés ainsi. On peut choisir de ne considérer que le dernier nom d'un fichier par exemple ou stocker tout ses noms précédents. on élimine finalement tout les fichiers qui ne sont pas dans notre liste de établie au préalable.\\
+
+À notre connaissance, il n'existe pas d'évaluation empirique de l'algorithme utilisé par Git pour détecter les renommages. Néanmoins, nous procédons à une évaluation manuelle de son comportement dans la partie conclusion et nous n'avons pas noté de faux positif sur 100 renommages aléatoire récupérés par notre outil.(TODO partie vérif?)\\
 
 \subsection{Deuxième expérience}
 
 \subsubsection{Calcul des métriques}
 Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriques de procédés car il stocke les informations sur les entités modifiées à chaque nouvelle version, l'auteur de ces modifications, la date, etc. De plus, il permet la récupération du contenu de chaque entité et de l'ensemble d'un projet à une version donnée. Pour calculer ces métriques, il est donc possible d'analyser chaque entité modifiée lors d'une période puis de garder uniquement les entités toujours présentes à la dernière version de notre période.
 
-Par ailleurs, il faut noter qu'un VCS identifie une entité par son chemin + nom de fichier. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel figure 2. Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple nous calculons le nombre de développeurs (NoD) entre la version 1 et 3.
+Par ailleurs, il faut noter qu'un VCS identifie une entité par son chemin $+$ nom de fichier. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel figure 2. Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple nous calculons le nombre de développeurs (NoD) entre la version 1 et 3.
 
 Le NoD d'une entité de code source au cours d'une période de son histoire correspond au nombre de développeurs ayant été identifiés comme auteurs d'une modification sur l'entité pendant la période donnée.\\
 
@@ -28,7 +65,9 @@ Le NoD d'une entité de code source au cours d'une période de son histoire corr
 \end{figure}
 En ne prenant pas en compte le renommage, la dernière version ne contient qu'une entité. C'est donc cette entité uniquement qui sera considérée. De plus, l'identité exacte de cette entité n'apparaît que lors de la version 3. Le calcul des métriques est donc trivial, NoD$ = 1$.
 
-Par ailleurs, en prenant en compte le fait que ce fichier a été renommé, il y a trois versions à considérer en ce qui concerne l'entité. Le premier nom du fichier était Test.php. Ce fichier a un premier auteur lors de la version 1 puis un deuxième à la version 2. Le fichier est ensuite renommé en Hello.php par un troisième auteur. Le NoD est donc de 3. Nous avons choisi de nous concentrer sur les trois métriques de procédés identifiés plus tôt pour mesurer l'impact du renommage. En utilisant des scripts Ruby pour mesurer les métriques sur nos projets, voici plus précisément notre procédure: 
+Par ailleurs, en prenant en compte le fait que ce fichier a été renommé, il y a trois versions à considérer en ce qui concerne l'entité. Le premier nom du fichier était Test.php. Ce fichier a un premier auteur lors de la version 1 puis un deuxième à la version 2. Le fichier est ensuite renommé en Hello.php par un troisième auteur. Le NoD est donc de 3.\\
+
+Nous avons choisi de nous concentrer sur les trois métriques de procédés identifiés plus tôt pour mesurer l'impact du renommage. En utilisant des scripts Ruby pour mesurer les métriques sur nos projets, voici plus précisément notre procédure: 
 
 \begin{enumerate}
 \item  Nous récupérons d'abord la dernière version du projet pour obtenir les entités existantes à la fin de la période considérée. On note $A$ cet ensemble d'entités.
