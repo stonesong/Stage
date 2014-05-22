@@ -1,7 +1,7 @@
 \section{Résultats}
 \label{sec:resultats}
 
-\subsection{Résultats de la première expérience}
+\subsection{Première expérience}
 
 Les résultats de la première expérience sont montrés dans la \figref{renaming}. Tout d'abord, le nombre de renommage varie beaucoup entre les projets. Par exemple, Jenkins a au plus $10\%$ de ses fichiers renommés dans la pire période alors que PHPUnit a deux périodes à plus de $50\%$. Le nombre de renommages varie aussi en fonction des périodes, par exemple dans PHPUnit la période $3.6 - 3.7$ a moins de $5\%$ de fichiers renommés alors que la période $3.7 - 4.0$ a presque $99\%$. En général, il y a beaucoup de périodes avec $0\%$ de fichiers renommés.\\
 
@@ -25,7 +25,7 @@ Le détail des résultats obtenus par notre outil de détection de renommage son
 \item \emph{Pourcentage de fichiers actifs renommés ($\%AF_{R}$):} $\%AF_{R} = \frac{\#AF_{R}}{\#AF}$.
 \end{itemize}
 
-\subsection{Résultats de la deuxième expérience}
+\subsection{Deuxième expérience}
 Les résultats de notre deuxième expérience sont montrés dans la \tabref{spearman}. Ils montrent que la corrélation de coefficients de Spearman entre les métriques de procédés avec et sans détection de renommages dépendend beaucoup de la période et de la métrique choisie. Les métriques de procédés ne sont pas affectées par le renommage dans les projets Jenkins, Rails et Pyramid tels que le coefficient de corrélation est proche de $1$ dans tous les cas. D'un autre côté, pour PHPUnit et JQuery les métriques peuvent être sévèrement impactées par le renommage. Pour JQuery, la métrique Code Churn n'est pas affectée par le renommage, mais NoD et NoC sont quant à eux significativement impactés. Pour PHPUnit, toutes les métriques sont affectées par le renommage. Sur ces deux derniers projets, la métrique la plus sensible aux renommages de fichiers est le nombre de développeurs (NoD). Sur ces deux derniers projets, la métrique la plus sensible aux renommages de fichiers est le nombre de développeurs (NoD).
 
 Finalement on peut noter que seules les périodes ayant eu un grand pourcentage de fichiers renommés ($\%F_R$) ont étés impactés. On peut aussi noter que des métriques biaisées par le renommage ont été calculées dans des releases majeures et mineures.\\
@@ -43,4 +43,6 @@ Nous avons étudié manuellement les deux périodes qui ont affecté les valeurs
 \end{table*}
 
 
-\subsection{vérifications}
+\subsection{Validations et limitations}
+
+

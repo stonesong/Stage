@@ -1,23 +1,2 @@
 \section{Un corpus de projets}
 \label{sec:ensemble_projet}
-Nous avons sélectionné un ensemble de projets sur lesquels effectuer nos expérimentations qui respectent le modèle défini. Des projets open-source, conséquents et connues de la communauté MSR. Nous avons un ensemble de projets utilisés par l'équipe de Génie Logiciel au LaBRI qui respectent le modèle avec des branches de maintenances identifiées. Les $5$ projets qui sont donnés \tabref{projects} forment un corpus pour notre prochaine expérience. Il comprend différents langages de programmation ainsi qu'un nombre de lignes de code et un nombre de développeurs moyennement élevés à évélevés par rapport aux projets open source utilisés couramment par la communauté. Les $5$ projets sont gérés sur Git afin de profiter de la détection automatique des renommages (section). 
-
-De plus, il faut noter que nous avons choisi d'exclure tous les fichiers qui ne sont pas du code source du corpus étant donné que les métriques de procédés sont habituellement uniquement calculées sur ces fichiers. \\
-
-\begin{table*}[h]
-\centering
-\small
-\begin{tabular}{rllp{1.7cm}c}
-\toprule
-Project & Main language & Size (LoC) & Number of developers & URL\\
-\midrule
-Jenkins & Java & 200851 & 454 & \url{github.com/jenkinsci/jenkins} \\
-JQuery & JavaScript & 41656 & 223 & \url{github.com/jquery/jquery} \\
-PHPUnit & PHP & 21799 & 152 & \url{github.com/sebastianbergmann/phpunit}\\
-Pyramid & Python & 38726 & 205 & \url{github.com/Pylons/pyramid} \\
-Rails & Ruby & 181002 & 2767 & \url{github.com/rails/rails}\\
-\bottomrule
-\end{tabular}
-\caption{Notre corpus de projets.}
-\label{tab:projects}
-\end{table*}

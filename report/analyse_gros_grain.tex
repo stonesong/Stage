@@ -2,13 +2,7 @@
 \label{sec:analyse_gros_grain}
 
 \subsection{Première experience}
-L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. En particulier, d'observer quand les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période comme décrites précédemment sur chaque projet de notre corpus. Nous comptons donc sur la détection automatique de renommage de Git et l'utilisons dans notre outil développé en Ruby pour obtenir nos chiffres (détails dans la section résultats). (TODO pourquoi Ruby ?) Nous suivons ces trois étapes entre chaque période:
-\begin{enumerate}
-\item On liste les fichiers existant à la fin de la période.
-\item Pour chacun de ces fichiers, on extrait sa séquence de modification durant la période en activant la détection de renommage (commande \texttt{git log -M})
-\item On calcule à partir des informations receuillies. Par exemple le pourcentage de fichiers $\%F_{R}$ qui ont été renommés au moins une fois durant la période.
-\end{enumerate}
-\medskip
+
 Plus précisément voici le déroulement général de notre outil:
 
 Avant tout nous avons besoin de la liste des tags de release trié dans l'ordre chronologique. Cette partie ne peut être automatisé en raison des conventions de nom de tags différentes entre chaque projets. Par exemple: 
@@ -46,43 +40,14 @@ La majeure partie du travail réalisé se situe sur ces \texttt{log}. Nous avons
 Nous listons les fichiers existants à la fin de chaque période. Dans notre expérience nous écartons les fichiers qui ne sont pas du code source. 
 Enfin l'algorithme principal, qui parcours des informations contenus par les \texttt{log} dans l'ordre chronologique, va nous permettre de suivre les renommages et les modifications et ainsi reconstruire l'histoire des fichiers. Un renommage typique ressemble à \texttt{``rename bob/\{henry $\Rightarrow$ josef\}/george.py (86\%)''}. Si \texttt{''bob/henry/george.py''} à été enregistré au préalable par notre algorithme nous suivrons maintenant \texttt{''bob/josef/george.py''} à la place. Il y a de nombreux cas particuliers à prendre en compte et de nombreuses applications possible par rapport aux informations récupérés ainsi. On peut choisir de ne considérer que le dernier nom d'un fichier par exemple ou stocker tout ses noms précédents. on élimine finalement tout les fichiers qui ne sont pas dans notre liste de établie au préalable.\\
 
-À notre connaissance, il n'existe pas d'évaluation empirique de l'algorithme utilisé par Git pour détecter les renommages. Néanmoins, nous procédons à une évaluation manuelle de son comportement dans la partie conclusion et nous n'avons pas noté de faux positif sur 100 renommages aléatoire récupérés par notre outil.(TODO partie vérif?)\\
+(TODO partie vérif?)\\
 
 \subsection{Deuxième expérience}
 
 \subsubsection{Calcul des métriques}
-Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriques de procédés car il stocke les informations sur les entités modifiées à chaque nouvelle version, l'auteur de ces modifications, la date, etc. De plus, il permet la récupération du contenu de chaque entité et de l'ensemble d'un projet à une version donnée. Pour calculer ces métriques, il est donc possible d'analyser chaque entité modifiée lors d'une période puis de garder uniquement les entités toujours présentes à la dernière version de notre période.
 
-Par ailleurs, il faut noter qu'un VCS identifie une entité par son chemin $+$ nom de fichier. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel figure 2. Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple nous calculons le nombre de développeurs (NoD) entre la version 1 et 3.
 
-Le NoD d'une entité de code source au cours d'une période de son histoire correspond au nombre de développeurs ayant été identifiés comme auteurs d'une modification sur l'entité pendant la période donnée.\\
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=0.8\linewidth,keepaspectratio]{data/figures/example.pdf}
-	\caption{Exemple d'un historique de projet. Le projet est composé d'un seul fichier \texttt{Test.php} qui est renommé en \texttt{Hello.php} dans la dernière version.}
-	\label{fig:example}
-\end{figure}
-En ne prenant pas en compte le renommage, la dernière version ne contient qu'une entité. C'est donc cette entité uniquement qui sera considérée. De plus, l'identité exacte de cette entité n'apparaît que lors de la version 3. Le calcul des métriques est donc trivial, NoD$ = 1$.
-
-Par ailleurs, en prenant en compte le fait que ce fichier a été renommé, il y a trois versions à considérer en ce qui concerne l'entité. Le premier nom du fichier était Test.php. Ce fichier a un premier auteur lors de la version 1 puis un deuxième à la version 2. Le fichier est ensuite renommé en Hello.php par un troisième auteur. Le NoD est donc de 3.\\
-
-Nous avons choisi de nous concentrer sur les trois métriques de procédés identifiés plus tôt pour mesurer l'impact du renommage. En utilisant des scripts Ruby pour mesurer les métriques sur nos projets, voici plus précisément notre procédure: 
-
-\begin{enumerate}
-\item  Nous récupérons d'abord la dernière version du projet pour obtenir les entités existantes à la fin de la période considérée. On note $A$ cet ensemble d'entités.
-\item Toujours grâce aux commandes git, nous récupérons toutes les modifications effectuées durant la période. On note $C$ l'ensemble des modifications dans l'ordre chronologique.
-\item  Troisièmement, nous parcourons cet ensemble de modifications en commençant par la plus ancienne ($c_0 \in C$) jusqu'à la plus récente ($c_n \in C$) dans le but de calculer les métriques de procédés pour chaque entité.
-\end{enumerate}
-
- On note $\mu_{a}^{M}$ la valeur de la métrique $M$ pour l'entité $a$. Ensuite nous calculons les métriques comme suivant (on note $c_i$ la modification courante lors du parcours):
-
-\begin{description}
-	\item[NoD] (nombre de développeurs) Pour chaque entité $a$ pointé par $c_i$ qui appartient aussi à $A$ ($a \in A$), on ajoute à $\mu_{a}^{NoD}$ le nombre d'auteurs qui ont effectué les modifications $c_i$ et qui ont modifiés $a$ pour la première fois dans la période.
-	\item[NoC] (nombre de modifications) Pour chaque entité $a$ pointé par $c_i$ qui appartient aussi à $A$ ($a \in A$), on ajoute $1$ à $\mu_{a}^{C}$ tels que $c_i$ indique qu'une nouvelle modification a été effectuée.
-	\item[CC] (Code Churn) Pour chaque entité $a$ pointé par $c_i$ qui appartient aussi à $A$ ($a \in A$), on vérifie d'abord que la modification n'est pas une creation d'entité. Si c'est le cas celà veut dire que l'entité a été créée durant la période, donc on initialise son $\mu_{a}^{CC}$ à son nombre de lignes. Ensuite au prochain $c_j$ qui cible $a$ dans la période avec ($i < j$), on compare les deux versions et on ajoute à $\mu_{a}^{CC}$ le nombre de lignes ajoutées ou suprimées.
-\end{description}
 
 \subsubsection{Calcul de corrélation}
 
-L'objectif de la deuxième expérience est de voir si le renommage peut biaiser significativement les valeurs des métriques de procédés décrites ci-dessus. Pour ça, nous effectuons une analyse dans le pire des cas.(TODO expliquer ?) On sélectionne la période de nos projets qui a la plus grande valeur de fichiers renommés en excluant la période initiale qui n'est généralement pas observée dans les études. Nous calculons ensuite les trois métriques avec et sans le renommage de fichiers pris en compte, puis nous calculons la corrélation de coefficient de Spearman entre les métriques avec et sans la détection de renommage. Un coefficient élevé, proche de $1$, indiquera que les métriques avec et sans détection de renommage sont très similaires alors qu'un coefficient plus petit, 0.5 et moins, indiquera que les métriques avec et sans détection de renommage sont très différentes.\\ 
+

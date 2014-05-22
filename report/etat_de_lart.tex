@@ -6,46 +6,16 @@ Pour commencer à comprendre l'évolution des logiciels et la place du refactori
 
  Néanmoins nous n'avons pas obtenu de chiffres précis sur le nombre de renommage, le nombre d'opérations de refactoring ou autres. Uniquement dans l'étude de Kim et al, qui nous donne un pourcentage d'opérations de renommage sur le nombre opérations de refactoring. Ce qui ne nous donne pas l'importance du refactoring par rapport au projet entier.\\
 
-\begin{table}[h]
-\centering
-\begin{tabular}{rccc}
-\toprule
- & \multicolumn{3}{c}{Renaming handling}\\
-\cmidrule{2-4}
-& & \multicolumn{2}{c}{Automatic}\\
-\cmidrule{3-4}
-Tool & Manual & Standard & Optional\\
-\midrule
-CVS & & &\\
-Subversion & $\times$ & &\\
-Mercurial & $\times$ & & $\times$\\
-Git & & & $\times$\\
-\bottomrule
-\end{tabular}
-\caption{Traitement du renommage des principaux VCS.}
-\label{tab:vcs}
-\end{table}
+
 
 \subsection{Les gestionnaires de version}
 
-Intéressons-nous aux outils disponibles pour la gestion de code source. Il existe un certain nombre de gestionnaires de versions tel que SVN, CVS, Mercurial ou Git qui pourraient être compatibles avec notre étude étant donné que nous avons simplement besoin de versions, c'est-à-dire un état du projet à un moment donné de son histoire, à comparer entre elles. Nous avons néanmoins étudié les VCS en détail et découvert que tous ne gèrent pas le renommage de fichiers de la même manière. La ~\tabref{vcs} résume notre étude. Alors que CVS ne gère pas du tout le renommage, SVN ou Mercural propose un mécanisme manuel de détection de renommage de fichiers. Git quant à lui propose un algorithme de détection de renommage automatique et optionnel. Pour les VCS qui utilisent une détection manuelle, cela implique que c'est aux développeurs d'utiliser les commandes appropriées. Cependant certaines études montrent que les développeurs n'utilisent pas ces commandes systématiquement. Le renommage peut être effectué jusqu'à $89\%$ du temps sans utiliser les commandes adaptées ~\cite{lavoie_inferring_2012,steidl_incremental_2014}. De plus l'étude de Kim et al montre que $51$\% des développeurs n'utilisent pas les commandes prévues par le VCS pour le refactoring (incluant le renommage). Ces trois études effectuées sur des projets open-source et industriels, montrent qu'il est dangereux de compter sur le fait que les développeurs utilisent les commandes adéquates pour le refactoring.\\
-
 \subsection{``Origin Analysis''}
-Nous expliquons ici succinctement l'algorithme utilisé par Git pour la détection de renommage de fichiers. Celui-ci est connu sous le nom de ``Origin Analysis'' et est expliqué par Godfrey et al dans les articles ~\cite{tu_integrated_2002,godfrey_tracking_2002,godfrey_using_2005}.
 
-Tout d'abord, il faut considérer deux versions successives d'un projet. Deux ensembles d'entités (fichiers, fonctions..) qui composent leurs versions respectives. Certaines entités ayant été modifiées, certaines supprimées et d'autres ajoutées.
-La première analyse est une analyse de Bertillonage qui consiste à choisir un nombre de métriques, puis comparer les entités avec ces métriques. On compare alors les entités supprimées avec les entités ajoutées d'une version à l'autre. Grace à la distance Euclidienne calculée à partir des métriques combinés avec une comparaison des noms des entités, nous obtenons une liste des renommages potentiels.
-
-Les analyses suivantes expliquées par Godfrey sont des améliorations de la première analyse, mais qui ne sont efficaces qu'à un niveau de granularité plus bas, c'est à dire une finesse d'analyse plus précise, en l'occurence au niveau des fonctions. Par exemple, l'analyse de dépendance qui traque les appels de fonctions, en comparant les fonctions appelantes et appelées. Ces analyses sont basées sur des seuils d'acceptabilité défini par l'utilisateur. Plus Godrey améliorera ces analyses, en prenant en compte par la suite les splits er merges de fonctions (algorithme inefficace au niveau des fichiers) plus l'utilisateur sera sollicité. (TODO: détailler ?)\\
 
 \subsection{Métriques de procédés et évolution logiciel}
-Les métriques de procédés (change metrics) permettent de calculer à quel point une entité de code source a été modifiée au cours d'une période donnée dans l'histoire d'un logiciel. Elles sont utilisés usuellement dans la dernière période, c'est à dire entre l'avant dernière et la dernière version du projet. L'objectif est de prédire les bugs qui apparaîtront lors de la prochaine version, en particulié si cette version est une ``release'', c'est à dire une sortie de logiciel dite stable. Elles ne considèrent donc que les entités étant toujours présentes à la fin de la période et qui ont étés actives dans la période.\\
-Radjenovic et al \cite{radjenovic_software_2013} identifient trois métriques de procédés les plus utilisés pour la prédiction de bugs: Le nombre de développeurs ~\cite{weyuker_too_2008} (Number of Developers, NoD), le nombre de modifications ~\cite{graves_predicting_2000} (Number of Changes, NoC) et le Code Churn ~\cite{munson_code_1998} (CC). Nous donnerons une définition et une méthode plus précise pour les calculer dans la section de nos expériences..\\
+
 
 \subsection{Métriques et renommages}
-Nous nous sommes donc intéressés aux études passées qui pouvaient traiter les trois métriques de procédés cités ci-dessus dans la prédiction de bugs, et vérifié si ces études avaient considéré le renommage de fichiers. L'article ~\cite{radjenovic_software_2013} de Rajenovi et al référence $26$ études sur ce sujet.\\
 
-$15$ de ces études analyses des projets industriels, ~\cite{arisholm_systematic_2010,graves_predicting_2000,khoshgoftaar_using_2000,layman_iterative_2008,munson_code_1998,nagappan_use_2005,nagappan_influence_2008,nagappan_using_2007,nagappan_using_2006,nagappan_change_2010,nikora_building_2006,ostrand_programmer-based_2010,weyuker_too_2008,weyuker_using_2007,yuan_application_2000}. Aucune de ces études ne parle de renommage, mais le manque d'information récoltées sur les VCS utilisés et sur le projet en lui-même ne nous permet pas de savoir si le renommage pouvait avoir un impact sur ces projets. Néanmoins, l'article de Kim et al ~\cite{kim_field_2012} explique que les développeurs dans son étude effectuent des opérations de refactoring, dont du renommage, sans utiliser les outils du VCS appropriés. Ainsi, ces études pourraient être impactées par le renommage en fonction des outils utilisés et des habitudes de développement.\\
-
-$11$ études analysent des logiciels open-source \cite{dambros_relationship_2009,bacchelli_are_2010,caglayan_merits_2009,dambros_evaluating_2012,dambros_evaluating_2012,dambros_extensive_2010,illes-seifert_exploring_2010,li_finding_2005,matsumoto_analysis_2010,moser_analysis_2008,moser_comparative_2008,schroter_if_2006}. Les VCS utilisés dans ces études sont CVS ou Subversion. CVS ne gère pas le renommage et Subversion uniquement de manière manuelle ce qui est dangereux comme expliqué dans l'article ~\cite{lavoie_inferring_2012,steidl_incremental_2014}. Seulement deux de ces études ~\cite{moser_analysis_2008,moser_comparative_2008} parlent de renommage dans leur set de données ou dans les ''Threats to validiy''. Pour réduire le risque d'erreur dans leurs expérimentations, ces deux études ont supprimé systématiquement tous les fichiers ajoutés ou supprimés durant les périodes analysées. C'est un bon moyen d'éviter de calculer des métriques de procédés biaisés, mais cela implique aussi de supprimer inutilement du jeu de données un nombre significatif de fichiers.\\
 

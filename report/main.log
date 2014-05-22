@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.19)  22 MAY 2014 10:44
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.19)  22 MAY 2014 23:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1121,7 +1121,7 @@ LaTeX Info: Redefining \nameref on input line 48.
 \openout4 = `main.out'.
 
  ABD: EveryShipout initializing macros
-<data/figures/UnivBordeaux.jpg, id=95, 995.72pt x 289.08pt>
+<data/figures/UnivBordeaux.jpg, id=75, 995.72pt x 289.08pt>
 File: data/figures/UnivBordeaux.jpg Graphic file (type jpg)
 
 <use data/figures/UnivBordeaux.jpg>
@@ -1168,58 +1168,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--23
 
  []
 
-) (./etat_de_lart.tex
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
+) (./metriques.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+
+ []
+
+<data/figures/example.pdf, id=128, 282.42657pt x 172.5872pt>
+File: data/figures/example.pdf Graphic file (type pdf)
+
+<use data/figures/example.pdf>
+Package pdftex.def Info: data/figures/example.pdf used on input line 41.
+(pdftex.def)             Requested size: 318.67209pt x 194.74738pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 42--44
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[6]) (./problematique.tex) (./analyse_fin_grain.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--13
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--13
-
- []
-
-) (./model.tex
-Underfull \hbox (badness 10000) in paragraph at lines 16--1
+[6 <./data/figures/example.pdf>]) (./methodologie.tex
+Underfull \hbox (badness 10000) in paragraph at lines 83--1
 
  []
 
@@ -1228,70 +1214,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
-[7] <data/figures/periods.pdf, id=242, 605.26125pt x 502.87875pt>
-File: data/figures/periods.pdf Graphic file (type pdf)
-
-<use data/figures/periods.pdf>
-Package pdftex.def Info: data/figures/periods.pdf used on input line 8.
-(pdftex.def)             Requested size: 302.62987pt x 251.43875pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--16
-
- []
-
-) (./ensemble_projets.tex [8 <./data/figures/periods.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--12
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 []|\T1/cmr/m/n/10.95 Number
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--12
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \T1/cmr/m/n/10.95 of de-vel-
  []
 
 
-Overfull \hbox (79.00157pt too wide) in paragraph at lines 10--21
+Overfull \hbox (79.00157pt too wide) in paragraph at lines 17--28
  [][] 
  []
 
-) (./analyse_gros_grain.tex [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
+<data/figures/periods.pdf, id=198, 605.26125pt x 502.87875pt>
+File: data/figures/periods.pdf Graphic file (type pdf)
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
+<use data/figures/periods.pdf>
+Package pdftex.def Info: data/figures/periods.pdf used on input line 38.
+(pdftex.def)             Requested size: 302.62987pt x 251.43875pt.
 
- []
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-<data/figures/example.pdf, id=293, 282.42657pt x 172.5872pt>
-File: data/figures/example.pdf Graphic file (type pdf)
-
-<use data/figures/example.pdf>
-Package pdftex.def Info: data/figures/example.pdf used on input line 62.
-(pdftex.def)             Requested size: 318.67209pt x 194.74738pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
 
  []
 
-[12 <./data/figures/example.pdf>]) (./resultats.tex
-Underfull \hbox (badness 10000) in paragraph at lines 88--1
+[9 <./data/figures/periods.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+) (./resultats.tex
+Underfull \hbox (badness 10000) in paragraph at lines 59--1
 
  []
 
@@ -1300,23 +1274,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[13] <data/figures/renaming.pdf, id=336, 505.89pt x 505.89pt>
+<data/figures/renaming.pdf, id=231, 505.89pt x 505.89pt>
 File: data/figures/renaming.pdf Graphic file (type pdf)
 
 <use data/figures/renaming.pdf>
 Package pdftex.def Info: data/figures/renaming.pdf used on input line 10.
 (pdftex.def)             Requested size: 338.59023pt x 338.59717pt.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
-[14 <./data/figures/renaming.pdf>]
+[10]
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-
+[11 <./data/figures/renaming.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
@@ -1326,59 +1304,88 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--34
 
  []
 
-[15]) (./conclusion.tex) [16] (./main.bbl [17] [18] [19]) [20] (./tables.tex
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+) (./analyse
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
+) (./conclusion.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--1
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
- [21] [22] [23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
+) [13] [14] (./main.bbl [15] [16] [17])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 72.
+ [18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 72.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 620A986D6B01FAE82BB378B87808D928;1501.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 72.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 72.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 10E9223C2757CB02038227D6DD7327F7;1114
+(rerunfilecheck)             After:  ED18208EA65BE289924FDF3D70B5FBE4;1069.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 72.
  ) 
 Here is how much of TeX's memory you used:
- 24541 strings out of 495037
- 517156 string characters out of 3181390
- 684132 words of memory out of 3000000
- 27096 multiletter control sequences out of 15000+200000
- 24633 words of font info for 69 fonts, out of 3000000 for 9000
+ 24481 strings out of 495037
+ 516330 string characters out of 3181390
+ 657132 words of memory out of 3000000
+ 27068 multiletter control sequences out of 15000+200000
+ 21678 words of font info for 63 fonts, out of 3000000 for 9000
  22 hyphenation exceptions out of 8191
- 70i,10n,76p,1588b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fo
-nts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-
-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb><
-/usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-s
-uper/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></
-usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on main.pdf (23 pages, 511002 bytes).
+ 70i,10n,76p,1585b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{table.caption.15} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.14} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.13} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.12} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.11} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{section*.10} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></
+usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sftt1200.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sftt1440.pfb>
+Output written on main.pdf (18 pages, 446449 bytes).
 PDF statistics:
- 491 PDF objects out of 1000 (max. 8388607)
- 424 compressed objects within 5 object streams
- 99 named destinations out of 1000 (max. 500000)
- 209 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 372 compressed objects within 4 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
