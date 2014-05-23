@@ -6,14 +6,14 @@
 \contentsline {subsection}{\numberline {2.3}Renommage et VCS}{7}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}``Origin Analysis''}{9}{subsection.2.4}
 \contentsline {section}{\numberline {3}M\IeC {\'e}thodologie}{9}{section.3}
-\contentsline {subsection}{\numberline {3.1}Corpus}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.1}Corpus}{10}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Premi\IeC {\`e}re exp\IeC {\'e}rience}{11}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Deuxi\IeC {\`e}me exp\IeC {\'e}rience}{11}{subsection.3.3}
 \contentsline {section}{\numberline {4}R\IeC {\'e}sultats}{12}{section.4}
 \contentsline {subsection}{\numberline {4.1}Premi\IeC {\`e}re exp\IeC {\'e}rience}{12}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Deuxi\IeC {\`e}me exp\IeC {\'e}rience}{13}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Validations et limitations}{13}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.3}Validations et limitations}{14}{subsection.4.3}
 \contentsline {section}{\numberline {5}Analyse des \IeC {\'e}tudes pass\IeC {\'e}s}{15}{section.5}
 \contentsline {subsection}{\numberline {5.1}Analysis of Past Studies}{15}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}Guidelines}{16}{subsection.5.2}
-\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}
+\contentsline {section}{\numberline {6}Conclusion}{17}{section.6}
