@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{antoniol_automatic_2004}
+G.~Antoniol, M.~Di~Penta, and E.~Merlo.
+\newblock An automatic approach to identify class evolution discontinuities.
+\newblock In {\em Software Evolution, 2004. Proceedings. 7th International
+  Workshop on Principles of}, pages 31--40, September 2004.
+
 \bibitem{arisholm_systematic_2010}
 Erik Arisholm, Lionel~C. Briand, and Eivind~B. Johannessen.
 \newblock A systematic and comprehensive investigation of methods to build and
@@ -13,6 +19,15 @@ Alberto Bacchelli, Marco {D'Ambros}, and Michele Lanza.
 \newblock In {\em Proceedings of the 13th International Conference on
   Fundamental Approaches to Software Engineering}, {FASE'10}, page 59–73,
   Berlin, Heidelberg, 2010. Springer-Verlag.
+
+\bibitem{bird_dont_2011}
+Christian Bird, Nachiappan Nagappan, Brendan Murphy, Harald Gall, and Premkumar
+  Devanbu.
+\newblock Don't touch my code!: examining the effects of ownership on software
+  quality.
+\newblock In {\em Proceedings of the 19th {ACM} {SIGSOFT} symposium and the
+  13th European conference on Foundations of software engineering}, {ESEC/FSE}
+  '11, page 4–14, New York, {NY}, {USA}, 2011. {ACM}.
 
 \bibitem{caglayan_merits_2009}
 Bora Caglayan, Ayse Bener, and Stefan Koch.
@@ -40,6 +55,17 @@ Marco {D’Ambros}, Michele Lanza, and Romain Robbes.
   comparison.
 \newblock {\em Empirical Software Engineering}, 17(4-5):531–577, 2012.
 
+\bibitem{fenton_critique_1999}
+Norman~E. Fenton and Martin Neil.
+\newblock A critique of software defect prediction models.
+\newblock {\em {IEEE} Trans. Softw. Eng.}, 25(5):675–689, September 1999.
+
+\bibitem{giger_can_2012}
+E.~Giger, M.~Pinzger, and {H.C.} Gall.
+\newblock Can we predict types of code changes? an empirical analysis.
+\newblock In {\em 2012 9th {IEEE} Working Conference on Mining Software
+  Repositories ({MSR)}}, pages 217 --226, June 2012.
+
 \bibitem{godfrey_tracking_2002}
 Michael Godfrey and Qiang Tu.
 \newblock Tracking structural evolution using origin analysis.
@@ -53,6 +79,11 @@ Michael Godfrey and Qiang Tu.
   entities.
 \newblock {\em {IEEE} Transactions on Software Engineering}, 31(2):166--181,
   2005.
+
+\bibitem{goeminne_comparison_2013}
+Mathieu Goeminne and Tom Mens.
+\newblock A comparison of identity merge algorithms for software repositories.
+\newblock {\em Science of Computer Programming}, 78(8):971--986, August 2013.
 
 \bibitem{graves_predicting_2000}
 Todd~L. Graves, Alan~F. Karr, J.~S. Marron, and Harvey Siy.
@@ -159,6 +190,12 @@ Nachiappan Nagappan, Thomas Ball, and Brendan Murphy.
   Reliability Engineering}, {ISSRE} '06, page 62–74, Washington, {DC}, {USA},
   2006. {IEEE} Computer Society.
 
+\bibitem{nagappan_mining_2006}
+Nachiappan Nagappan, Thomas Ball, and Andreas Zeller.
+\newblock Mining metrics to predict component failures.
+\newblock In {\em Proceedings of the 28th international conference on Software
+  engineering}, {ICSE} '06, page 452–461, New York, {NY}, {USA}, 2006. {ACM}.
+
 \bibitem{nagappan_influence_2008}
 Nachiappan Nagappan, Brendan Murphy, and Victor Basili.
 \newblock The influence of organizational structure on software quality: an
@@ -177,6 +214,13 @@ Thomas~J. Ostrand, Elaine~J. Weyuker, and Robert~M. Bell.
 \newblock In {\em Proceedings of the 6th International Conference on Predictive
   Models in Software Engineering}, {PROMISE} '10, page 19:1–19:10, New York,
   {NY}, {USA}, 2010. {ACM}.
+
+\bibitem{posnett_dual_2013}
+Daryl Posnett, Raissa {D'Souza}, Premkumar Devanbu, and Vladimir Filkov.
+\newblock Dual ecological measures of focus in software development.
+\newblock In {\em Proceedings of the 2013 International Conference on Software
+  Engineering}, {ICSE} '13, page 452–461, Piscataway, {NJ}, {USA}, 2013.
+  {IEEE} Press.
 
 \bibitem{radjenovic_software_2013}
 Danijel Radjenović, Marjan Heričko, Richard Torkar, and Aleš Živkovič.
@@ -213,6 +257,13 @@ Elaine~J. Weyuker, Thomas~J. Ostrand, and Robert~M. Bell.
 \newblock Do too many cooks spoil the broth? using the number of developers to
   enhance defect prediction models.
 \newblock {\em Empirical Software Engineering}, 13(5):539--559, October 2008.
+
+\bibitem{wu_aura:_2010}
+Wei Wu, Yann-Gaël Guéhéneuc, Giuliano Antoniol, and Miryung Kim.
+\newblock {AURA:} a hybrid approach to identify framework evolution.
+\newblock In {\em Proceedings of the 32nd {ACM/IEEE} International Conference
+  on Software Engineering - Volume 1}, {ICSE} '10, page 325–334, New York,
+  {NY}, {USA}, 2010. {ACM}.
 
 \bibitem{yuan_application_2000}
 X.~Yuan, {T.M.} Khoshgoftaar, {E.B.} Allen, and K.~Ganesan.

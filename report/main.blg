@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
@@ -11,45 +11,45 @@ Repeated entry---line 761 of file renaming.bib
  : @inproceedings{kim_field_2012
  :                              ,
 I'm skipping whatever remains of this entry
-You've used 33 entries,
+You've used 41 entries,
             2118 wiz_defined-function locations,
-            693 strings with 11377 characters,
-and the built_in function-call counts, 14811 in all, are:
-= -- 1547
-> -- 599
-< -- 25
-+ -- 241
-- -- 200
-* -- 872
-:= -- 2121
-add.period$ -- 110
-call.type$ -- 33
-change.case$ -- 199
+            742 strings with 13261 characters,
+and the built_in function-call counts, 18595 in all, are:
+= -- 1951
+> -- 753
+< -- 31
++ -- 304
+- -- 252
+* -- 1102
+:= -- 2658
+add.period$ -- 138
+call.type$ -- 41
+change.case$ -- 249
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 764
-empty$ -- 1122
-format.name$ -- 200
-if$ -- 3414
+cite$ -- 41
+duplicate$ -- 958
+empty$ -- 1400
+format.name$ -- 252
+if$ -- 4290
 int.to.chr$ -- 0
-int.to.str$ -- 33
-missing$ -- 33
-newline$ -- 169
-num.names$ -- 66
-pop$ -- 240
+int.to.str$ -- 41
+missing$ -- 41
+newline$ -- 209
+num.names$ -- 82
+pop$ -- 296
 preamble$ -- 1
-purify$ -- 166
+purify$ -- 208
 quote$ -- 0
-skip$ -- 695
+skip$ -- 874
 stack$ -- 0
-substring$ -- 844
-swap$ -- 378
-text.length$ -- 25
+substring$ -- 1066
+swap$ -- 476
+text.length$ -- 31
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 132
+type$ -- 164
 warning$ -- 0
-while$ -- 117
-width$ -- 35
-write$ -- 397
+while$ -- 146
+width$ -- 43
+write$ -- 497
 (There were 2 error messages)
