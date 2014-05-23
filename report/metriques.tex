@@ -1,17 +1,15 @@
 \section{Métriques de procédés}
 \label{sec:metriques}
 
-Nous décrivons ici comment les métriques de procédés sont calculés. Puis, nous expliquons comment les fichiers renommés peuvent avoir un impact sur ces métriques. Enfin, nous décrivons comment les VCS traitent le renommage.\\
+Nous décrivons dans cette partie comment les métriques de procédés sont calculés. Puis, nous expliquons comment les fichiers renommés peuvent avoir un impact sur ces métriques. Enfin, nous décrivons comment les VCS, actuellement, traitent le renommage.\\
 
 \subsection{Calcul des métriques de procédés}
 
-Les métriques de procédés (change metrics) permettent de calculer à quel point une entité de code source a été modifiée au cours d'une période donnée dans l'histoire d'un logiciel. Elles sont utilisés usuellement dans la dernière période, c'est à dire entre l'avant dernière et la dernière version du projet. L'objectif est de prédire les bugs qui apparaîtront lors de la prochaine version, en particulié si cette version est une \texttt{release}, c'est à dire une sortie de logiciel dite stable. Elles ne considèrent donc que les entités étant toujours présentes à la fin de la période et qui ont étés actives dans la période.\\
-Radjenovic et al \cite{radjenovic_software_2013} identifient trois métriques de procédés les plus utilisés pour la prédiction de bugs: Le nombre de développeurs ~\cite{weyuker_too_2008} (Number of Developers, NoD), le nombre de modifications ~\cite{graves_predicting_2000} (Number of Changes, NoC) et le Code Churn ~\cite{munson_code_1998} (CC). Nous donnerons une définition et une méthode plus précise pour les calculer dans la section de nos expériences..\\
+Les métriques de procédés (change metrics) permettent de calculer à quel point une entité de code source a été modifiée au cours d'une période donnée dans l'histoire d'un logiciel. Pour la prédiction de bugs, elles sont utilisés usuellement dans la dernière période, c'est à dire entre l'avant dernière et la dernière version du projet. L'objectif est de prédire les bugs qui apparaîtront lors de la prochaine version, en particulié si cette version est une \texttt{release}, c'est à dire une sortie de logiciel dite stable. Elles ne considèrent donc que les entités étant toujours présentes à la fin de la période et qui ont étés actives dans la période.\\
 
 Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriques de procédés car il stocke les informations sur les entités modifiées à chaque nouvelle version, l'auteur de ces modifications, la date, etc. De plus, il permet la récupération du contenu de chaque entité et de l'ensemble d'un projet à une version donnée. Pour calculer ces métriques, il est donc possible d'analyser chaque entité modifiée lors d'une période puis de garder uniquement les entités toujours présentes à la dernière version de notre période.\\
 
-
-Nous avons choisi de nous concentrer sur les trois métriques de procédés identifiés plus tôt pour mesurer l'impact du renommage. En utilisant des scripts Ruby pour mesurer les métriques sur nos projets, voici plus précisément notre procédure: 
+Plus précisement, voici comment un VCS peut être utilisé pour calculer les trois métriques de procédés les plus utilisés: le nombre de développeurs (Number of Developers, NoD), le nombre de modifications  (Number of Changes, NoC) et le Code Churn (CC). 
 
 \begin{enumerate}
 \item  Nous récupérons d'abord la dernière version du projet pour obtenir les entités existantes à la fin de la période considérée. On note $A$ cet ensemble d'entités.

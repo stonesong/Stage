@@ -1,23 +1,31 @@
 \section{Introduction}
 \label{sec:intro}
 
-L'apparition des premiers dépots logiciels en libre accès dans les années 90, des stockages centralisés de donnés, a rendu possible de nombreux travaux de recherche sur l'évolution logicielle. Plus particulièrement avec les dépôts de code source gérés par des outils de contrôle de versions (Version Control System, VCS) tels que  SVN (2000), Mercurial (2005) ou encore Git (2005) qui contiennent l'historique de construction d'un logiciel.\\  
+L'apparition des premiers dépots logiciels en libre accès dans les années 90 a rendu possible de nombreux travaux de recherche sur l'évolution logicielle. Plus particulièrement avec les dépôts de code source gérés par des outils de contrôle de versions (Version Control System, VCS) tels que  SVN (2000), Mercurial (2005) ou encore Git (2005) qui contiennent l'historique de construction d'un logiciel.\\  
 
-C'est principalement dans le domaine du ``Reverse Engineering'', qui permet decomprendre les choix des développeurs lors de la création d'un logiciel, qu'il existe des études qui se basent sur l'analyse de ces historiques. Elles entrent dans le cadre des études ``MSR'' (Minning Software Repository).
+C'est principalement dans le domaine de la maintenance et évolution logicielle, qui permet decomprendre les choix des développeurs lors de la création d'un logiciel, qu'il existe des études se basant sur l'analyse de ces historiques. Elles entrent dans le cadre des études ``MSR'' (Minning Software Repository).
 
-De même, la prédiction de bugs, un des défis connus du Génie Logiciel dont le but est de prédire le nombre de bugs et leur localisation dans la prochaine version d'un logiciel, utilise des informations contenues dans l'historique d'un projet. Le principe repose sur les métriques de procédés comme prédicateurs de bugs.
+La prédiction de bugs, un des défis connus du Génie Logiciel dont le but est de prédire le nombre de bugs et leur localisations dans la version d'un logiciel avant son déploiement, utilise des informations contenues dans l'historique d'un projet. Un grand nombre d'étude sur ce sujet tentent de trouver les meilleures métriques, sur les propriétés techniques ou fonctionnelles d'un logiciel, qui serviront de prédicateurs de bugs~\cite{fenton_critique_1999}.
 
-Les métriques de procédés se concentrent sur l'évolution d'un logiciel et mesurent les modifications subies par les entités d'un code source durant leur cycle de vie. L'hypothèse principale étant que la manière dont les entités du code ont changé a un impact majeur sur leur qualité et donc sur les bugs qu'elles peuvent générer. Il est donc primordial que les mesures des métriques de procédés représentent au plus proche la réalité des changements.\\
+Nagappan et al. dans l'article ~\cite{nagappan_mining_2006} montrent que ni les métriques tels que le nombre de ligne de code (LOC, Line Of Code) ni les métriques orientées objets tels que l'arbre d'heritage (DIT) ne peuvent être utilisés dans tout les logiciels. Depuis, beaucoup d'études plus récentes montrent que les métriques de procédés (software change metrics) donne de bien meilleurs résultats ~\cite{nagappan_use_2005,weyuker_too_2008,bird_dont_2011,giger_can_2012}.
 
-Or au cours de son histoire, un fichier peut être renommé et/ou déplacé dans un autre dossier du projet.
+Les métriques de procédés se concentrent sur l'évolution d'un logiciel et mesurent les modifications subies par les entités d'un code source durant leur cycle de vie. L'hypothèse principale étant que la manière dont les entités du code ont changé a un impact majeur sur leur qualité et donc sur les bugs qu'elles peuvent contenir. Il est donc primordial que les valeurs des métriques de procédés représentent au plus proche la réalité des changements.
 
-Théoriquement, si le renommage d'un fichier à un moment donné de son histoire n'est pas pris en compte, le calcul d'une métrique de procédé sur ce fichier sera faussé. En effet, dans le cas où un fichier est identifié par son nom, les informations récoltées avant le renommage seront perdues. Par ailleurs, il est de notoriété commune que le refactoring, modifications architecturales qui permettent d'améliorer le code source, dont le renommage de fichiers, est très présent dans le développement des logiciels à succès d'aujourd'hui. En pratique, nous ne disposons pas de chiffres pour en connaitre l'ampleur.\\
+Dans l'article \cite{radjenovic_software_2013}, Radjenovic et al.identifient les trois métriques de procédés les plus utilisés. Le nombre de développeurs ~\cite{weyuker_too_2008} (Number of Developers, NoD), le nombre de modifications ~\cite{graves_predicting_2000} (Number of Changes, NoC) et le Code Churn ~\cite{munson_code_1998} (CC). NoD compte de développeurs qui ont contribués à une entité. NoC compte le nombre de changements qu'a subie une entité. CC compte le nombre de lignes de code qui ont été ajoutées ou supprimées à une entité.\\
+ 
 
+Calculer les métriques de procédés paraît simple à première vue. Pour un logiciel donné, cela consiste à observer à observer tous les changements subies par chaque entité qu'il contient. Dans ce but, l'utilisation d'un gestionnaire de version est indispensable tels qu'il permet de suivre les changements effectués par tous les développeurs sur toutes les entités. 
+
+Or au cours de son histoire, une entité du code source tels qu'un fichier, peut être renommée et/ou déplacée dans un autre dossier du projet. Ces actions sont peux ou pas prises en compte par les VCS ce qui rend le calcul des métriques plus délicat et sujet aux erreurs.\\
+
+Théoriquement, si le renommage d'une entité à un moment donné de son histoire n'est pas pris en compte, le calcul d'une métrique de procédé sur ce fichier sera faussé. En effet, dans le cas où un fichier est identifié par son nom, les informations disponibles avant le renommage seront perdues. Par ailleurs, il est de notoriété commune que les refactorings, modifications architecturales qui permettent d'améliorer le code source (dont le renommage de fichiers) sont très utilisés au cours de la construction des logiciels. En pratique, nous ne disposons pas de chiffres pour en connaitre l'ampleur.\\
+
+(TODO: changer la fin)
 L’objet de nos travaux est donc d’étudier les pistes qui peuvent nous conduire à mettre en évidence les renommages, les récupérer et effectuer certaines statistiques.
 Dans un premier temps, nous présentons état de l'art sur les méthodes utilisées pour détecter le refactoring, les logiciels qui ont été étudiés, les métriques de procédés ainsi que les VCS. 
 
 Compte tenu de l'état de l'art nous exposons la problématique à résoudre, qui nous a conduit à redéfinir le renommage et les niveaux de granularités. Puis, réaliser une analyse manuelle sur un premier projet afin de récupérer les renommages réels. Ces travaux se sont poursuivis par la définition d'un modèle, le choix d'un ensemble de projets cohérant pour faire nos propres expérimentations et la creation d'un outil pour récupérer les renommages.
 
  Enfin, nous décrivons comment calculer certaines métriques de procédés et mesurons l'impact du renommage.\\
- Les résultats de nos expérimentations nous ont amenés à proposer un article pour la conférence ICSME 2014.\\
+ Les résultats de nos expérimentations nous ont amenés à proposer un article pour la conférence internationale ICSME 2014.\\
 
