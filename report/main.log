@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.19)  24 MAY 2014 00:57
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.19)  24 MAY 2014 12:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1368,7 +1368,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
 
-) (./conclusion.tex [16]) [17] (./main.bbl [18] [19] [20])
+) (./conclusion.tex
+Underfull \hbox (badness 10000) in paragraph at lines 26--1
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+) [17] (./main.bbl [18] [19] [20])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 72.
  [21]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 72.
@@ -1376,7 +1386,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 72.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 72.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 72.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E233B25331CC3936D377A8BFD8343D1C;1202.
+(rerunfilecheck)             Checksum: 063307016A33EBED827062ACC984411C;1210.
 
 
 LaTeX Warning: There were undefined references.
@@ -1386,11 +1396,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 72.
 Here is how much of TeX's memory you used:
  24486 strings out of 495037
  516463 string characters out of 3181390
- 657131 words of memory out of 3000000
+ 657132 words of memory out of 3000000
  27068 multiletter control sequences out of 15000+200000
  21678 words of font info for 63 fonts, out of 3000000 for 9000
  22 hyphenation exceptions out of 8191
- 70i,10n,76p,1498b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,10n,76p,1535b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
@@ -1406,7 +1416,7 @@ ic/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/tex
 mf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texmf/fonts/type1/publi
 c/cm-super/sftt1440.pfb>
-Output written on main.pdf (21 pages, 423156 bytes).
+Output written on main.pdf (21 pages, 423233 bytes).
 PDF statistics:
  441 PDF objects out of 1000 (max. 8388607)
  385 compressed objects within 4 object streams
