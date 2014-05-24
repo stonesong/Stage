@@ -25,6 +25,15 @@ Par rapport à la localisation de ces renommages, la période initiale semble la
 %\item \emph{Pourcentage de fichiers actifs renommés ($\%AF_{R}$):} $\%AF_{R} = \frac{\#AF_{R}}{\#AF}$.
 %\end{itemize}
 
+En ce qui concerne le pourcentage de fichiers \textbf{actif} renommés ($\%AF_R$) dans les périodes de nos projets, la \figref{renaming2} présente nos résultats. Nous pouvons remarquer que le taux de fichiers renommés ne change pas ou augmente légèrement pour Jenkins par exemple. Etant donné que $\%AF_R >= \%F_R$ comme nous l'avons expliqué plus tôt, on en déduit qu'une grande partie des périodes, en tout cas les périodes qui ont un impact sur l'ensemble du projet, accèdent à la totalité ou en grande partie (Jenkins) des fichiers du projet durant la période. \\
+
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=0.85\linewidth,keepaspectratio]{data/figures/renaming2.pdf}
+	\caption{Pourcentage de fichiers actifs renommés ($\%AF_R$) dans chaque période de chaque projet de notre corpus. La période initiale est en gris foncé, les périodes majeures en gris et les périodes mineures en gris clair.}
+	\label{fig:renaming2}
+\end{figure*}
+
 \subsection{Deuxième expérience}
 Les résultats de notre deuxième expérience sont montrés dans la \tabref{spearman}. Ils montrent que la corrélation de coefficients de Spearman entre les métriques de procédés avec et sans détection de renommages dépendend beaucoup de la période et de la métrique choisie. Les métriques de procédés ne sont pas affectées par le renommage dans les projets Jenkins, Rails et Pyramid tels que le coefficient de corrélation est proche de $1$ dans tous les cas. D'un autre côté, pour PHPUnit et JQuery les métriques peuvent être sévèrement impactées par le renommage. Pour JQuery, la métrique Code Churn n'est pas affectée par le renommage, mais NoD et NoC sont quant à eux significativement impactés. Pour PHPUnit, toutes les métriques sont affectées par le renommage. Sur ces deux derniers projets, la métrique la plus sensible aux renommages de fichiers est le nombre de développeurs (NoD). Sur ces deux derniers projets, la métrique la plus sensible aux renommages de fichiers est le nombre de développeurs (NoD).
 

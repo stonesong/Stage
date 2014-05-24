@@ -18,14 +18,20 @@ Calculer les métriques de procédés paraît simple à première vue. Pour un l
 
 Or au cours de son histoire, une entité du code source tels qu'un fichier, peut être renommée et/ou déplacée dans un autre dossier du projet. Ces actions sont peux ou pas prises en compte par les VCS ce qui rend le calcul des métriques plus délicat et sujet aux erreurs.\\
 
-Théoriquement, si le renommage d'une entité à un moment donné de son histoire n'est pas pris en compte, le calcul d'une métrique de procédé sur ce fichier sera faussé. En effet, dans le cas où un fichier est identifié par son nom, les informations disponibles avant le renommage seront perdues. Par ailleurs, il est de notoriété commune que les refactorings, modifications architecturales qui permettent d'améliorer le code source (dont le renommage de fichiers) sont très utilisés au cours de la construction des logiciels. En pratique, nous ne disposons pas de chiffres pour en connaitre l'ampleur.\\
+Théoriquement, si le renommage d'une entité à un moment donné de son histoire n'est pas pris en compte, le calcul d'une métrique de procédé sur ce fichier sera faussé. En effet, dans le cas où un fichier est identifié par son nom, les informations disponibles avant le renommage seront perdues. Par ailleurs, il est de notoriété commune que les refactorings, modifications architecturales qui permettent d'améliorer le code source (dont le renommage de fichiers) sont très utilisés au cours de la construction des logiciels. En pratique, nous ne connaissons pas la quantité de renommage ni son impact sur les métriques de procédés.\\
 
-(TODO: changer la fin)
-L’objet de nos travaux est donc d’étudier les pistes qui peuvent nous conduire à mettre en évidence les renommages, les récupérer et effectuer certaines statistiques.
-Dans un premier temps, nous présentons état de l'art sur les méthodes utilisées pour détecter le refactoring, les logiciels qui ont été étudiés, les métriques de procédés ainsi que les VCS. 
+L’objet de nos travaux est donc d’étudier le phénomène du renommage et son impact sur les métriques de procédés. Nous présentons une étude empirique approfondie sur cinq projets open-source connus et matures avec l'intention de donner une idée du montant d'entités renommés dans les logiciels. De plus, nous étudions l'impact du renommage d'entités en calculant les trois métriques de procédés les plus utilisés sur les projets de notre corpus avec et sans considérer le renommage d'entités. Nos résultats indiquent que la quantitée de renommage qui apparait dans les projets peut être importante. Nous avons observé jusqu'à $99\%$ d'entités renommés dans un projet. Nous avons aussi observé qu'il peut affecter les valeurs des métriques de procédés de manière significative, et par conséquent qu'il peut être une menance sérieuse d'études utilisant ces métriques. Basé sur nos observations, nous proposons une bref analyse de impact possible du renommage sur les études antérieures sur la prédiction de bugs. Nous proposons enfin de simples lignes de conduite qui aideront les chercheurs et développeurs à mieux calculer les métriques de procédés.\\
 
-Compte tenu de l'état de l'art nous exposons la problématique à résoudre, qui nous a conduit à redéfinir le renommage et les niveaux de granularités. Puis, réaliser une analyse manuelle sur un premier projet afin de récupérer les renommages réels. Ces travaux se sont poursuivis par la définition d'un modèle, le choix d'un ensemble de projets cohérant pour faire nos propres expérimentations et la creation d'un outil pour récupérer les renommages.
 
- Enfin, nous décrivons comment calculer certaines métriques de procédés et mesurons l'impact du renommage.\\
- Les résultats de nos expérimentations nous ont amenés à proposer un article pour la conférence internationale ICSME 2014.\\
+Pour résumer les contributions que nous apportons:
+\begin{itemize}
+\item Une étude empirique du renommage d'entités sur cinq projets open-source populaires.    
+\item Des informations détaillés sur la quantité de renommage.
+\item Une analyse de l'impact du renommage sur les métriques de procédés.
+\item Une analyse des études antérieures qui utilisent les métriques de procédés pour la prédiction de bugs, afin d'évaluer si elles peuvent être bisaisés par le renommage. 
+\item Quelques lignes de conduite essentielles afin de limiter les risques lors des calculs des métriques de procédés.\\
+\end{itemize}
+
+
+Les résultats de nos expérimentations nous ont amenés à proposer un article pour la conférence internationale ICSME 2014.
 

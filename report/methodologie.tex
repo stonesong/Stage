@@ -42,32 +42,34 @@ Les conventions de nommage des releases sont spécifiques à chaque projets, par
 \end{itemize}
 Nous avons analysés manuellement les dépôts des projets de notre corpus pour identifier leur releases mineures et majeures.\\
 
-%Nous définissons maintenant le modèle \figref{model}, que les projets que nous allons analyser devrons respecter. Ce modèle représente une architecture pour le dépôt de code source dérivé de l'architecture Git Flow.\\
+Le schéma \figref{model} permet de visualiser un dépôt Git ``type'', avec la branche master depuis laquelle, en remontant l'historique, on peut accéder au contenu de chaque releases de la phase de développement et les branches de maintenance , dont la tête (la dernière version de la branche) n'est pas accécible depuis la branche master, qui composent la phase de maintenance.
 
-%\begin{figure}[h]
-%  \centering
-%  \includegraphics[scale=0.5]{data/figures/periods.pdf}
-%	\caption{Modèle d'architecture de dépot de code source}
-%	\label{fig:model}
-%\end{figure}
-
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{data/figures/periods.pdf}
+	\caption{Modèle d'architecture de dépot de code source}
+	\label{fig:model}
+\end{figure}
 
 De plus, il faut noter que nous avons choisi d'exclure tous les fichiers qui ne sont pas du code source du corpus étant donné que les métriques de procédés sont habituellement uniquement calculées sur ces fichiers. \\
-
-
 
 \subsection{Première expérience}
 
  L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. Nous souhaitons observer quand les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période comme décrites précédemment sur chaque projet de notre corpus. 
 
 Pour identifié les renommage, nous comptons sur le mécanisme de Git. Voici la procédure que nous avons suivi :
-%et l'utilisons dans notre outil développé en Ruby pour obtenir nos chiffres (détails dans la section résultats). (TODO pourquoi Ruby ?)
 \begin{enumerate}
 \item lister les fichiers existant à la fin de la période.
 \item Pour chacun de ces fichiers, extraire sa séquence de modifications durant la période en activant la détection de renommage (commande \texttt{git log -M}).
 \item Calculer à partir des informations receuillies le pourcentage de fichiers $\%F_{R}$ qui inclue au moins un renommage dans sa séquence de modification.
 \end{enumerate}
 \medskip
+
+$\%F_{R}$, calculé sur une période représente en fait le pourcentage de \textbf{l'ensemble} des fichiers du projet qui ont été renommés dans cette période en particulié. $\%F_{R} = \frac{\#AF_{R}}{\#F}$ \\
+
+Nous proposons en complément la même analyse que précédemment mais en considérant uniquement les fichiers actifs dans cette même période en particulié. C'est à dire les fichiers qui ont été modifiés ou créées dans la période. On aura donc le pourcentage de fichiers \textbf{actifs} renommés dans la période : 
+$\%AF_{R} = \frac{\#AF_{R}}{\#AF}$. \\
+Etant donné que ${\#AF} <= {\#F}$ nous aurons toujours $\%F_{R} <= \%AF_{R}$. Cela nous permet de voir si les périodes contiennent le plus de renommage en interne sont aussi celles qui ont un impact sur l'ensemble du projet.\\
 
 À notre connaissance, il n'existe pas d'évaluation empirique de l'algorithme utilisé par Git pour détecter les renommages. Néanmoins, nous procédons à une évaluation manuelle de son comportement dans la Section 4 et nous n'avons pas noté de faux positif sur 100 renommages aléatoire récupérés par notre outil.\\
 
