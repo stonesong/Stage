@@ -40,7 +40,7 @@ Les conventions de nommage des releases sont spécifiques à chaque projet, par 
 \item Jenkins: \texttt{jenkins-1\_400, jenkins-1\_410} etc.
 \item Rails: \texttt{v2.0.0, v2.1.0} etc.
 \end{itemize}
-Nous avons analysé manuellement les dépôts des projets de notre corpus pour identifier leur releases mineures et majeures.\\
+Nous avons analysé manuellement les dépôts des projets de notre corpus pour identifier leurs releases mineures et majeures.\\
 
 Le schéma \figref{model} permet de visualiser un dépôt Git ``type'', avec la branche master depuis laquelle, en remontant l'historique, on peut accéder au contenu de chaque release de la phase de développement et les branches de maintenance, dont la tête (la dernière version de la branche) n'est pas accessible depuis la branche master, qui composent la phase de maintenance.\\
 
@@ -55,7 +55,7 @@ De plus, il faut noter que nous avons choisi d'exclure tous les fichiers qui ne 
 
 \subsection{Première expérience}
 
- L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. Nous souhaitons observer quand les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période, comme décrites précédemment, sur chaque projet de notre corpus. 
+ L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. Pour cela, nous souhaitions observer à quel moment les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période, comme décrites précédemment, sur chaque projet de notre corpus. 
 
 Pour identifier les renommages, nous comptons sur le mécanisme de Git. Voici la procédure que nous avons suivie :
 \begin{enumerate}
@@ -75,4 +75,10 @@ Etant donné que ${\#AF} <= {\#F}$, nous aurons toujours $\%F_{R} <= \%AF_{R}$. 
 
 \subsection{Deuxième expérience}
 
-L'objectif de la deuxième expérience est de voir si le renommage peut biaiser significativement les valeurs des métriques de procédés décrites ci-dessus. Pour ça, nous effectuons une analyse dans le pire des cas. Nous sélectionnons une période par projet, celle qui a la plus grande valeur de fichiers renommés en excluant la période initiale qui n'est généralement pas observée dans les études. Nous calculons ensuite les trois métriques avec et sans le renommage de fichiers pris en compte. Puis nous calculons la corrélation de coefficient de Spearman entre les métriques avec et sans la détection de renommage. Un coefficient élevé, proche de $1$, indiquera que les métriques avec et sans détection de renommage sont très similaires alors qu'un coefficient plus petit, 0.5 et moins, indiquera que les métriques avec et sans détection de renommage sont très différentes.\\  
+L'objectif de la deuxième expérience est de voir si le renommage peut biaiser significativement les valeurs des métriques de procédés décrites ci-dessus. Pour ça, nous effectuons une analyse dans le pire des cas. Nous sélectionnons une période par projet, celle qui a la plus grande valeur de fichiers renommés en excluant la période initiale qui n'est généralement pas observée dans les études.\\ 
+
+Nous calculons ensuite les trois métriques avec et sans le renommage de fichiers pris en compte comme nous le décrivons dans la \secref{metriques}. A partir de là, noud obtenus deux listes pour chaque métrique, NoD, NoC et CC. Une liste est composée de tous les fichiers du projet plus la valeur de la métrique associée. Nous avons donc une liste sans le renommage pris en compte, l'autre avec. Nous calculons alors la corrélation entre ces deux listes pour chaque métrique.\\ 
+
+Une simple correlation ne serait pas adaptée. En effet, elle consisterait à comparer directement les fichiers par leur valeur de métrique dans les listes. Or, les projets comptent un nombre importants de fichiers et si la valeur de métrique d'un fichier d'une liste à l'autre n'est pas exactement la même mais qu'elle reste proche, nous souhaitons la considérer tel quel. Les résultats ainsi obtenus ne seraient alors pas pertinents. \\ 
+
+La corrélation de coefficient de Spearman est parfaitement adaptée. Elle permet de calculer la correlation entre des variables classés. Les variables sont nos listes de fichiers et les rangs sont donnés par la position des fichiers dans la liste. La position d'un fichier lui est accordée en fonction de sa valeur associée de métrique. Un coefficient élevé, proche de $1$, indiquera que les métriques avec et sans détection de renommage sont très similaires alors qu'un coefficient plus petit, $0.5$ et moins, indiquera que les métriques avec et sans détection de renommage sont très différentes.\\  
