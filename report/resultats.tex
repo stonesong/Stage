@@ -44,7 +44,7 @@ Nous avons étudié manuellement les deux périodes qui ont affecté les valeurs
 
 \begin{table*}[h]
 \centering
-\csvreader[tabular=rcccc, table head=\toprule & & \multicolumn{3}{c}{Change metrics}\\\cmidrule{3-5} Period & $\%F_R$ & CC & NoD & NoC\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/correlations.csv}%
+\csvreader[tabular=rcccc, table head=\toprule & & \multicolumn{3}{c}{Métriques de procédés}\\\cmidrule{3-5} Période & $\%F_R$ & CC & NoD & NoC\\\midrule, late after line=\\, late after last line=\\\bottomrule]{data/tables/correlations.csv}%
 {1=\period,2=\fr,3=\churnall,4=\devall,5=\modificationsall}%
 {\period & \fr & \churnall & \devall & \modificationsall}
 \caption{La corrélation de coefficients de Spearman entre les valeurs des métriques de procédés avec et sans détection de renommage. Les codes de signification sont: *** $\leq 0.01$, ** $\leq 0.05$, * $\leq 0.1$ et ! $> 0.1$. Les coefficients moyen et faible sont affichés en gras.}
