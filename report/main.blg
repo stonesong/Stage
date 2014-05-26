@@ -3,53 +3,55 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: renaming.bib
-Repeated entry---line 721 of file renaming.bib
+Repeated entry---line 720 of file renaming.bib
  : @article{godfrey_using_2005
  :                            ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 761 of file renaming.bib
+Repeated entry---line 760 of file renaming.bib
  : @inproceedings{kim_field_2012
  :                              ,
 I'm skipping whatever remains of this entry
-You've used 41 entries,
+Warning--entry type for "list_vcs" isn't style-file defined
+--line 781 of file renaming.bib
+You've used 42 entries,
             2118 wiz_defined-function locations,
-            742 strings with 13261 characters,
-and the built_in function-call counts, 18595 in all, are:
-= -- 1951
-> -- 753
+            745 strings with 13311 characters,
+and the built_in function-call counts, 18794 in all, are:
+= -- 1968
+> -- 760
 < -- 31
-+ -- 304
-- -- 252
-* -- 1102
-:= -- 2658
-add.period$ -- 138
-call.type$ -- 41
-change.case$ -- 249
++ -- 307
+- -- 254
+* -- 1110
+:= -- 2690
+add.period$ -- 140
+call.type$ -- 42
+change.case$ -- 253
 chr.to.int$ -- 0
-cite$ -- 41
-duplicate$ -- 958
-empty$ -- 1400
-format.name$ -- 252
-if$ -- 4290
+cite$ -- 42
+duplicate$ -- 965
+empty$ -- 1422
+format.name$ -- 254
+if$ -- 4333
 int.to.chr$ -- 0
-int.to.str$ -- 41
+int.to.str$ -- 42
 missing$ -- 41
-newline$ -- 209
-num.names$ -- 82
-pop$ -- 296
+newline$ -- 213
+num.names$ -- 84
+pop$ -- 305
 preamble$ -- 1
-purify$ -- 208
+purify$ -- 211
 quote$ -- 0
-skip$ -- 874
+skip$ -- 882
 stack$ -- 0
-substring$ -- 1066
-swap$ -- 476
+substring$ -- 1071
+swap$ -- 477
 text.length$ -- 31
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 164
+type$ -- 168
 warning$ -- 0
-while$ -- 146
-width$ -- 43
-write$ -- 497
+while$ -- 148
+width$ -- 44
+write$ -- 505
 (There were 2 error messages)
