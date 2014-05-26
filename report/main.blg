@@ -1,57 +1,31 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: main.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: renaming.bib
-Repeated entry---line 720 of file renaming.bib
+Warning--entry type for "list_vcs" isn't style-file defined
+--line 1 of file renaming.bib
+Repeated entry---line 740 of file renaming.bib
  : @article{godfrey_using_2005
  :                            ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 760 of file renaming.bib
+Repeated entry---line 780 of file renaming.bib
  : @inproceedings{kim_field_2012
  :                              ,
 I'm skipping whatever remains of this entry
-Warning--entry type for "list_vcs" isn't style-file defined
---line 781 of file renaming.bib
-You've used 42 entries,
-            2118 wiz_defined-function locations,
-            745 strings with 13311 characters,
-and the built_in function-call counts, 18794 in all, are:
-= -- 1968
-> -- 760
-< -- 31
-+ -- 307
-- -- 254
-* -- 1110
-:= -- 2690
-add.period$ -- 140
-call.type$ -- 42
-change.case$ -- 253
-chr.to.int$ -- 0
-cite$ -- 42
-duplicate$ -- 965
-empty$ -- 1422
-format.name$ -- 254
-if$ -- 4333
-int.to.chr$ -- 0
-int.to.str$ -- 42
-missing$ -- 41
-newline$ -- 213
-num.names$ -- 84
-pop$ -- 305
-preamble$ -- 1
-purify$ -- 211
-quote$ -- 0
-skip$ -- 882
-stack$ -- 0
-substring$ -- 1071
-swap$ -- 477
-text.length$ -- 31
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 168
-warning$ -- 0
-while$ -- 148
-width$ -- 44
-write$ -- 505
-(There were 2 error messages)
+Warning--entry type for "icsme_2014" isn't style-file defined
+--line 801 of file renaming.bib
+Warning--string name "sept" is undefined
+--line 804 of file renaming.bib
+I was expecting a `,' or a `}'---line 805 of file renaming.bib
+ :         
+ :         year = {2014},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--entry type for "bertillonnage" isn't style-file defined
+--line 809 of file renaming.bib
+I was expecting a `,' or a `}'---line 813 of file renaming.bib
+ :         
+ :         year = {2014},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--there's a month but no year in bertillonnage
+(There were 4 error messages)

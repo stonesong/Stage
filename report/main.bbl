@@ -90,6 +90,17 @@ Todd~L. Graves, Alan~F. Karr, J.~S. Marron, and Harvey Siy.
 \newblock Predicting fault incidence using software change history.
 \newblock {\em {IEEE} Trans. Softw. Eng.}, 26(7):653–661, July 2000.
 
+\bibitem{herzig-makingsoftware-2010}
+Kim Herzig and Andreas Zeller.
+\newblock {\em {Making Software: What Really Works and Why We Believe It}},
+  chapter Mining Your Own Evidence, pages 517--529.
+\newblock O'Reilly Media, October 2010.
+
+\bibitem{icsme_2014}
+IEEE.
+\newblock Icsme 2014 : 2014 ieee international conference on software
+  maintenance and evolution.
+
 \bibitem{illes-seifert_exploring_2010}
 Timea Illes-Seifert and Barbara Paech.
 \newblock Exploring the relationship of a file’s history and its
@@ -257,6 +268,10 @@ Elaine~J. Weyuker, Thomas~J. Ostrand, and Robert~M. Bell.
 \newblock Do too many cooks spoil the broth? using the number of developers to
   enhance defect prediction models.
 \newblock {\em Empirical Software Engineering}, 13(5):539--559, October 2008.
+
+\bibitem{bertillonnage}
+Wikipedia.
+\newblock Bertillonnage, January.
 
 \bibitem{list_vcs}
 Wikipedia.
