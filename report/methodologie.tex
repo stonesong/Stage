@@ -9,7 +9,7 @@ Mais tout d'abord, nous avons besoin d'un ensemble de logiciels afin de former u
 
 \subsection{Corpus}
 
-Nous avons sélectionné un ensemble de projets sur lesquels effectuer nos expérimentations. Cinq projets open-source présentés \tabref{vcs} populaires et matures. Ces cinq projets forment un corpus comprenant différents langages de programmation ainsi qu'un nombre de lignes de code et un nombre de développeurs élevés.
+Nous avons sélectionné un ensemble de projets sur lesquels effectuer nos expérimentations. Cinq projets open-source présentés \tabref{corpus} populaires et matures. Ces cinq projets forment un corpus comprenant différents langages de programmation ainsi qu'un nombre de lignes de code et un nombre de développeurs élevés.
 % par rapport à l'ensemble des projets open source utilisés couramment par la communauté. 
 Ces projets sont hébergés sur Git afin de profiter de son mécanisme de traitement du renommage expliqué dans la section précédente. \\
 
@@ -36,7 +36,7 @@ Ces projets sont hébergés sur Git afin de profiter de son mécanisme de traite
 	%\includegraphics[width=0.90\linewidth,keepaspectratio]{data/tables/VCS.png}
 	\includegraphics[scale=0.204]{data/tables/VCS.png}
 	\caption{Notre corpus de projets.}
-	\label{tab:vcs}
+	\label{tab:corpus}
 \end{table*}
 
 Les projets de notre corpus suivent des phases distinctes durant leur cycle de vie. Habituellement une période de développement commence avant qu'une première sortie du logiciel, qu'on appelle \texttt{release}, soit accessible aux utilisateurs, puis cette release est maintenue pendant qu'une autre se prépare et ainsi de suite.
@@ -66,7 +66,7 @@ De plus, il faut noter que nous avons choisi d'exclure tous les fichiers qui ne 
 
 \subsection{Première expérience}
 
- L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. Pour cela, nous souhaitions observer à quel moment les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période, comme décrites précédemment, sur chaque projet de notre corpus. 
+ L'objectif de notre première expérience est de mieux comprendre le renommage d'entités. Pour cela, nous souhaitions observer à quel moment les renommages apparaissent et en quelle quantité. Nous avons donc analysé chaque période, comme décrites précédemment, sur chaque projet de notre corpus.\\ 
 
 Pour identifier les renommages, nous comptons sur le mécanisme de Git. Voici la procédure que nous avons suivie :
 \begin{enumerate}

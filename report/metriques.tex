@@ -27,7 +27,7 @@ Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriq
 \endgroup
 \linebreak
 
-
+\newpage
 On peut y retrouver les informations suivantes: 
 \begin{itemize}
 \item L'identité du \texttt{commit} (ici une clé Git donnée par une fonction de hachage \texttt{SHA-1}).
@@ -57,13 +57,13 @@ On note $\mu_{a}^{M}$ la valeur de la métrique $M$ pour l'entité $a$ et  $c_i$
 
 \subsection{Métriques de procédés et renommage}
 
-Un VCS est donc particulièrement utile dans cet exercice. Cependant, il faut noter que la plus part des VCS identifient une entité par son chemin absolu. Le chemin représente l'ensemble des dossiers parents depuis la racine du projet. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel. (\figref{example}) . Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple, nous calculons les trois métriques NoD, NoC et CC entre les versions 1 et 3.\\
+Un VCS est donc particulièrement utile dans cet exercice. Cependant, il faut noter que la plus part des VCS identifient une entité par son chemin absolu. Le chemin représente l'ensemble des dossiers parents depuis la racine du projet. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel. (\figref{exemple}) . Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple, nous calculons les trois métriques NoD, NoC et CC entre les versions 1 et 3.\\
 
-\begin{figure}[t]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth,keepaspectratio]{data/figures/example.pdf}
 	\caption{Exemple d'un historique de projet. Le projet est composé d'un seul fichier \texttt{Test.php} qui est renommé en \texttt{Hello.php} dans la dernière version.}
-	\label{fig:example}
+	\label{fig:exemple}
 \end{figure}
 
 La dernière version de la période ne contient qu'une entité, \texttt{Hello.php}. C'est donc cette entité qui sera considérée uniquement, par les approches qui visent à prédire les bugs. Si on ne prend pas en compte le renommage, l'entité n'apparaît que dans la version 3. Ainsi, le calcul est trivial, étant donné qu'il n'y a qu'un seul développeur, alors $\mu^{NoD}=1$. Il n'y a qu'une seule modification, la creation du fichier \texttt{Hello.php}, donc $\mu^{NoC}=1$. La création du fichier implique l'ajout de deux lignes de codes donc $\mu^{CC}=2$.\\
@@ -80,7 +80,7 @@ Nous avons effectué une analyse approfondie des principaux VCS (CVS, Subversion
 
 Tous ces VCS ont une granularité, une finesse d'analyse, d'entité au niveau fichier. Comme expliqué précédemment, les entités sont identifiés par leur chemin absolu, c'est-à-dire le chemin depuis la racine du projet $+$ leur nom. Pour tous ces VCS, une modification dans le chemin d'un fichier, qui peut être due à un changement d'emplacement dans les dossiers ou à un changement de son nom, est considérée comme une suppression de fichier et création de fichier. Certains VCS proposent en complément un mécanisme pour traiter les renommages. Ce mécanisme peut être manuel ou automatique. Un mécanisme de traitement de renommage est dit manuel lorsque le développeur doit utiliser une commande particulière pour indiquer que la modification effectuée sur le fichier est un renommage. Un mécanisme est automatique lorsque le VCS propose un algorithme qui peut automatiquement détecter le renommage. De plus, ce mécanisme automatique peut être appliqué par défaut par le VCS ou de manière optionnelle lorsque le développeur doit explicitement ajouter une option de commande dans sa recherche dans l'historique.\\
  
-La ~\tabref{vcs} résume notre étude. Alors que CVS ne gère pas du tout le renommage, SVN ou Mercural propose un mécanisme manuel de détection de renommage de fichiers. Git quant à lui propose un algorithme de détection de renommage automatique mais optionnel. Aucun de ces VCS ne propose un mécanisme automatique par défaut.\\ 
+La~\tabref{vcs} résume notre étude. Alors que CVS ne gère pas du tout le renommage, SVN ou Mercural propose un mécanisme manuel de détection de renommage de fichiers. Git quant à lui propose un algorithme de détection de renommage automatique mais optionnel. Aucun de ces VCS ne propose un mécanisme automatique par défaut.\\ 
 
 %Cependant, nous allons voir que le traitement du renommage de ces VCS ne parvient pas à limiter l'impact sur le calcul des métriques de procédés.\\ 
 
