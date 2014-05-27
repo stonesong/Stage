@@ -1,6 +1,6 @@
 project,pfr,churn,devs,modifications
-Jenkins 1.420 - 1.430,0.86,1***,1***,1***
-JQuery 1.1 - 1.2,62.5,0.98***,\textbf{0.08}!,\textbf{0.59}!
-PHPUnit 3.7 - 4.7,98.51,\textbf{0.6}***,\textbf{0.38}***,\textbf{0.71}***
-Pyramid 1.0 - 1.1,8.69,0.97***,1***,1***
-Rails 2.3.0 - 3.0.0,26.49,0.98***,0.96***,0.93***
+Jenkins 1.420 - 1.430,0.86,1,1,1
+JQuery 1.1 - 1.2,62.5,0.98,\textbf{0.08},\textbf{0.59}
+PHPUnit 3.7 - 4.7,98.51,\textbf{0.6},\textbf{0.38},\textbf{0.71}
+Pyramid 1.0 - 1.1,8.69,0.97,1,1
+Rails 2.3.0 - 3.0.0,26.49,0.98,0.96,0.93
