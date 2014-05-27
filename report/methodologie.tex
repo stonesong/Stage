@@ -5,7 +5,7 @@ Nous présentons ici le déroulement de nos expérimentations qui consistent à 
 
 Le but de la première expérience et de calculer la quantité de renommage durant les périodes de développement des logiciels. S’appuyant sur cette première expérience, notre deuxième expérience fournit une analyse de l’impact du renommage sur les métriques de procédés dans le pire des cas. 
 
-Mais tout d'abord, nous avons besoin d'un ensemble de logiciels afin de former un coprus sur lequel appliquer nos expérimentations. 
+Mais tout d'abord, nous avons besoin d'un ensemble de logiciels afin de former un corpus sur lequel appliquer nos expérimentations. 
 
 \subsection{Corpus}
 
@@ -45,10 +45,11 @@ Nous avons ainsi deux phases, les phases de maintenance et les phases de dévelo
 
 Les conventions de nommage des releases sont spécifiques à chaque projet, par exemple:
 \begin{itemize}
-\item PHPunit: \texttt{3.5.0, 3.6.0} etc.
+\item PHPUnit: \texttt{3.5.0, 3.6.0} etc.
 \item Pyramid: \texttt{1.0, 1.1} etc.
 \item Jenkins: \texttt{jenkins-1\_400, jenkins-1\_410} etc.
 \item Rails: \texttt{v2.0.0, v2.1.0} etc.
+\item JQuery: \texttt{1.1, 1.2} etc.
 \end{itemize}
 Nous avons analysé manuellement les dépôts des projets de notre corpus pour identifier leurs releases mineures et majeures.\\
 
@@ -92,11 +93,11 @@ Nous calculons ensuite les trois métriques avec et sans le renommage de fichier
 
 %Une simple corrélation ne serait pas adaptée. En effet, elle consisterait à comparer directement les fichiers par leur valeur de métrique dans les listes. Or, les projets comptent un nombre importants de fichiers et si la valeur de métrique d'un fichier d'une liste à l'autre n'est pas exactement la même mais qu'elle reste proche, nous souhaitons la considérer tel quel. Les résultats ainsi obtenus ne seraient alors pas pertinents. \\ 
 
-La corrélation de coefficient de Spearman est parfaitement adaptée. Elle permet de calculer la corrélation entre des variables classés. Les variables sont nos listes de fichiers et les rangs sont donnés par la position des fichiers dans la liste. La position d'un fichier lui est accordée en fonction de sa valeur associée de métrique. Le calcul nous est donné par la formule: 
+La corrélation de coefficient de Spearman est parfaitement adaptée. Elle permet de calculer la corrélation entre des variables classées. Les variables sont nos listes de fichiers et les rangs sont donnés par la position des fichiers dans la liste. La position d'un fichier lui est accordée en fonction de sa valeur associée de métrique. Le calcul nous est donné par la formule: 
 
 \[ \rho = \frac{\sum_{i}(x_{i} - \bar{x})(y_{i} - \bar{y})}{ \sqrt{ \sum_{i}(x_{i} - \bar{x})^2\sum_{i}(y_{i} - \bar{y})^2 } } \]
 
 avec pour un échantillon de taille $n$, $x_{i}$ et $y_{i}$ les rangs convertis à partir des valeurs de métrique $X_{i}$ et $Y_{i}$ pour les variable $X$ et $Y$.
 Des valeurs identiques de $X_i$ se voient attribuer un rang égal à la moyenne de leurs positions dans l'ordre croissant des valeurs.\\
 
-Les résultats obtenus pour chaque métriques sont évalué pour notre étude de la manière suivante: Un coefficient élevé, proche de $1$, indiquera que les métriques avec et sans détection de renommage sont très similaires. Un coefficient plus petit, $0.5$ et moins, indiquera que les métriques avec et sans détection de renommage sont très différentes.\\  
+Les résultats obtenus pour chaque métrique sont évalués pour notre étude de la manière suivante: Un coefficient élevé, proche de $1$, indiquera que les métriques avec et sans détection de renommage sont très similaires. Un coefficient plus petit, $0.5$ et moins, indiquera que les métriques avec et sans détection de renommage sont très différentes.\\  

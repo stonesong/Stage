@@ -17,10 +17,10 @@ $15$ de ces études analysent des projets industriels, ~\cite{arisholm_systemati
 
 $11$ études analysent des logiciels open-source \cite{dambros_relationship_2009,bacchelli_are_2010,caglayan_merits_2009,dambros_evaluating_2012,dambros_evaluating_2012,dambros_extensive_2010,illes-seifert_exploring_2010,li_finding_2005,matsumoto_analysis_2010,moser_analysis_2008,moser_comparative_2008,schroter_if_2006}. Les VCS utilisés dans ces études sont CVS ou Subversion. CVS ne gère pas le renommage et Subversion uniquement de manière manuelle ce qui est dangereux comme expliqué dans l'article ~\cite{lavoie_inferring_2012,steidl_incremental_2014}. Seulement deux de ces études ~\cite{moser_analysis_2008,moser_comparative_2008} parlent de renommage, dans leur set de données ou dans les ''Threats to validity''. Pour réduire le risque d'erreur dans leurs expérimentations, ces deux études ont supprimé systématiquement tous les fichiers ajoutés ou supprimés durant les périodes analysées. C'est un bon moyen d'éviter de calculer des métriques de procédés biaisés, mais cela implique aussi de supprimer inutilement, du jeu de données, un nombre significatif de fichiers.\\
 
-\subsection{Lignes de conduite}
+\subsection{Recommandations}
 \label{sec:guidelines}
 
-Les résultats de nos deux expérimentations nous permettent de déduire de simples lignes de conduite pour calculer les métriques de procédés. Voici donc nos recommendations: 
+Les résultats de nos deux expérimentations nous permettent de déduire de simples lignes de conduite pour calculer les métriques de procédés. Voici donc nos recommandations: 
 \begin{itemize}
 \item Eviter de calculer ces métriques durant les périodes initiales. En effet, ces périodes contiennent habituellement une quantité de renommage significative. Comme nous l'avons vu, les deux périodes majeures et mineures peuvent contenir un beaucoup de renommage, bien que les releases majeures semblent plus sujettes au renommage. 
 \item Utiliser systématiquement un algorithme de détection de renommage, afin d'éviter d'analyser les mauvaises périodes. Git propose un algorithme dédié qui semble avoir une bonne précision mais un rappel inconnu. Par conséquent, l'utilisation de projets gérés avec Git parait la méthode la plus simple pour diminuer les risques du renommage. Des algorithmes de détection plus avancés sont décrits dans la littérature ~\cite{antoniol_automatic_2004,lavoie_inferring_2012,steidl_incremental_2014}. Ils ont été validés par des études empiriques donc ils pourraient réaliser une analyse meilleure que celle de Git. 

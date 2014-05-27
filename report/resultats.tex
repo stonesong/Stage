@@ -8,7 +8,7 @@ Les résultats de la première expérience sont montrés dans la \figref{renamin
 \begin{figure*}[h]
 	\centering
 	\includegraphics[width=0.85\linewidth,keepaspectratio]{data/figures/renaming.pdf}
-	\caption{Pourcentage de fichiers renommés ($\%F_R$) dans chaque période de chaque projet de notre corpus. La période initiale est en rouge, les périodes majeures en orange et les périodes mineures jaune. (resp. gris foncé, gris et gris clair sur une version papier du rapport)}
+	\caption{Pourcentage de fichiers renommés ($\%F_R$) dans chaque période de chaque projet de notre corpus. La période initiale est en rouge, les périodes majeures en orange et les périodes mineures en jaune. (resp. gris foncé, gris et gris clair sur une version papier du rapport)}
 	\label{fig:renaming}
 \end{figure*}
 
@@ -30,7 +30,7 @@ En ce qui concerne le pourcentage de fichiers \textbf{actifs} renommés ($\%AF_R
 \begin{figure*}[h]
 	\centering
 	\includegraphics[width=0.85\linewidth,keepaspectratio]{data/figures/renaming2.pdf}
-	\caption{Pourcentage de fichiers actifs renommés ($\%AF_R$) dans chaque période de chaque projet de notre corpus. La période initiale est en rouge, les périodes majeures en orange et les périodes mineures jaune. (resp. gris foncé, gris et gris clair sur une version papier du rapport)}
+	\caption{Pourcentage de fichiers actifs renommés ($\%AF_R$) dans chaque période de chaque projet de notre corpus. La période initiale est en rouge, les périodes majeures en orange et les périodes mineures en jaune. (resp. gris foncé, gris et gris clair sur une version papier du rapport)}
 	\label{fig:renaming2}
 \end{figure*}
 
@@ -55,7 +55,7 @@ Nous avons étudié manuellement les deux périodes qui ont affecté les valeurs
 
 Notre étude fait l'hypothèse que les renommages détectés par Git sont corrects. Néanmoins, nous n'avons pas rencontré d'évaluation empirique de l'algorithme de détection de renommage de Git. Par conséquent nous ne sommes pas sur de la qualité de ses performances. Afin d'atténuer le risque de fausser notre étude, nous avons tiré au hasard $100$ renommages détectés par Git lors de notre expérimentation. Nous avons évalué manuellement chaque renommage de fichier pour vérifier si la détection était correcte. 
 
-Vérifier que la détection soit correcte consiste à s'assurer que le contenu du fichier avant et après renommage soit très similaire, et qu'aucun autre fichier ajouté dans la même version n'ait un contenu similaire. Cette analyse manuelle nous a révélé que  $100\%$ des renommages étaient correctement détectés. La précision, qui est définie par le nombre de renommages justes détectés par l'algorithme de Git divisé par le nombre de renommages détectés, est donc de $1$. Même si nous ne connaissons pas le rappel de notre analyse, c'est à dire le nombre de renommages justes détectés divisé par le nombre de renommages du projet, cette expérience montre que l'utilisation de Git dans la détection de renommage reste raisonnable. Nous n'avons pas analysé les faux négatifs, c'est à dire les vrais renommages de fichiers non détectés par Git. Cette analyse devrait se faire de manière manuelle afin de récupérer dans chaque \texttt{commit} la totalité des renommages. Ce qui n'est pas faisable compte tenu de la quantité considérable de données à analyser sur nos projets. De plus cela ne pourrait que diminuer les coefficients de corrélation si nous l'avons sous-estimé et donc ne risquerait pas de fausser nos conclusions.\\  
+Vérifier que la détection soit correcte consiste à s'assurer que le contenu du fichier avant et après renommage soit très similaire, et qu'aucun autre fichier ajouté dans la même version n'ait un contenu similaire. Cette analyse manuelle nous a révélé que  $100\%$ des renommages étaient correctement détectés. La précision, qui est définie par le nombre de renommages justes détectés par l'algorithme de Git divisé par le nombre de renommages détectés, est donc de $1$. Même si nous ne connaissons pas le rappel de notre analyse, c'est à dire le nombre de renommages justes détectés divisé par le nombre de renommages du projet, cette expérience montre que l'utilisation de Git dans la détection de renommage reste raisonnable. Nous n'avons pas analysé les faux négatifs, c'est à dire les vrais renommages de fichiers non détectés par Git. Cette analyse devrait se faire de manière manuelle afin de récupérer dans chaque \texttt{commit} la totalité des renommages. Ce qui n'est pas faisable compte tenu de la quantité considérable de données à analyser sur nos projets. De plus, cela ne pourrait que diminuer les coefficients de corrélation si nous l'avons sous-estimé et donc ne risquerait pas de fausser nos conclusions.\\  
 
 Nous avons uniquement évalué l'effet du renommage sur trois métriques de procédés. L'effet du renommage pourrait être différent (mieux ou pire) pour les autres métriques de procédés. Notre solution pour limiter ce risque était d'analyser les métriques de procédés les plus utilisées comme il est montré dans~\cite{radjenovic_software_2013}. Les autres métriques de procédés sont souvent basées sur ces trois métriques comme la métrique \emph{code ownership}~\cite{bird_dont_2011} ou \emph{module activity focus}~\cite{posnett_dual_2013}.\\
 

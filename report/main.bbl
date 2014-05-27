@@ -37,6 +37,11 @@ Bora Caglayan, Ayse Bener, and Stefan Koch.
   {Free/Libre/Open} Source Software Research and Development}, {FLOSS} '09,
   page 31–36, Washington, {DC}, {USA}, 2009. {IEEE} Computer Society.
 
+\bibitem{chidamber_metrics_1994}
+S.~R. Chidamber and C.~F. Kemerer.
+\newblock A metrics suite for object oriented design.
+\newblock {\em {IEEE} Trans. Softw. Eng.}, 20(6):476–493, June 1994.
+
 \bibitem{dambros_relationship_2009}
 M.~{D'Ambros}, M.~Lanza, and R.~Robbes.
 \newblock On the relationship between change coupling and software defects.
@@ -92,14 +97,15 @@ Todd~L. Graves, Alan~F. Karr, J.~S. Marron, and Harvey Siy.
 
 \bibitem{herzig-makingsoftware-2010}
 Kim Herzig and Andreas Zeller.
-\newblock {\em {Making Software: What Really Works and Why We Believe It}},
+\newblock {\em Making Software: What Really Works and Why We Believe It},
   chapter Mining Your Own Evidence, pages 517--529.
-\newblock O'Reilly Media, October 2010.
+\newblock O'Reilly Media, Oct 2010.
 
 \bibitem{icsme_2014}
 IEEE.
 \newblock Icsme 2014 : 2014 ieee international conference on software
-  maintenance and evolution.
+  maintenance and evolution, sept 2014.
+\newblock http://www.icsme.org/.
 
 \bibitem{illes-seifert_exploring_2010}
 Timea Illes-Seifert and Barbara Paech.
@@ -271,11 +277,13 @@ Elaine~J. Weyuker, Thomas~J. Ostrand, and Robert~M. Bell.
 
 \bibitem{bertillonnage}
 Wikipedia.
-\newblock Bertillonnage, January.
+\newblock Bertillonnage, jan 2014.
+\newblock http://fr.wikipedia.org/wiki/Bertillonnage.
 
 \bibitem{list_vcs}
 Wikipedia.
-\newblock List of revision control software, May 2014.
+\newblock List of revision control software, may 2014.
+\newblock http://en.wikipedia.org/wiki/List\_of\_revision\_control\_software.
 
 \bibitem{wu_aura:_2010}
 Wei Wu, Yann-Gaël Guéhéneuc, Giuliano Antoniol, and Miryung Kim.
