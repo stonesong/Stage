@@ -207,12 +207,6 @@ Nachiappan Nagappan, Thomas Ball, and Brendan Murphy.
   Reliability Engineering}, {ISSRE} '06, page 62–74, Washington, {DC}, {USA},
   2006. {IEEE} Computer Society.
 
-\bibitem{nagappan_mining_2006}
-Nachiappan Nagappan, Thomas Ball, and Andreas Zeller.
-\newblock Mining metrics to predict component failures.
-\newblock In {\em Proceedings of the 28th international conference on Software
-  engineering}, {ICSE} '06, page 452–461, New York, {NY}, {USA}, 2006. {ACM}.
-
 \bibitem{nagappan_influence_2008}
 Nachiappan Nagappan, Brendan Murphy, and Victor Basili.
 \newblock The influence of organizational structure on software quality: an

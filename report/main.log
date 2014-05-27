@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.4.29)  27 MAY 2014 11:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.4.29)  27 MAY 2014 18:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1196,50 +1196,61 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) (./main.toc [1
+) (./remerciements.tex
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./data/figures/UnivBordeau
-x.jpg>])
+x.jpg>]) [2] (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
-[2] (./introduction.tex
+ [3] (./introduction.tex
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-
- []
-
-[3]
 Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
-
- []
-
-
+[4]
 Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
-[4]
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 32--33
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
@@ -1248,12 +1259,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
 
-[5]
+
 Underfull \hbox (badness 10000) in paragraph at lines 26--29
 [][]
  []
@@ -1264,93 +1275,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--29
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--37
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
  []
 
-<data/figures/example.pdf, id=176, 282.42657pt x 172.5872pt>
+[8] <data/figures/example.pdf, id=187, 282.42657pt x 172.5872pt>
 File: data/figures/example.pdf Graphic file (type pdf)
 
 <use data/figures/example.pdf>
-Package pdftex.def Info: data/figures/example.pdf used on input line 63.
+Package pdftex.def Info: data/figures/example.pdf used on input line 64.
 (pdftex.def)             Requested size: 295.90979pt x 180.83742pt.
 
-Overfull \hbox (1.12216pt too wide) in paragraph at lines 68--69
+Overfull \hbox (1.12216pt too wide) in paragraph at lines 69--70
 []\T1/cmr/m/n/12 La der-nière ver-sion de la pé-riode ne contient qu'une en-tit
 é, \T1/cmtt/m/n/12 Hello.php\T1/cmr/m/n/12 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
-[7] [8 <./data/figures/example.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+[9 <./data/figures/example.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
  []
 
-[10] <data/figures/oa.png, id=238, 527.72156pt x 357.58594pt>
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+
+ []
+
+<data/figures/oa.png, id=240, 1191.45125pt x 835.12pt>
 File: data/figures/oa.png Graphic file (type png)
 
 <use data/figures/oa.png>
-Package pdftex.def Info: data/figures/oa.png used on input line 122.
-(pdftex.def)             Requested size: 263.86014pt x 178.79253pt.
+Package pdftex.def Info: data/figures/oa.png used on input line 123.
+(pdftex.def)             Requested size: 297.86208pt x 208.77948pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
+
+ []
+
+[12 <./data/figures/oa.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 130--132
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--131
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
  []
 
@@ -1360,12 +1368,12 @@ Overfull \hbox (17.57367pt too wide) in paragraph at lines 4--5
 -tions qui consistent
  []
 
-[11 <./data/figures/oa.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 12--15
 
  []
 
-<data/tables/VCS.png, id=250, 1829.83624pt x 326.21875pt>
+[13] <data/tables/VCS.png, id=260, 1829.83624pt x 326.21875pt>
 File: data/tables/VCS.png Graphic file (type png)
 
 <use data/tables/VCS.png>
@@ -1381,7 +1389,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
-[12 <./data/tables/VCS.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
@@ -1391,27 +1399,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
 
-<data/figures/periods.pdf, id=257, 605.26125pt x 502.87875pt>
+[14 <./data/tables/VCS.png>]
+<data/figures/periods.pdf, id=267, 605.26125pt x 502.87875pt>
 File: data/figures/periods.pdf Graphic file (type pdf)
 
 <use data/figures/periods.pdf>
 Package pdftex.def Info: data/figures/periods.pdf used on input line 60.
 (pdftex.def)             Requested size: 302.62987pt x 251.43875pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
-[13]
+[15 <./data/figures/periods.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
-[14 <./data/figures/periods.pdf>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
@@ -1431,13 +1436,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
 
  []
 
-[15]) (./resultats.tex
-Underfull \hbox (badness 10000) in paragraph at lines 103--1
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--103
+
+ []
+
+) (./resultats.tex
+Underfull \hbox (badness 10000) in paragraph at lines 104--1
 
  []
 
@@ -1446,22 +1461,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-<data/figures/renaming.pdf, id=296, 505.89pt x 505.89pt>
+[17] <data/figures/renaming.pdf, id=306, 505.89pt x 505.89pt>
 File: data/figures/renaming.pdf Graphic file (type pdf)
 
 <use data/figures/renaming.pdf>
 Package pdftex.def Info: data/figures/renaming.pdf used on input line 10.
 (pdftex.def)             Requested size: 314.40521pt x 314.41275pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
-
+[18 <./data/figures/renaming.pdf>]
 Overfull \hbox (1.95567pt too wide) in paragraph at lines 28--29
 []\T1/cmr/m/n/12 En ce qui concerne le pour-cen-tage de fi-chiers \T1/cmr/bx/n/
 12 ac-tifs \T1/cmr/m/n/12 re-nom-més ($\OT1/cmr/m/n/12 %\OML/cmm/m/it/12 AF[]$\
@@ -1473,17 +1484,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-[16] <data/figures/renaming2.pdf, id=304, 505.89pt x 505.89pt>
+<data/figures/renaming2.pdf, id=320, 505.89pt x 505.89pt>
 File: data/figures/renaming2.pdf Graphic file (type pdf)
 
 <use data/figures/renaming2.pdf>
 Package pdftex.def Info: data/figures/renaming2.pdf used on input line 32.
 (pdftex.def)             Requested size: 314.40521pt x 314.41275pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17 <./data/figures/renaming.pdf>]
+ [19 <./data/figures/renaming2.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
@@ -1493,7 +1500,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[18 <./data/figures/renaming2.pdf>]
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+
+ []
+
+
 Overfull \hbox (3.47716pt too wide) in paragraph at lines 58--59
 []\T1/cmr/m/n/12 Vérifier que la dé-tec-tion soit cor-recte consiste à s'as-su-
 rer que le contenu
@@ -1504,7 +1516,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
-[19]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 60--61
 
  []
@@ -1519,7 +1531,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--1
 
  []
 
-[20]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
@@ -1539,53 +1551,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-[21]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
-) (./conclusion.tex [22]
+) (./conclusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-)
-Underfull \hbox (badness 10000) in paragraph at lines 8--63
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-[23] (./main.bbl [24] [25] [26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 279--282
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+) [25] (./main.bbl [26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 273--276
 []\T1/cmr/m/n/12 Wikipedia.  Ber-tillon-nage, jan 2014.
  []
 
 
-Underfull \hbox (badness 4621) in paragraph at lines 284--287
+Underfull \hbox (badness 4621) in paragraph at lines 278--281
 []\T1/cmr/m/n/12 Wikipedia.  List of re-vi-sion control soft-ware, may 2014.
  []
 
-) [28]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 71.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 71.
+) [30]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 73.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 73.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 71.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 71.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 73.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 73.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 3DF9AB5041CCE7087A441A848E556AB9;1221.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 71.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 73.
  ) 
 Here is how much of TeX's memory you used:
- 28855 strings out of 493304
- 659880 string characters out of 6139871
- 838040 words of memory out of 5000000
+ 28860 strings out of 493304
+ 659926 string characters out of 6139871
+ 837040 words of memory out of 5000000
  31660 multiletter control sequences out of 15000+600000
  20124 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 69i,9n,78p,1311b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,78p,1354b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{cite.wu_aura\\penalty\040\\@M\040\040:_2010} has 
 been referenced but does not exist, replaced by a fixed one
 
@@ -1604,10 +1621,10 @@ s/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-su
 per/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></u
 sr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sftt1440.pfb>
-Output written on main.pdf (28 pages, 569864 bytes).
+Output written on main.pdf (30 pages, 588662 bytes).
 PDF statistics:
- 521 PDF objects out of 1000 (max. 8388607)
- 446 compressed objects within 5 object streams
- 111 named destinations out of 1000 (max. 500000)
+ 533 PDF objects out of 1000 (max. 8388607)
+ 456 compressed objects within 5 object streams
+ 113 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 

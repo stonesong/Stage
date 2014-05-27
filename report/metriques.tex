@@ -7,7 +7,7 @@ Nous décrivons dans cette partie comment les métriques de procédés sont calc
 
 Les métriques de procédés (process metrics) mesurent les modifications subies par les entités de code source, au cours d'une période donnée dans l'histoire d'un logiciel. Une version étant un état donné de l'évolution d'un logiciel, nous définissons une période par une suite de version successive. Pour la prédiction de bugs, elles sont généralement calculées dans une période située entre deux \texttt{releases}. Une \texttt{release} correspond à la sortie d'une version dite stable du logiciel. L'objectif est de prédire les bugs qui apparaîtront lors de la prochaine version, en particulier si cette version est une \texttt{release}. Elles ne prennent alors en considération que les entités susceptibles de contenir des bugs dans la prochaine version, c'est-à-dire les entités étant toujours présentes à la fin de la période et qui ont été actives dans la période. Elles excluent entre autres les entités supprimées au cours de la période.\\
 
-Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriques de procédés car il stocke les informations sur les entités modifiées à chaque nouvelle version. Les modifications apportées par une nouvelle version sont présentées sous la forme d'un \texttt{commit}. Voici un exemple de \texttt{commit} lambda.\\
+Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriques de procédés car il stocke les informations sur les entités modifiées à chaque nouvelle version. Les modifications apportées par une nouvelle version sont présentées sous la forme d'un \texttt{commit}. Voici un un exemple de \texttt{commit} :\\
 
 \begingroup
 	\fontsize{8pt}{12pt}\selectfont
@@ -27,16 +27,17 @@ Un gestionnaire de versions (VCS) offre plusieurs moyens de calculer les métriq
 \endgroup
 \linebreak
 
+
 On peut y retrouver les informations suivantes: 
 \begin{itemize}
-\item L'identité du \texttt{commit} (une \texttt{SHA-1} ici).
-\item L'auteur de ces modifications.
+\item L'identité du \texttt{commit} (ici une clé Git donnée par une fonction de hachage \texttt{SHA-1}).
+\item L'auteur de ces modifications, son nom et son email.
 \item La date du \texttt{commit}.
 \item Le commentaire.
 \item Des détails sur les entités (ici des fichiers) qui ont été modifiées.\\
 \end{itemize}
 
-Un VCS permet aussi la récupération du contenu de chaque entité et de l'ensemble d'un projet à partir d'une version donnée qu'on appelle un \texttt{``snapshot''}. Pour calculer ces métriques, il est donc possible d'analyser chaque entité modifiée lors d'une période puis de garder uniquement les entités toujours présentes à la dernière version de notre période.\\
+Un VCS permet aussi la récupération du contenu de chaque entité et de l'ensemble d'un projet à partir d'une version donnée qu'on appelle un \texttt{snapshot}. Pour calculer ces métriques, il est donc possible d'analyser chaque entité modifiée lors d'une période puis de garder uniquement les entités toujours présentes à la dernière version de notre période.\\
 
 Plus précisément, voici comment un VCS peut être utilisé pour calculer une métrique de procédé: 
 \begin{enumerate}
@@ -56,7 +57,7 @@ On note $\mu_{a}^{M}$ la valeur de la métrique $M$ pour l'entité $a$ et  $c_i$
 
 \subsection{Métriques de procédés et renommage}
 
-Un VCS est donc particulièrement utile dans cet exercice. Cependant, il faut noter que la plus part des VCS identifient une entité par son chemin $+$ son nom. Le chemin représente l'ensemble des dossiers parents depuis la racine du projet. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel. (\figref{example}) . Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple, nous calculons les trois métriques NoD, NoC et CC entre les versions 1 et 3.\\
+Un VCS est donc particulièrement utile dans cet exercice. Cependant, il faut noter que la plus part des VCS identifient une entité par son chemin absolu. Le chemin représente l'ensemble des dossiers parents depuis la racine du projet. On en déduit qu'un renommage du fichier ou d'un dossier, aura un impact sur le calcul des métriques. Pour expliquer cet impact, il est présenté un exemple d'historique d'un logiciel. (\figref{example}) . Ce projet ne contient qu'une entité, Test.php, qui est renommé en Hello.php dans la dernière version. Dans cet exemple, nous calculons les trois métriques NoD, NoC et CC entre les versions 1 et 3.\\
 
 \begin{figure}[t]
 	\centering
@@ -77,7 +78,7 @@ Un autre effet intéressant à remarquer est que plus une entité est renommée 
   
 Nous avons effectué une analyse approfondie des principaux VCS (CVS, Subversion, Git and Mercurial) dans le but de décrire les mécanismes qu'ils proposent pour traiter le renommage. 
 
-Tous ces VCS sont à une granularité d'entité au niveau fichier. Comme expliqué précédemment, les entités sont identifiés par leur chemin absolu, c'est-à-dire le chemin depuis la racine du projet $+$ leur nom. Pour tous ces VCS, une modification dans le chemin d'un fichier, qui peut être due à un changement d'emplacement dans les dossiers ou à un changement de son nom, est considérée comme une suppression de fichier et création de fichier. Certains VCS proposent en complément un mécanisme pour traiter les renommages. Ce mécanisme peut être manuel ou automatique. Un mécanisme de traitement de renommage est dit manuel lorsque le développeur doit utiliser une commande particulière pour indiquer que la modification effectuée sur le fichier est un renommage. Un mécanisme est automatique lorsque le VCS propose un algorithme qui peut automatiquement détecter le renommage. De plus, ce mécanisme automatique peut être appliqué par défaut par le VCS ou de manière optionnelle lorsque le développeur doit explicitement ajouter une option de commande dans sa recherche dans l'historique.\\
+Tous ces VCS ont une granularité, une finesse d'analyse, d'entité au niveau fichier. Comme expliqué précédemment, les entités sont identifiés par leur chemin absolu, c'est-à-dire le chemin depuis la racine du projet $+$ leur nom. Pour tous ces VCS, une modification dans le chemin d'un fichier, qui peut être due à un changement d'emplacement dans les dossiers ou à un changement de son nom, est considérée comme une suppression de fichier et création de fichier. Certains VCS proposent en complément un mécanisme pour traiter les renommages. Ce mécanisme peut être manuel ou automatique. Un mécanisme de traitement de renommage est dit manuel lorsque le développeur doit utiliser une commande particulière pour indiquer que la modification effectuée sur le fichier est un renommage. Un mécanisme est automatique lorsque le VCS propose un algorithme qui peut automatiquement détecter le renommage. De plus, ce mécanisme automatique peut être appliqué par défaut par le VCS ou de manière optionnelle lorsque le développeur doit explicitement ajouter une option de commande dans sa recherche dans l'historique.\\
  
 La ~\tabref{vcs} résume notre étude. Alors que CVS ne gère pas du tout le renommage, SVN ou Mercural propose un mécanisme manuel de détection de renommage de fichiers. Git quant à lui propose un algorithme de détection de renommage automatique mais optionnel. Aucun de ces VCS ne propose un mécanisme automatique par défaut.\\ 
 
@@ -119,17 +120,17 @@ Tout d'abord, il faut considérer deux versions successives d'un projet. Une ver
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.5]{data/figures/oa.png}
-	\caption{Schématisation de deux versions consécutives.}
+  \includegraphics[scale=0.25]{data/figures/oa.png}
+	\caption{Schématisation du contenu de deux versions consécutives. Les paires candidates au renommage sont \texttt{(bye.rb, hello1.rb)} et \texttt{(bye.rb, hello2.rb)}}
 	\label{fig:oa}
 \end{figure}
 
-L'analyse proposée par Godrey pour détecter les renommages d'une version à la suivante est basée sur le principe d'une analyse de ``Bertillonnage''~\cite{bertillonnage}. Cette analyse a pour but de trouver l’origine possible d’une entité apparemment ``nouvelle''. Elle consiste à comparer entre elles les entités composantes de chaque paire possible ``entité supprimée, entité créée'', de version consécutive.\\ 
+L'analyse proposée par Godfrey pour détecter les renommages d'une version à la suivante est basée sur le principe d'une analyse de ``Bertillonnage''~\cite{bertillonnage}. Cette analyse a pour but de trouver l’origine possible d’une entité apparemment ``nouvelle''. Elle consiste à comparer entre elles les entités composantes de chaque paire possible ``entité supprimée, entité créée'', de version consécutive.\\ 
 
-Le schéma donné en~\figref{oa} représente le contenu d'un projet à deux versions consécutives. Si on observe la différence entre la version 1 et la version 2, on remarque que le fichier \texttt{src/bye.rb} a été supprimé alors que les fichiers \texttt{src/hello1.rb} et \texttt{src/hello2.rb} ont été ajoutés.
-Dans cet exemple, l'analyse de Godfrey mettrait en corrélation les paires \texttt{(src/bye.rb, src/hello1.rb)} et \texttt{(src/bye.rb, src/hello2.rb)}.\\  
+Le schéma donné en~\figref{oa} représente le contenu d'un projet à deux versions consécutives. Si on observe la différence entre la version 1 et la version 2, on remarque que le fichier \texttt{bye.rb} a été supprimé alors que les fichiers \texttt{hello1.rb} et \texttt{hello2.rb} ont été ajoutés.
+Dans cet exemple, l'analyse de Godfrey mettrait en corrélation les paires \texttt{(bye.rb, hello1.rb)} et \texttt{(bye.rb, hello2.rb)}.\\  
 
-Cette comparaison s'effectue grâce à un choix et un nombre de métriques défini par l'utilisateur (en l'occurrence Git). Pour chaque paire d'entités, la distance Euclidienne est calculée. Elle nous donne la distance dans l’espace $nD$ (pour les $n$ métriques). Combinée avec une technique de comparaison des noms des entités, nous obtenons une liste ordonnée des renommages potentiels. Un seuil d'acceptabilité peut alors être défini pour juger si un couple compose un renommage d'entité.
+Cette comparaison s'effectue grâce à un choix et un nombre de métriques défini par l'utilisateur (en l'occurrence Git). Pour chaque paire d'entités, la distance Euclidienne dans l’espace à $n$ dimensions (pour les $n$ métriques) est calculée. Combinée avec une technique de comparaison des noms des entités, nous obtenons une liste ordonnée des renommages potentiels. Un seuil d'acceptabilité peut alors être défini pour juger si un couple compose un renommage d'entité.
 
 Git met en application cette analyse avec un seuil d'acceptabilité établi par défaut mais qui peut être configuré à postériori.\\
 

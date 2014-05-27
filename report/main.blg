@@ -17,45 +17,45 @@ Warning--entry type for "bertillonnage" isn't style-file defined
 --line 806 of file renaming.bib
 Warning--entry type for "list_vcs" isn't style-file defined
 --line 815 of file renaming.bib
-You've used 46 entries,
+You've used 45 entries,
             2118 wiz_defined-function locations,
-            768 strings with 13844 characters,
-and the built_in function-call counts, 20015 in all, are:
-= -- 2087
-> -- 800
-< -- 33
-+ -- 324
-- -- 266
-* -- 1184
-:= -- 2877
-add.period$ -- 153
-call.type$ -- 46
-change.case$ -- 270
+            763 strings with 13641 characters,
+and the built_in function-call counts, 19495 in all, are:
+= -- 2027
+> -- 782
+< -- 32
++ -- 317
+- -- 260
+* -- 1160
+:= -- 2809
+add.period$ -- 149
+call.type$ -- 45
+change.case$ -- 264
 chr.to.int$ -- 0
-cite$ -- 46
-duplicate$ -- 1013
-empty$ -- 1535
-format.name$ -- 266
-if$ -- 4601
+cite$ -- 45
+duplicate$ -- 980
+empty$ -- 1499
+format.name$ -- 260
+if$ -- 4472
 int.to.chr$ -- 0
-int.to.str$ -- 46
-missing$ -- 44
-newline$ -- 234
-num.names$ -- 92
-pop$ -- 336
+int.to.str$ -- 45
+missing$ -- 43
+newline$ -- 229
+num.names$ -- 90
+pop$ -- 329
 preamble$ -- 1
-purify$ -- 225
+purify$ -- 220
 quote$ -- 0
-skip$ -- 922
+skip$ -- 889
 stack$ -- 0
-substring$ -- 1151
-swap$ -- 491
-text.length$ -- 33
+substring$ -- 1128
+swap$ -- 471
+text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 182
+type$ -- 178
 warning$ -- 0
-while$ -- 160
-width$ -- 48
-write$ -- 549
+while$ -- 157
+width$ -- 47
+write$ -- 535
 (There were 2 error messages)
